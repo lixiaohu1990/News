@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BigEventViewController : UIViewController
+#import "BaseTableViewController.h"
+@interface BigEventViewController : BaseTableViewController
 
 @end

@@ -1,21 +1,11 @@
-//
-//  JYSlideSegmentController.h
-//  JYSlideSegmentController
-//
-//  Created by Alvin on 14-3-16.
-//  Copyright (c) 2014年 Alvin. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
 extern NSString *const segmentBarItemID;
 
-@class JYSlideSegmentController;
+@class SlideSegmentController;
 
-/**
- *  Need to be implemented this methods for custom UI of segment button
- */
-@protocol JYSlideSegmentDataSource <NSObject>
+@protocol SlideSegmentDataSource <NSObject>
 @required
 
 - (NSInteger)slideSegment:(UICollectionView *)segmentBar
@@ -29,14 +19,14 @@ extern NSString *const segmentBarItemID;
 
 @end
 
-@protocol JYSlideSegmentDelegate <NSObject>
+@protocol SlideSegmentDelegate <NSObject>
 @optional
 - (void)slideSegment:(UICollectionView *)segmentBar didSelectedViewController:(UIViewController *)viewController;
 
 - (BOOL)slideSegment:(UICollectionView *)segmentBar shouldSelectViewController:(UIViewController *)viewController;
 @end
 
-@interface JYSlideSegmentController : UIViewController
+@interface SlideSegmentController : UIViewController
 
 /**
  *  Child viewControllers of SlideSegmentController
@@ -52,13 +42,8 @@ extern NSString *const segmentBarItemID;
 @property (nonatomic, weak, readonly) UIViewController *selectedViewController;
 @property (nonatomic, assign, readonly) NSInteger selectedIndex;
 
-
-/**
- *  By default segmentBar use viewController's title for segment's button title
- *  You should implement JYSlideSegmentDataSource & JYSlideSegmentDelegate instead of segmentBar delegate & datasource
- */
-@property (nonatomic, assign) id <JYSlideSegmentDelegate> delegate;
-@property (nonatomic, assign) id <JYSlideSegmentDataSource> dataSource;
+@property (nonatomic, assign) id <SlideSegmentDelegate> delegate;
+@property (nonatomic, assign) id <SlideSegmentDataSource> dataSource;
 
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
 

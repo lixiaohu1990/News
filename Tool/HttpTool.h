@@ -1,14 +1,6 @@
-//
-//  IWHttpTool.h
-//  ItcastWeibo
-//
-//  Created by apple on 14-5-19.
-//  Copyright (c) 2014年 itcast. All rights reserved.
-//  封装整个项目的GET\POST请求
-
 #import <Foundation/Foundation.h>
-
-@interface IWHttpTool : NSObject
+#define HOST @"https://115.29.239.176/rest"
+@interface HttpTool : NSObject
 
 /**
  *  发送一个POST请求

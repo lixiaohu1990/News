@@ -1,12 +1,5 @@
-//
-//  JYSlideSegmentController.m
-//  JYSlideSegmentController
-//
-//  Created by Alvin on 14-3-16.
-//  Copyright (c) 2014年 Alvin. All rights reserved.
-//
 
-#import "JYSlideSegmentController.h"
+#import "SlideSegmentController.h"
 
 #define SEGMENT_BAR_HEIGHT 44
 #define INDICATOR_HEIGHT 3
@@ -16,7 +9,7 @@
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-NSString * const segmentBarItemID = @"JYSegmentBarItem";
+NSString * const segmentBarItemID = @"SegmentBarItem";
 
 @interface JYSegmentBarItem : UICollectionViewCell
 
@@ -48,7 +41,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
 
 @end
 
-@interface JYSlideSegmentController ()
+@interface SlideSegmentController ()
 <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong, readwrite) UICollectionView *segmentBar;
@@ -64,7 +57,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
 
 @end
 
-@implementation JYSlideSegmentController
+@implementation SlideSegmentController
 @synthesize viewControllers = _viewControllers;
 
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers
@@ -221,6 +214,8 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
     [toSelectController didMoveToParentViewController:self];
   }
   _selectedIndex = selectedIndex;
+    UIView *view = [[UIApplication sharedApplication].keyWindow.rootViewController.view viewWithTag:1000];
+    [view removeFromSuperview];
 }
 
 - (void)setViewControllers:(NSArray *)viewControllers

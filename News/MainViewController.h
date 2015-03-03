@@ -6,8 +6,9 @@
 //  Copyright (c) 2015年 lee. All rights reserved.
 //
 
-#import "JYSlideSegmentController.h"
+#import "SlideSegmentController.h"
 
-@interface MainViewController : JYSlideSegmentController
+@interface MainViewController : SlideSegmentController
+@property (strong, nonatomic) SlideSegmentController *slideSegmentController;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface NewsFilmViewController : UIViewController
+#import "BaseTableViewController.h"
+@interface NewsFilmViewController : BaseTableViewController
 
 @end

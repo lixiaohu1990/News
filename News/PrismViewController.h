@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PrismViewController : UIViewController
+#import "BaseTableViewController.h"
+@interface PrismViewController : BaseTableViewController
 
 @end

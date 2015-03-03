@@ -7,7 +7,6 @@
 //
 
 #import "MoreView.h"
-
 @implementation MoreView
 
 /*
@@ -18,4 +17,17 @@
 }
 */
 
+- (IBAction)loginAction:(id)sender {
+    if (self.moreDelegate!=nil || [self respondsToSelector:@selector(moreViewDidloginAction:)]) {
+        [self.moreDelegate moreViewDidloginAction:self];
+    }
+}
+
+- (IBAction)setAction:(id)sender {
+    NSLog(@"set");
+}
+
+- (IBAction)collectionAction:(id)sender {
+    NSLog(@"collect");
+}
 @end

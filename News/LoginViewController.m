@@ -14,8 +14,10 @@
 
 @implementation LoginViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"登录";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -34,4 +36,10 @@
 }
 */
 
+- (IBAction)login:(id)sender {
+    
+}
+
+- (IBAction)registerAction:(id)sender {
+}
 @end

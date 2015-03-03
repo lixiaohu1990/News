@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MoreView;
 
+@protocol MoreViewDelegate <NSObject>
+@optional
+- (void)moreViewDidloginAction:(MoreView *)moreView;
+- (void)moreViewDidsetAction:(MoreView *)moreView;
+- (void)moreViewDidcollectAction:(MoreView *)moreView;
+
+@end
 @interface MoreView : UIView
-
+- (IBAction)loginAction:(id)sender;
+- (IBAction)setAction:(id)sender;
+- (IBAction)collectionAction:(id)sender;
+@property(nonatomic, weak)id<MoreViewDelegate>moreDelegate;
 @end

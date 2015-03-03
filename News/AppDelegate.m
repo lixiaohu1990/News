@@ -7,17 +7,44 @@
 //
 
 #import "AppDelegate.h"
-
+#import "NewsFilmViewController.h"
+#import "PrismViewController.h"
+#import "BigEventViewController.h"
+#import "BaseNavigationViewController.h"
+#import "MainViewController.h"
 @interface AppDelegate ()
-
+@property(nonatomic, strong)BaseNavigationViewController *nav;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self configureController];
+    
+    
+    self.window.rootViewController = _nav;
+    
+    [self.window makeKeyAndVisible];
     return YES;
+    return YES;
+}
+
+- (void)configureController{
+    NewsFilmViewController *newsVc = [[NewsFilmViewController alloc] init];
+    newsVc.title = @"新闻片";
+    
+    BigEventViewController *bigVc = [[BigEventViewController alloc] init];
+    bigVc.title = @"大事件";
+    
+    PrismViewController *prismVc = [[PrismViewController alloc] init];
+    prismVc.title = @"多棱镜";
+    
+    MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
+    BaseNavigationViewController *navi = [[BaseNavigationViewController alloc] initWithRootViewController:main];
+    _nav = navi;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
