@@ -10,5 +10,5 @@
 
 
 @interface BaseTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-
+@property(nonatomic, strong)UITableView *tableview;
 @end

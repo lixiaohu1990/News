@@ -24,27 +24,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
-    self.indicator.backgroundColor = [UIColor redColor];
+//    self.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
+    self.indicator.backgroundColor = [UIColor clearColor];
     
     
-    UIBarButtonItem *changeVCsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                                                                   target:self
-                                                                                   action:@selector(changeVCs)];
+//    UIBarButtonItem *changeVCsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+//                                                                                   target:self
+//                                                                                   action:@selector(changeVCs)];
+    UIButton *searchbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 34, 30)];
+    [searchbtn setImage:[UIImage imageNamed:@"search.jpg"] forState:UIControlStateNormal];
+    [searchbtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchDown];
     
-    UIBarButtonItem *searchVCsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                                   target:self
-                                                                                   action:@selector(search)];
+    UIButton *morebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 33)];
+    [morebtn setImage:[UIImage imageNamed:@"right.jpg"] forState:UIControlStateNormal];
+    [morebtn addTarget:self action:@selector(changeVCs) forControlEvents:UIControlEventTouchDown];
+    
+    UIBarButtonItem *changeVCsItem = [[UIBarButtonItem alloc] initWithCustomView:searchbtn];
+    UIBarButtonItem *searchVCsItem = [[UIBarButtonItem alloc] initWithCustomView:morebtn];
+    
+//    UIBarButtonItem *searchVCsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+//                                                                                   target:self
+//                                                                                   action:@selector(search)];
     
     //    self.slideSegmentController.navigationItem.rightBarButtonItem = changeVCsItem;
-    self.navigationItem.rightBarButtonItems = @[changeVCsItem, searchVCsItem];
+    self.navigationItem.rightBarButtonItems = @[searchVCsItem, changeVCsItem];
     
-    UIView *weatherView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    weatherView.backgroundColor = [UIColor blackColor];
-    self.navigationItem.titleView = weatherView;
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 38)];
+    titleView.image = [UIImage imageNamed:@"titile.jpg"];
+//    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithCustomView:leftView];
+    self.navigationItem.titleView = titleView;
     
-    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    leftView.backgroundColor = [UIColor blueColor];
+    UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 38)];
+    leftView.image = [UIImage imageNamed:@"logo.jpg"];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithCustomView:leftView];
     self.navigationItem.leftBarButtonItem = btn;
 }

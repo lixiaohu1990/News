@@ -125,7 +125,7 @@ NSString * const segmentBarItemID = @"SegmentBarItem";
     frame.size.height = SEGMENT_BAR_HEIGHT;
     _segmentBar = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:self.segmentBarLayout];
 //    _segmentBar.backgroundColor = [UIColor whiteColor];
-      _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg"]];
+      _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1"]];
     _segmentBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _segmentBar.delegate = self;
     _segmentBar.dataSource = self;
@@ -190,11 +190,11 @@ NSString * const segmentBarItemID = @"SegmentBarItem";
 - (void)setSelectedIndex:(NSInteger)selectedIndex
 {
     if (selectedIndex == 1) {
-        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2e2eb9389b504fc2022d2904e7dde71190ef6d45.jpg"]];
+        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2.jpg"]];
     }else if(selectedIndex == 0){
-        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IMG_2175"]];
+        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1.jpg"]];
     }else{
-        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg"]];
+        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"3.jpg"]];
     }
   if (_selectedIndex == selectedIndex) {
     return;

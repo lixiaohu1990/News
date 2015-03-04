@@ -33,13 +33,13 @@
 
 - (void)configureController{
     NewsFilmViewController *newsVc = [[NewsFilmViewController alloc] init];
-    newsVc.title = @"新闻片";
+//    newsVc.title = @"新闻片";
     
     BigEventViewController *bigVc = [[BigEventViewController alloc] init];
-    bigVc.title = @"大事件";
+//    bigVc.title = @"大事件";
     
     PrismViewController *prismVc = [[PrismViewController alloc] init];
-    prismVc.title = @"多棱镜";
+//    prismVc.title = @"多棱镜";
     
     MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
     BaseNavigationViewController *navi = [[BaseNavigationViewController alloc] initWithRootViewController:main];
