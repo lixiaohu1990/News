@@ -31,12 +31,12 @@
 //    UIBarButtonItem *changeVCsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
 //                                                                                   target:self
 //                                                                                   action:@selector(changeVCs)];
-    UIButton *searchbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 34, 30)];
-    [searchbtn setImage:[UIImage imageNamed:@"search.jpg"] forState:UIControlStateNormal];
+    UIButton *searchbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [searchbtn setImage:[UIImage imageNamed:@"icon_seach"] forState:UIControlStateNormal];
     [searchbtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchDown];
     
-    UIButton *morebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 33)];
-    [morebtn setImage:[UIImage imageNamed:@"right.jpg"] forState:UIControlStateNormal];
+    UIButton *morebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [morebtn setImage:[UIImage imageNamed:@"icon_List"] forState:UIControlStateNormal];
     [morebtn addTarget:self action:@selector(changeVCs) forControlEvents:UIControlEventTouchDown];
     
     UIBarButtonItem *changeVCsItem = [[UIBarButtonItem alloc] initWithCustomView:searchbtn];
@@ -55,7 +55,7 @@
     self.navigationItem.titleView = titleView;
     
     UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 38)];
-    leftView.image = [UIImage imageNamed:@"logo.jpg"];
+    leftView.image = [UIImage imageNamed:@"logo"];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithCustomView:leftView];
     self.navigationItem.leftBarButtonItem = btn;
 }

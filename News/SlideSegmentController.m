@@ -190,11 +190,11 @@ NSString * const segmentBarItemID = @"SegmentBarItem";
 - (void)setSelectedIndex:(NSInteger)selectedIndex
 {
     if (selectedIndex == 1) {
-        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2.jpg"]];
+        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2"]];
     }else if(selectedIndex == 0){
-        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1.jpg"]];
+        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1"]];
     }else{
-        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"3.jpg"]];
+        _segmentBar.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"3"]];
     }
   if (_selectedIndex == selectedIndex) {
     return;

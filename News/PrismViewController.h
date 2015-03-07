@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
-@interface PrismViewController : BaseTableViewController
+@interface PrismViewController : UITableViewController
 
 @end

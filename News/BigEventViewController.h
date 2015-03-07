@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-@interface BigEventViewController : BaseTableViewController
+//#import "SCPullRefreshViewController.h"
+
+@interface BigEventViewController : UITableViewController
 
 @end

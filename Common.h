@@ -1,3 +1,5 @@
+#import <UIKit/UIKit.h>
+
 // 0.账号相关
 #define IWAppKey @"1359433872"
 #define IWAppSecret @"37c372aa97a9329fc561947151c1bd38"
@@ -49,3 +51,44 @@
 
 // 7.常用的对象
 #define IWNotificationCenter [NSNotificationCenter defaultCenter]
+
+
+#define kNavigationBarTintColor    kSetting.navigationBarTintColor
+#define kNavigationBarColor        kSetting.navigationBarColor
+#define kNavigationBarLineColor    kSetting.navigationBarLineColor
+
+#define kBackgroundColorWhite      kSetting.backgroundColorWhite
+#define kBackgroundColorWhiteDark  kSetting.backgroundColorWhiteDark
+
+#define kLineColorBlackDark        kSetting.lineColorBlackDark
+#define kLineColorBlackLight       kSetting.lineColorBlackLight
+
+#define kFontColorBlackDark        kSetting.fontColorBlackDark
+#define kFontColorBlackMid         kSetting.fontColorBlackMid
+#define kFontColorBlackLight       kSetting.fontColorBlackLight
+#define kFontColorBlackBlue        kSetting.fontColorBlackBlue
+
+#define kColorBlue                 kSetting.colorBlue
+#define kCellHighlightedColor      kSetting.cellHighlightedColor
+#define kMenuCellHighlightedColor  kSetting.menuCellHighlightedColor
+
+#define kCurrentTheme              kSetting.theme
+
+
+#define kScreenHeight ([UIScreen mainScreen].bounds.size.height)
+#define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
+
+static NSString * const kShowMenuNotification = @"ShowMenuNotificaion";
+static NSString * const kStatusBarTappedNotification = @"StatusBarTappedNotification";
+
+static NSString * const kShowLoginVCNotification = @"ShowLoginVCNotification";
+static NSString * const kLoginSuccessNotification = @"LoginSuccessNotification";
+static NSString * const kLogoutSuccessNotification = @"LogoutSuccessNotification";
+
+static NSString * const kThemeDidChangeNotification = @"ThemeDidChangeNotification";
+
+static NSString * const kUpdateCheckInBadgeNotification = @"UpdateCheckInBadgeNotification";
+static NSString * const kUpdateNotificationBadgeNotification = @"UpdateNotificationBadgeNotification";
+
+static NSString * const kIgnoreTopicSuccessNotification = @"IgnoreTopicSuccessNotification";
+
