@@ -13,4 +13,27 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import"Common.h"
 #import "UIImage+L.h"
+#import "UIImage+DD.h"
+#import "LvJsonResultApiRequest.h"
+#import "UIAlertView+lv.h"
+// 1.判断是否为iOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+
+// 2.获得RGB颜色
+#define IMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGB(__r, __g, __b)  [UIColor colorWithRed:(1.0*(__r)/255)\
+green:(1.0*(__g)/255)\
+blue:(1.0*(__b)/255)\
+alpha:1.0]
+#define BACKGROUND_COLOR RGB(236, 240, 241)
+
+#define LOGIN_PLACEHOLDER_COLOR [UIColor whiteColor]
+#define LOGIN_CODESENDER_COLOR RGB(232, 186, 24)
+#define DARK_TITLE_COLOR RGB(52, 73, 94)
+typedef NS_ENUM(NSInteger, DDCityOptionType) {
+    DDCityOptionTypeLocation,
+    DDCityOptionTypeHomedown
+};
+
 #endif

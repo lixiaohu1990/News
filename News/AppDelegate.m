@@ -12,6 +12,7 @@
 #import "BigEventViewController.h"
 #import "BaseNavigationViewController.h"
 #import "MainViewController.h"
+
 @interface AppDelegate ()
 @property(nonatomic, strong)BaseNavigationViewController *nav;
 @end

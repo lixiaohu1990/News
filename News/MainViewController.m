@@ -11,7 +11,9 @@
 #import "PrismViewController.h"
 #import "BigEventViewController.h"
 #import "MoreView.h"
+#import "UISearchView.h"
 #import "LoginViewController.h"
+#import "MainTitleView.h"
 @interface MainViewController ()<MoreViewDelegate>
 
 @end
@@ -49,8 +51,11 @@
     //    self.slideSegmentController.navigationItem.rightBarButtonItem = changeVCsItem;
     self.navigationItem.rightBarButtonItems = @[searchVCsItem, changeVCsItem];
     
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 38)];
-    titleView.image = [UIImage imageNamed:@"titile.jpg"];
+    MainTitleView *titleView =
+    
+    [[MainTitleView alloc] initWithFrame:CGRectMake(0, 0, 112, 38)];
+//    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 38)];
+//    titleView.image = [UIImage imageNamed:@"titile.jpg"];
 //    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithCustomView:leftView];
     self.navigationItem.titleView = titleView;
     
@@ -69,8 +74,18 @@
     [self.view addSubview:moreView];
 }
 
+- (void)search{
+    UISearchView *moreView = [[[NSBundle mainBundle] loadNibNamed:@"UISearchView" owner:self options:nil] lastObject];
+//    moreView.moreDelegate = self;
+    //    MoreView *moreView = [[MoreView alloc] init];
+    moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
+    moreView.tag = 1000;
+    [self.view addSubview:moreView];
+}
+
 - (void)moreViewDidloginAction:(MoreView *)moreView{
     LoginViewController *control =  [[LoginViewController alloc] init];
-    [self.navigationController pushViewController:control animated:YES];
+//    [self.navigationController pushViewController:control animated:YES];
+    [self presentViewController:control animated:YES completion:nil];
 }
 @end

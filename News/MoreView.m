@@ -30,4 +30,8 @@
 - (IBAction)collectionAction:(id)sender {
     NSLog(@"collect");
 }
+
+- (IBAction)dissSelf:(id)sender {
+    [self removeFromSuperview];
+}
 @end

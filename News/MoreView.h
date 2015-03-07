@@ -20,5 +20,6 @@
 - (IBAction)loginAction:(id)sender;
 - (IBAction)setAction:(id)sender;
 - (IBAction)collectionAction:(id)sender;
+- (IBAction)dissSelf:(id)sender;
 @property(nonatomic, weak)id<MoreViewDelegate>moreDelegate;
 @end
