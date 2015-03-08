@@ -69,18 +69,33 @@
     MoreView *moreView = [[[NSBundle mainBundle] loadNibNamed:@"MoreView" owner:self options:nil] lastObject];
     moreView.moreDelegate = self;
 //    MoreView *moreView = [[MoreView alloc] init];
-    moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
+    CGFloat height = CGRectGetHeight(self.view.bounds)-44;
+    moreView.frame = CGRectMake(0, -height,  CGRectGetWidth(self.view.bounds),  height);
     moreView.tag = 1000;
     [self.view addSubview:moreView];
+    
+    [UIView transitionWithView:moreView duration:0.8 options:0 animations:^{
+            moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)search{
     UISearchView *moreView = [[[NSBundle mainBundle] loadNibNamed:@"UISearchView" owner:self options:nil] lastObject];
 //    moreView.moreDelegate = self;
     //    MoreView *moreView = [[MoreView alloc] init];
-    moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
+    CGFloat height = CGRectGetHeight(self.view.bounds)-44;
+    moreView.frame = CGRectMake(0, -height,  CGRectGetWidth(self.view.bounds),  height);
     moreView.tag = 1000;
     [self.view addSubview:moreView];
+    
+    [UIView transitionWithView:moreView duration:0.8 options:0 animations:^{
+        moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
+    } completion:^(BOOL finished) {
+        
+    }];
+
 }
 
 - (void)moreViewDidloginAction:(MoreView *)moreView{

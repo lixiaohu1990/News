@@ -7,8 +7,9 @@
 //
 
 #import "NewsDetailTableViewController.h"
-
-@interface NewsDetailTableViewController ()
+#import "DetailDiscussTableViewCell.h"
+#import "SendCommentView.h"
+@interface NewsDetailTableViewController ()<DetailDiscussTableViewCellDelegate>
 
 @end
 
@@ -72,8 +73,8 @@
         return cell;
 
     }else if (indexPath.row == 3){
-        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
-        
+        DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
+        cell.dicDelegate = self;
         return cell;
 
     }else{
@@ -127,5 +128,17 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma mark ------  CELLDELEGATE
+- (void)didClickSendbutton:(DetailDiscussTableViewCell *)cell{
+//    UIView *viewM = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+//    viewM.backgroundColor = [UIColor blackColor];
+//    viewM.alpha = 0.5;
+//    viewM.tag = 1000;
+//    [self.view addSubview:viewM];
+    SendCommentView *view = [[SendCommentView alloc] initWithFrame:self.view.frame];
+//    view.center = CGPointMake(self.view.center.x, 200);
+//    view.window.windowLevel = UIWindowLevelAlert;
+    [view.commentTexfield becomeFirstResponder];
+    [self.view addSubview:view];
+}
 @end

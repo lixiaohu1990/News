@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsFilmDetailTableViewCell : UITableViewCell
-
+@property(nonatomic, assign)CGFloat cellHeight;
 @end

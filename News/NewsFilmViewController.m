@@ -8,6 +8,8 @@
 #import "NewsFilmViewController.h"
 #import "NewsDetailTableViewController.h"
 #import "NewsFilmTableViewCell.h"
+#import "NewFileDispalyViewController.h"
+#import "CBViewController.h"
 @implementation NewsFilmViewController
 
 
@@ -38,8 +40,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NewsDetailTableViewController *control = [[NewsDetailTableViewController alloc] init];
-    [self.navigationController pushViewController:control animated:YES];
-}
+    
+    if (indexPath.row != 0 || indexPath.row != 1) {
+        CBViewController *control = [[CBViewController alloc] init];
+//        [self.navigationController pushViewController:control animated:YES];
+        [self presentModalViewController:control animated:YES];
+    }else{
+        NewsDetailTableViewController *control = [[NewsDetailTableViewController alloc] init];
+        [self.navigationController pushViewController:control animated:YES];
 
+    }
+}
+//- (NSUInteger)supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationMaskPortrait;
+//}
+//
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+//{
+//    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+//}
 @end

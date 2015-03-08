@@ -69,5 +69,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+//{
+//    
+//    if ([window.rootViewController isKindOfClass:NSClassFromString(@"CBViewController")]) {
+//        NSArray *arrays = [(UINavigationController *)window.rootViewController viewControllers];
+//        //        NSLog(@"[arrays lastObject]  %@",[arrays lastObject]);
+//        if (([[arrays lastObject] isKindOfClass:NSClassFromString(@"CBViewController")]
+//             )) {
+//            return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;//这里需要支持旋转
+//        }
+//        return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+//    }
+//
+//    return UIInterfaceOrientationMaskPortrait;
+//    }
 @end

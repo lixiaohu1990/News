@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -63,18 +63,12 @@
                             <constraint firstItem="uC0-GQ-u9J" firstAttribute="top" secondItem="9sv-94-rcd" secondAttribute="top" constant="11" id="Dym-Zi-ipW"/>
                             <constraint firstItem="z9h-mb-J5S" firstAttribute="leading" secondItem="9sv-94-rcd" secondAttribute="leading" constant="5" id="F8h-Be-CrU"/>
                             <constraint firstAttribute="bottom" secondItem="ajY-hy-Qsf" secondAttribute="bottom" constant="15" id="J14-ZB-p89"/>
-                            <constraint firstItem="tgm-0W-feu" firstAttribute="leading" secondItem="uC0-GQ-u9J" secondAttribute="trailing" constant="-1" id="WgF-nA-3Vm"/>
                             <constraint firstItem="uC0-GQ-u9J" firstAttribute="leading" secondItem="ajY-hy-Qsf" secondAttribute="trailing" constant="8" id="X9O-RN-FFI"/>
                             <constraint firstItem="z9h-mb-J5S" firstAttribute="top" secondItem="9sv-94-rcd" secondAttribute="top" constant="12" id="cRu-us-Q9C"/>
                             <constraint firstAttribute="trailing" secondItem="tgm-0W-feu" secondAttribute="trailing" constant="6" id="dFb-s2-qH4"/>
                             <constraint firstAttribute="height" constant="46" id="fED-vI-1Id"/>
                             <constraint firstItem="ajY-hy-Qsf" firstAttribute="top" secondItem="9sv-94-rcd" secondAttribute="top" constant="13" id="oOX-7n-b0i"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="WgF-nA-3Vm"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -136,19 +130,11 @@
                             <constraint firstItem="NUT-mB-VSo" firstAttribute="centerY" secondItem="HUN-Mo-3o0" secondAttribute="centerY" constant="-0.5" id="2si-8s-r8t"/>
                             <constraint firstAttribute="trailing" secondItem="HUN-Mo-3o0" secondAttribute="trailing" constant="8" id="EJ3-Jr-4sQ"/>
                             <constraint firstAttribute="height" constant="50" id="EO4-rB-wTm"/>
-                            <constraint firstAttribute="width" constant="294" id="PZi-MY-qL5"/>
                             <constraint firstItem="HUN-Mo-3o0" firstAttribute="leading" secondItem="7VZ-D9-7Kv" secondAttribute="trailing" constant="51" id="Z4r-4c-y4I"/>
                             <constraint firstItem="HUN-Mo-3o0" firstAttribute="top" secondItem="vqL-FT-1rf" secondAttribute="top" constant="19" id="gGz-vE-v0h"/>
                             <constraint firstItem="NUT-mB-VSo" firstAttribute="centerY" secondItem="7VZ-D9-7Kv" secondAttribute="centerY" constant="-0.5" id="h9K-xF-kZ7"/>
                             <constraint firstItem="HUN-Mo-3o0" firstAttribute="leading" secondItem="NUT-mB-VSo" secondAttribute="trailing" constant="-1" id="k0S-r6-u05"/>
-                            <constraint firstAttribute="bottom" secondItem="HUN-Mo-3o0" secondAttribute="bottom" constant="13" id="k7U-c5-4qp"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="PZi-MY-qL5"/>
-                                <exclude reference="k7U-c5-4qp"/>
-                            </mask>
-                        </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UjL-8A-tRa">
                         <rect key="frame" x="18" y="53" width="284" height="38"/>
@@ -176,10 +162,22 @@
             </tableViewCellContentView>
             <point key="canvasLocation" x="188" y="481"/>
         </tableViewCell>
+        <view contentMode="scaleToFill" id="8Yt-Sa-QTG">
+            <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <point key="canvasLocation" x="333" y="175"/>
+        </view>
     </objects>
     <resources>
         <image name="8b13632762d0f703f90662ca0bfa513d2697c574.jpg" width="1440" height="900"/>
         <image name="icon_Add .png" width="30" height="30"/>
         <image name="icon_Comment.png" width="19" height="18"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

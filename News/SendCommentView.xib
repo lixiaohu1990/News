@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SendCommentView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpH-aT-99a">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <button opaque="NO" tag="501" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6x-12-IvK">
+                    <rect key="frame" x="20" y="251" width="140" height="38"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="LeM-9r-sah"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnAcion:" destination="iN0-l3-epB" eventType="touchUpInside" id="ON0-v0-c7O"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="502" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1h-KL-6Tp">
+                    <rect key="frame" x="160" y="251" width="140" height="38"/>
+                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="TYE-lK-hAu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="评论">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnAcion:" destination="iN0-l3-epB" eventType="touchUpInside" id="8F7-fU-3YQ"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYb-UU-EHw">
+                    <rect key="frame" x="20" y="200" width="280" height="52"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="发送评论" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hW3-Np-eA7">
+                            <rect key="frame" x="1" y="1" width="278" height="50"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="wxj-KN-Dww"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="hW3-Np-eA7" secondAttribute="bottom" constant="1" id="2Gj-JO-WC7"/>
+                        <constraint firstItem="hW3-Np-eA7" firstAttribute="top" secondItem="kYb-UU-EHw" secondAttribute="top" constant="1" id="RlN-a0-7i8"/>
+                        <constraint firstItem="hW3-Np-eA7" firstAttribute="leading" secondItem="kYb-UU-EHw" secondAttribute="leading" constant="1" id="gmm-8u-oPs"/>
+                        <constraint firstAttribute="trailing" secondItem="hW3-Np-eA7" secondAttribute="trailing" constant="1" id="ues-ib-sOx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="A1h-KL-6Tp" firstAttribute="leading" secondItem="i6x-12-IvK" secondAttribute="trailing" id="2GL-QW-sxY"/>
+                <constraint firstItem="kYb-UU-EHw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="5nt-eQ-PYd"/>
+                <constraint firstItem="kYb-UU-EHw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="LCS-Uz-pYz"/>
+                <constraint firstItem="i6x-12-IvK" firstAttribute="top" secondItem="hW3-Np-eA7" secondAttribute="bottom" id="LbM-KD-HdG"/>
+                <constraint firstAttribute="trailing" secondItem="fpH-aT-99a" secondAttribute="trailing" id="QsB-6f-bc7"/>
+                <constraint firstItem="A1h-KL-6Tp" firstAttribute="height" secondItem="i6x-12-IvK" secondAttribute="height" id="Qsr-28-c2R"/>
+                <constraint firstItem="A1h-KL-6Tp" firstAttribute="width" secondItem="i6x-12-IvK" secondAttribute="width" id="RrD-za-Td8"/>
+                <constraint firstAttribute="trailing" secondItem="A1h-KL-6Tp" secondAttribute="trailing" constant="20" id="W1P-2L-B71"/>
+                <constraint firstItem="fpH-aT-99a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Wfm-Ms-XKb"/>
+                <constraint firstAttribute="trailing" secondItem="kYb-UU-EHw" secondAttribute="trailing" constant="20" id="XUq-ps-vzy"/>
+                <constraint firstItem="A1h-KL-6Tp" firstAttribute="top" secondItem="hW3-Np-eA7" secondAttribute="bottom" id="brM-b4-AUl"/>
+                <constraint firstAttribute="bottom" secondItem="fpH-aT-99a" secondAttribute="bottom" id="fZj-Np-2H9"/>
+                <constraint firstItem="i6x-12-IvK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="ruj-oB-CAK"/>
+                <constraint firstItem="fpH-aT-99a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wBM-VW-nvx"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="commentTexfield" destination="hW3-Np-eA7" id="81b-dr-bf6"/>
+            </connections>
+            <point key="canvasLocation" x="284" y="124"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
