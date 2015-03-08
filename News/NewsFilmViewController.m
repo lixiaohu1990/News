@@ -42,7 +42,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row != 0 || indexPath.row != 1) {
-        CBViewController *control = [[CBViewController alloc] init];
+        NewsDetailTableViewController *control = [[NewsDetailTableViewController alloc] init];
 //        [self.navigationController pushViewController:control animated:YES];
         [self presentModalViewController:control animated:YES];
     }else{
