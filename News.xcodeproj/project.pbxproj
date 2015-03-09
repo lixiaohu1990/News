@@ -203,6 +203,21 @@
 		2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC0A981AAC064100CFE389 /* CBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2FEC0A9B1AAC064100CFE389 /* CBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A991AAC064100CFE389 /* CBViewController.xib */; };
 		2FEC0A9D1AAC15F100CFE389 /* CBViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */; };
+		5983D3701AAD7A00005B8FAD /* NAApiGetComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D35A1AAD7A00005B8FAD /* NAApiGetComment.m */; };
+		5983D3711AAD7A00005B8FAD /* NAApiGetCommentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D35C1AAD7A00005B8FAD /* NAApiGetCommentList.m */; };
+		5983D3721AAD7A00005B8FAD /* NAApiGetMulPrism.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D35E1AAD7A00005B8FAD /* NAApiGetMulPrism.m */; };
+		5983D3731AAD7A00005B8FAD /* NAApiGetMulPrismList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3601AAD7A00005B8FAD /* NAApiGetMulPrismList.m */; };
+		5983D3741AAD7A00005B8FAD /* NAApiGetNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3621AAD7A00005B8FAD /* NAApiGetNews.m */; };
+		5983D3751AAD7A00005B8FAD /* NAApiGetNewsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3641AAD7A00005B8FAD /* NAApiGetNewsList.m */; };
+		5983D3761AAD7A00005B8FAD /* NAApiSaveComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3661AAD7A00005B8FAD /* NAApiSaveComment.m */; };
+		5983D3771AAD7A00005B8FAD /* NAApiRespBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3691AAD7A00005B8FAD /* NAApiRespBaseEntity.m */; };
+		5983D3781AAD7A00005B8FAD /* NACommentResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D36B1AAD7A00005B8FAD /* NACommentResp.m */; };
+		5983D3791AAD7A00005B8FAD /* NAMulPrismResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D36D1AAD7A00005B8FAD /* NAMulPrismResp.m */; };
+		5983D37A1AAD7A00005B8FAD /* NANewsResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D36F1AAD7A00005B8FAD /* NANewsResp.m */; };
+		5983D3841AAD7A41005B8FAD /* NAAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D37D1AAD7A41005B8FAD /* NAAlbum.m */; };
+		5983D3851AAD7A41005B8FAD /* NABaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D37F1AAD7A41005B8FAD /* NABaseModel.m */; };
+		5983D3861AAD7A41005B8FAD /* NANews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3811AAD7A41005B8FAD /* NANews.m */; };
+		5983D3871AAD7A41005B8FAD /* NAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D3831AAD7A41005B8FAD /* NAUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -517,6 +532,36 @@
 		2FEC0A981AAC064100CFE389 /* CBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBViewController.m; sourceTree = "<group>"; };
 		2FEC0A991AAC064100CFE389 /* CBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBViewController.xib; sourceTree = "<group>"; };
 		2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBViewController1.xib; sourceTree = "<group>"; };
+		5983D3591AAD7A00005B8FAD /* NAApiGetComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetComment.h; sourceTree = "<group>"; };
+		5983D35A1AAD7A00005B8FAD /* NAApiGetComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetComment.m; sourceTree = "<group>"; };
+		5983D35B1AAD7A00005B8FAD /* NAApiGetCommentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetCommentList.h; sourceTree = "<group>"; };
+		5983D35C1AAD7A00005B8FAD /* NAApiGetCommentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetCommentList.m; sourceTree = "<group>"; };
+		5983D35D1AAD7A00005B8FAD /* NAApiGetMulPrism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetMulPrism.h; sourceTree = "<group>"; };
+		5983D35E1AAD7A00005B8FAD /* NAApiGetMulPrism.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetMulPrism.m; sourceTree = "<group>"; };
+		5983D35F1AAD7A00005B8FAD /* NAApiGetMulPrismList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetMulPrismList.h; sourceTree = "<group>"; };
+		5983D3601AAD7A00005B8FAD /* NAApiGetMulPrismList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetMulPrismList.m; sourceTree = "<group>"; };
+		5983D3611AAD7A00005B8FAD /* NAApiGetNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetNews.h; sourceTree = "<group>"; };
+		5983D3621AAD7A00005B8FAD /* NAApiGetNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetNews.m; sourceTree = "<group>"; };
+		5983D3631AAD7A00005B8FAD /* NAApiGetNewsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetNewsList.h; sourceTree = "<group>"; };
+		5983D3641AAD7A00005B8FAD /* NAApiGetNewsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetNewsList.m; sourceTree = "<group>"; };
+		5983D3651AAD7A00005B8FAD /* NAApiSaveComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiSaveComment.h; sourceTree = "<group>"; };
+		5983D3661AAD7A00005B8FAD /* NAApiSaveComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiSaveComment.m; sourceTree = "<group>"; };
+		5983D3681AAD7A00005B8FAD /* NAApiRespBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiRespBaseEntity.h; sourceTree = "<group>"; };
+		5983D3691AAD7A00005B8FAD /* NAApiRespBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiRespBaseEntity.m; sourceTree = "<group>"; };
+		5983D36A1AAD7A00005B8FAD /* NACommentResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NACommentResp.h; sourceTree = "<group>"; };
+		5983D36B1AAD7A00005B8FAD /* NACommentResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NACommentResp.m; sourceTree = "<group>"; };
+		5983D36C1AAD7A00005B8FAD /* NAMulPrismResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMulPrismResp.h; sourceTree = "<group>"; };
+		5983D36D1AAD7A00005B8FAD /* NAMulPrismResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAMulPrismResp.m; sourceTree = "<group>"; };
+		5983D36E1AAD7A00005B8FAD /* NANewsResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NANewsResp.h; sourceTree = "<group>"; };
+		5983D36F1AAD7A00005B8FAD /* NANewsResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NANewsResp.m; sourceTree = "<group>"; };
+		5983D37C1AAD7A41005B8FAD /* NAAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAAlbum.h; sourceTree = "<group>"; };
+		5983D37D1AAD7A41005B8FAD /* NAAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAAlbum.m; sourceTree = "<group>"; };
+		5983D37E1AAD7A41005B8FAD /* NABaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NABaseModel.h; sourceTree = "<group>"; };
+		5983D37F1AAD7A41005B8FAD /* NABaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NABaseModel.m; sourceTree = "<group>"; };
+		5983D3801AAD7A41005B8FAD /* NANews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NANews.h; sourceTree = "<group>"; };
+		5983D3811AAD7A41005B8FAD /* NANews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NANews.m; sourceTree = "<group>"; };
+		5983D3821AAD7A41005B8FAD /* NAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAUser.h; sourceTree = "<group>"; };
+		5983D3831AAD7A41005B8FAD /* NAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1127,6 +1172,7 @@
 		2FCE0A0F1AAAF517007795C4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5983D37B1AAD7A41005B8FAD /* Model */,
 				2FCE0A661AAAF559007795C4 /* MyNetworkLayer */,
 				2FCE0A101AAAF539007795C4 /* Public */,
 			);
@@ -1228,6 +1274,21 @@
 		2FCE0A671AAAF559007795C4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				5983D3591AAD7A00005B8FAD /* NAApiGetComment.h */,
+				5983D35A1AAD7A00005B8FAD /* NAApiGetComment.m */,
+				5983D35B1AAD7A00005B8FAD /* NAApiGetCommentList.h */,
+				5983D35C1AAD7A00005B8FAD /* NAApiGetCommentList.m */,
+				5983D35D1AAD7A00005B8FAD /* NAApiGetMulPrism.h */,
+				5983D35E1AAD7A00005B8FAD /* NAApiGetMulPrism.m */,
+				5983D35F1AAD7A00005B8FAD /* NAApiGetMulPrismList.h */,
+				5983D3601AAD7A00005B8FAD /* NAApiGetMulPrismList.m */,
+				5983D3611AAD7A00005B8FAD /* NAApiGetNews.h */,
+				5983D3621AAD7A00005B8FAD /* NAApiGetNews.m */,
+				5983D3631AAD7A00005B8FAD /* NAApiGetNewsList.h */,
+				5983D3641AAD7A00005B8FAD /* NAApiGetNewsList.m */,
+				5983D3651AAD7A00005B8FAD /* NAApiSaveComment.h */,
+				5983D3661AAD7A00005B8FAD /* NAApiSaveComment.m */,
+				5983D3671AAD7A00005B8FAD /* RespEntity */,
 				2FCE0A681AAAF559007795C4 /* NAApiCVC.h */,
 				2FCE0A691AAAF559007795C4 /* NAApiCVC.m */,
 				2FCE0A6A1AAAF559007795C4 /* NAApiLogin.h */,
@@ -1289,6 +1350,36 @@
 				2FEC0A5E1AABCA6400CFE389 /* DetailCommentTableViewCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		5983D3671AAD7A00005B8FAD /* RespEntity */ = {
+			isa = PBXGroup;
+			children = (
+				5983D3681AAD7A00005B8FAD /* NAApiRespBaseEntity.h */,
+				5983D3691AAD7A00005B8FAD /* NAApiRespBaseEntity.m */,
+				5983D36A1AAD7A00005B8FAD /* NACommentResp.h */,
+				5983D36B1AAD7A00005B8FAD /* NACommentResp.m */,
+				5983D36C1AAD7A00005B8FAD /* NAMulPrismResp.h */,
+				5983D36D1AAD7A00005B8FAD /* NAMulPrismResp.m */,
+				5983D36E1AAD7A00005B8FAD /* NANewsResp.h */,
+				5983D36F1AAD7A00005B8FAD /* NANewsResp.m */,
+			);
+			path = RespEntity;
+			sourceTree = "<group>";
+		};
+		5983D37B1AAD7A41005B8FAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5983D37C1AAD7A41005B8FAD /* NAAlbum.h */,
+				5983D37D1AAD7A41005B8FAD /* NAAlbum.m */,
+				5983D37E1AAD7A41005B8FAD /* NABaseModel.h */,
+				5983D37F1AAD7A41005B8FAD /* NABaseModel.m */,
+				5983D3801AAD7A41005B8FAD /* NANews.h */,
+				5983D3811AAD7A41005B8FAD /* NANews.m */,
+				5983D3821AAD7A41005B8FAD /* NAUser.h */,
+				5983D3831AAD7A41005B8FAD /* NAUser.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1478,11 +1569,14 @@
 				2F963D2F1AA94EBB00E7D754 /* BigEventTableViewCell.m in Sources */,
 				2FCE0A651AAAF539007795C4 /* LvUrlEncodeParamApiRequestObject.m in Sources */,
 				2FCE0A771AAAF559007795C4 /* NAApiCVC.m in Sources */,
+				5983D3871AAD7A41005B8FAD /* NAUser.m in Sources */,
 				2F39B0A11AA42ECB00575A76 /* PrismViewController.m in Sources */,
 				2FCE08CA1AAABEAC007795C4 /* UISearchView.m in Sources */,
 				2F39B0931AA42A7800575A76 /* SlideSegmentController.m in Sources */,
+				5983D3711AAD7A00005B8FAD /* NAApiGetCommentList.m in Sources */,
 				2FCE08B51AAA91A5007795C4 /* DDBaseViewController.m in Sources */,
 				2F39B1C01AA43B2C00575A76 /* AFNetworkReachabilityManager.m in Sources */,
+				5983D3771AAD7A00005B8FAD /* NAApiRespBaseEntity.m in Sources */,
 				2FCE0A841AAB006A007795C4 /* DDUser.m in Sources */,
 				2F39B1CA1AA43B2C00575A76 /* MJIvar.m in Sources */,
 				2F39B1C61AA43B2C00575A76 /* MBProgressHUD+MJ.m in Sources */,
@@ -1509,6 +1603,7 @@
 				2F39B1BF1AA43B2C00575A76 /* AFHTTPSessionManager.m in Sources */,
 				2F39B1D11AA43B2C00575A76 /* NSObject+MJMember.m in Sources */,
 				2FEC0A591AABC9F800CFE389 /* DetailAnthologyTableViewCell.m in Sources */,
+				5983D3781AAD7A00005B8FAD /* NACommentResp.m in Sources */,
 				2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */,
 				2FCE0A7D1AAAF559007795C4 /* NAUrlEncodeParamApi.m in Sources */,
 				2FCE08B81AAA91C5007795C4 /* DDBarButton.m in Sources */,
@@ -1518,9 +1613,12 @@
 				2F39B1C31AA43B2C00575A76 /* AFURLRequestSerialization.m in Sources */,
 				2F39B1D01AA43B2C00575A76 /* NSObject+MJKeyValue.m in Sources */,
 				2F33981A1AA54522001DA4C5 /* BaseNavigationViewController.m in Sources */,
+				5983D3841AAD7A41005B8FAD /* NAAlbum.m in Sources */,
 				2F39B09E1AA42EA900575A76 /* BigEventViewController.m in Sources */,
+				5983D3751AAD7A00005B8FAD /* NAApiGetNewsList.m in Sources */,
 				2F39B1EB1AA43B2C00575A76 /* UIImage+WebP.m in Sources */,
 				2F39B1E41AA43B2C00575A76 /* SDWebImageDownloader.m in Sources */,
+				5983D3761AAD7A00005B8FAD /* NAApiSaveComment.m in Sources */,
 				2FEC0A5C1AABCA4C00CFE389 /* DetailDiscussTableViewCell.m in Sources */,
 				2F39B0671AA4298700575A76 /* main.m in Sources */,
 				2F39B09B1AA42DC100575A76 /* NewsFilmViewController.m in Sources */,
@@ -1539,8 +1637,12 @@
 				2F3432E91AA6A7370096949C /* NewsDetailTableViewController.m in Sources */,
 				2F39B1E71AA43B2C00575A76 /* SDWebImagePrefetcher.m in Sources */,
 				2F39B1DB1AA43B2C00575A76 /* MJRefreshBaseView.m in Sources */,
+				5983D37A1AAD7A00005B8FAD /* NANewsResp.m in Sources */,
 				2FEC0A5F1AABCA6400CFE389 /* DetailCommentTableViewCell.m in Sources */,
+				5983D3731AAD7A00005B8FAD /* NAApiGetMulPrismList.m in Sources */,
+				5983D3851AAD7A41005B8FAD /* NABaseModel.m in Sources */,
 				2F3398231AA5631B001DA4C5 /* UIImage+L.m in Sources */,
+				5983D3701AAD7A00005B8FAD /* NAApiGetComment.m in Sources */,
 				2F39B1CF1AA43B2C00575A76 /* NSObject+MJCoding.m in Sources */,
 				2FCE089E1AAA8BFF007795C4 /* LoginViewController.m in Sources */,
 				2FCE0A791AAAF559007795C4 /* NAApiLogout.m in Sources */,
@@ -1549,9 +1651,12 @@
 				2F39B1C11AA43B2C00575A76 /* AFSecurityPolicy.m in Sources */,
 				2FCE08BB1AAA9243007795C4 /* UIImage+DD.m in Sources */,
 				2F39B1ED1AA43B2C00575A76 /* HttpTool.m in Sources */,
+				5983D3741AAD7A00005B8FAD /* NAApiGetNews.m in Sources */,
 				2FEC0A561AABC98700CFE389 /* DetailContentTableViewCell.m in Sources */,
 				2F39B1E91AA43B2C00575A76 /* UIImage+GIF.m in Sources */,
 				2F39B1C41AA43B2C00575A76 /* AFURLResponseSerialization.m in Sources */,
+				5983D3861AAD7A41005B8FAD /* NANews.m in Sources */,
+				5983D3791AAD7A00005B8FAD /* NAMulPrismResp.m in Sources */,
 				2FCE0A621AAAF539007795C4 /* LvBaseApiRequestObject.m in Sources */,
 				2FCE0A5C1AAAF539007795C4 /* UIAlertView+lv.m in Sources */,
 				2F39B1BD1AA43B2C00575A76 /* AFHTTPRequestOperation.m in Sources */,
@@ -1564,6 +1669,7 @@
 				2FCE0A611AAAF539007795C4 /* ReachableSingleton.m in Sources */,
 				2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */,
 				2FCE0A631AAAF539007795C4 /* LvPostJsonApiRequestObject.m in Sources */,
+				5983D3721AAD7A00005B8FAD /* NAApiGetMulPrism.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
