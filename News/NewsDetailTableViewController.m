@@ -10,17 +10,28 @@
 #import "DetailDiscussTableViewCell.h"
 #import "SendCommentView.h"
 #import "CyberPlayerController.h"
+#import "NewsFilmDetailTableViewCell.h"
+#import "NewFileDispalyViewController.h"
 @interface NewsDetailTableViewController ()<DetailDiscussTableViewCellDelegate>
 {
     NSString *videoFullPath;
     CyberPlayerController *cbPlayerController;
     NSTimer *timer;
+    UIButton *_startBtn;
+    UIButton *_stopBtn;
+    UIButton *_fullScreenBtn;
+    UITableViewCell *_cell;
+    BOOL fullScreen;
+    
 }
 @property (retain, nonatomic)UILabel *remainsProgress;
 @end
 
 @implementation NewsDetailTableViewController
 
+- (void)dealloc{
+    cbPlayerController = nil;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"立场新闻社";
@@ -37,6 +48,7 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:YES];
     [cbPlayerController stop];
+    [self stopTimer];   
 }
 - (BOOL)prefersStatusBarHidden//for iOS7.0
 {
@@ -58,12 +70,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 7;
+    return (fullScreen ? 1 : 7);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 250;
+        return (fullScreen ? self.view.frame.size.height:250);
     }else if(indexPath.row == 1){
         return 88;
     }else{
@@ -71,11 +83,18 @@
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"NewsFilmDetailTableViewCell";
-//    static NSString *cellIdentifier2 = @"BigEventTableViewCell2";
+    static NSString *cellIdentifier = @"film";
+    static NSString *cellIdentifier2 = @"film";
     if (indexPath.row == 0) {
-        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][0];
-        [self configureVideoWithCell:cell];
+        NewsFilmDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][0];
+            [self configureVideoWithCell:cell];
+        }
+        if (!fullScreen) {
+            _cell = cell;
+        }
+        
         return cell;
         
     }else if(indexPath.row == 1){
@@ -117,6 +136,7 @@
     cbPlayerController = [[CyberPlayerController alloc] initWithContentURL:url];
     //设置视频显示的位置
     [cbPlayerController.view setFrame: cell.frame];
+    cbPlayerController.view.translatesAutoresizingMaskIntoConstraints = NO;
     //将视频显示view添加到当前view中
     [cell.contentView addSubview:cbPlayerController.view];
     CGRect frame = cell.frame;
@@ -124,28 +144,60 @@
     [btn setImage:[UIImage imageNamed:@"back_icon01"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(returnBack:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *startBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, cell.frame.size.height-30, 30, 30)];
-//    [startBtn setImage:[UIImage imageNamed:@"back_icon01"] forState:UIControlStateNormal];
-//    [startBtn setTitle:@"播放" forState:UIControlStateNormal];
-//    [startBtn setTitle:@"暂停" forState:UIControlStateSelected];
-//    [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIButton *startBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, cbPlayerController.view.frame.size.height-30, 30, 30)];
+    //    [startBtn setImage:[UIImage imageNamed:@"back_icon01"] forState:UIControlStateNormal];
+    //    [startBtn setTitle:@"播放" forState:UIControlStateNormal];
+    //    [startBtn setTitle:@"暂停" forState:UIControlStateSelected];
+    //    [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [startBtn setImage:[UIImage imageNamed:@"36"] forState:UIControlStateNormal];
     [startBtn addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *stopBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, cell.frame.size.height-30, 30, 30)];
+    UIButton *stopBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, cbPlayerController.view.frame.size.height-30, 30, 30)];
     [stopBtn setImage:[UIImage imageNamed:@"37"] forState:UIControlStateNormal];
-//    [stopBtn setTitle:@"停止" forState:UIControlStateNormal];
-//    [stopBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [stopBtn setImage:[UIImage imageNamed:@"back_icon01"] forState:UIControlStateNormal];
+    //    [stopBtn setTitle:@"停止" forState:UIControlStateNormal];
+    //    [stopBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    [stopBtn setImage:[UIImage imageNamed:@"back_icon01"] forState:UIControlStateNormal];
     [stopBtn addTarget:self action:@selector(stop:) forControlEvents:UIControlEventTouchUpInside];
     
-    _remainsProgress = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width-100, cell.frame.size.height-30, 100, 30)];
+    _remainsProgress = [[UILabel alloc] initWithFrame:CGRectMake(cbPlayerController.view.frame.size.width-150, cbPlayerController.view.frame.size.height-30, 100, 30)];
     _remainsProgress.textColor = [UIColor whiteColor];
-    [cell.contentView addSubview:btn];
-    [cell.contentView addSubview:startBtn];
-    [cell.contentView addSubview:stopBtn];
-    [cell.contentView addSubview:_remainsProgress];
     
+    UIButton *fullScreenBtn = [[UIButton alloc] initWithFrame:CGRectMake(cbPlayerController.view.frame.size.width-40, cbPlayerController.view.frame.size.height-30, 30, 30)];
+    [fullScreenBtn setImage:[UIImage imageNamed:@"back_icon01"] forState:UIControlStateNormal];
+    [fullScreenBtn addTarget:self action:@selector(fullScreen) forControlEvents:UIControlEventTouchUpInside];
+    [fullScreenBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
+    [cbPlayerController.view addSubview:startBtn];
+    [cbPlayerController.view addSubview:stopBtn];
+    [cbPlayerController.view addSubview:_remainsProgress];
+    [cbPlayerController.view addSubview:fullScreenBtn];
+
+    [cell.contentView addSubview:btn];
+    
+    _startBtn = startBtn;
+    _stopBtn = stopBtn;
+    
+    _fullScreenBtn = fullScreenBtn;
+//    cbPlayerController.playbackState = CBPMovieScalingModeFill;
+    
+    [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:cbPlayerController.view
+                                                          attribute:NSLayoutAttributeWidth
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:cell.contentView
+                                                          attribute:NSLayoutAttributeWidth
+                                                         multiplier:1.0
+                                                           constant:0]];//设置子视图的宽度和父视图的宽度相同
+    
+    [cell.contentView addConstraint:[NSLayoutConstraint constraintWithItem:cbPlayerController.view
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:cell.contentView
+                                                          attribute:NSLayoutAttributeHeight
+                                                         multiplier:1.0
+                                                           constant:0]];//设置子视图的高度是父视图高度的一半
+
     
     cbPlayerController.shouldAutoplay = YES;
 //    [cbPlayerController pause];
@@ -154,6 +206,13 @@
 
 }
 
+- (void)configureVideoViewWithFram:(CGRect)frame{
+    _stopBtn.frame =  CGRectMake(50, frame.size.height-30, 30, 30);
+    _startBtn.frame = CGRectMake(0, frame.size.height-30, 30, 30);
+    _remainsProgress.frame =CGRectMake(frame.size.width-150, frame.size.height-30, 100, 30);
+    cbPlayerController.view.frame = frame;
+    _fullScreenBtn.frame = CGRectMake(frame.size.width-40, frame.size.height-30, 30, 30);
+}
 -(void)returnBack:(UIButton *)sender{
 //    [self.navigationController popViewControllerAnimated:YES];
     [self dismissModalViewControllerAnimated:YES];
@@ -173,6 +232,31 @@
     [cbPlayerController stop];
 
 }
+
+- (void)fullScreen{
+    UIInterfaceOrientation orientation = (fullScreen ? UIInterfaceOrientationLandscapeLeft :UIInterfaceOrientationPortrait );
+    [self didRotateFromInterfaceOrientation:orientation];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (fromInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        NSLog(@"视图旋转完成之后自动调用");
+        
+        [self configureVideoViewWithFram:self.view.frame];
+        fullScreen = YES;
+        [self.tableView reloadData];
+    }else{
+        _cell.frame = CGRectMake(0, 0, _cell.frame.size.width, 250);
+        [self configureVideoViewWithFram:_cell.frame];
+        NSLog(@"%@", NSStringFromCGRect(_cell.frame));
+        fullScreen = NO;
+        [self.tableView reloadData];
+        
+    }
+
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

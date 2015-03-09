@@ -42,7 +42,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row != 0 || indexPath.row != 1) {
-        NewsDetailTableViewController *control = [[NewsDetailTableViewController alloc] init];
+        NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] init];
 //        [self.navigationController pushViewController:control animated:YES];
         [self presentModalViewController:control animated:YES];
     }else{
@@ -59,5 +59,29 @@
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 //{
 //    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+//}
+
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+//
+//{
+//    
+//    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+//    
+//}
+//
+//- (BOOL)shouldAutorotate
+//
+//{
+//    
+//    return NO;
+//    
+//}
+//
+//- (NSUInteger)supportedInterfaceOrientations
+//
+//{
+//    
+//    return UIInterfaceOrientationMaskPortrait;//只支持这一个方向(正常的方向)
+//    
 //}
 @end

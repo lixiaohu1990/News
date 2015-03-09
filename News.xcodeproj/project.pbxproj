@@ -70,6 +70,13 @@
 		2F39B1ED1AA43B2C00575A76 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1BC1AA43B2C00575A76 /* HttpTool.m */; };
 		2F39B1F61AA440A100575A76 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1F51AA440A100575A76 /* BaseTableViewController.m */; };
 		2F4BC6B21AA4ACD700BA8AB6 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BC6B11AA4ACD700BA8AB6 /* MoreView.xib */; };
+		2F4C18051AAD5F99006E4A02 /* libASIHTTP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */; };
+		2F4C18061AAD5F99006E4A02 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C17FF1AAD5F99006E4A02 /* libBase64.a */; };
+		2F4C18071AAD5F9A006E4A02 /* libCyberPlayerController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18001AAD5F99006E4A02 /* libCyberPlayerController.a */; };
+		2F4C18081AAD5F9A006E4A02 /* libCyberPlayerUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18011AAD5F99006E4A02 /* libCyberPlayerUtils.a */; };
+		2F4C18091AAD5F9A006E4A02 /* libGzipCompressor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18021AAD5F99006E4A02 /* libGzipCompressor.a */; };
+		2F4C180A1AAD5F9A006E4A02 /* libReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18031AAD5F99006E4A02 /* libReachability.a */; };
+		2F4C180B1AAD5F9A006E4A02 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18041AAD5F99006E4A02 /* libSBJSON.a */; };
 		2F963CCB1AA944C200E7D754 /* Anthology_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBA1AA944C200E7D754 /* Anthology_bg@3x.png */; };
 		2F963CCC1AA944C200E7D754 /* bg_Comment@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBB1AA944C200E7D754 /* bg_Comment@3x .png */; };
 		2F963CCD1AA944C200E7D754 /* bg_Label@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBC1AA944C200E7D754 /* bg_Label@3x .png */; };
@@ -192,13 +199,6 @@
 		2FEC0A801AABFE3200CFE389 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A7F1AABFE3200CFE389 /* MobileCoreServices.framework */; };
 		2FEC0A821AABFE3C00CFE389 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A811AABFE3C00CFE389 /* CFNetwork.framework */; };
 		2FEC0A841AABFE4C00CFE389 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A831AABFE4B00CFE389 /* SystemConfiguration.framework */; };
-		2FEC0A8A1AABFEDF00CFE389 /* libASIHTTP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A851AABFEDF00CFE389 /* libASIHTTP.a */; };
-		2FEC0A8B1AABFEDF00CFE389 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A861AABFEDF00CFE389 /* libBase64.a */; };
-		2FEC0A8C1AABFEDF00CFE389 /* libCyberPlayerUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A871AABFEDF00CFE389 /* libCyberPlayerUtils.a */; };
-		2FEC0A8D1AABFEDF00CFE389 /* libGzipCompressor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A881AABFEDF00CFE389 /* libGzipCompressor.a */; };
-		2FEC0A8E1AABFEDF00CFE389 /* libReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A891AABFEDF00CFE389 /* libReachability.a */; };
-		2FEC0A901AABFF1300CFE389 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A8F1AABFF1300CFE389 /* libSBJSON.a */; };
-		2FEC0A931AAC000000CFE389 /* libCyberPlayerController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A921AAC000000CFE389 /* libCyberPlayerController.a */; };
 		2FEC0A961AAC045800CFE389 /* NewFileDispalyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC0A951AAC045800CFE389 /* NewFileDispalyViewController.m */; };
 		2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC0A981AAC064100CFE389 /* CBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2FEC0A9B1AAC064100CFE389 /* CBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A991AAC064100CFE389 /* CBViewController.xib */; };
@@ -342,6 +342,14 @@
 		2F39B1F41AA440A100575A76 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		2F39B1F51AA440A100575A76 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		2F4BC6B11AA4ACD700BA8AB6 /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
+		2F4C17FD1AAD5F99006E4A02 /* CyberPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CyberPlayerController.h; sourceTree = "<group>"; };
+		2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libASIHTTP.a; sourceTree = "<group>"; };
+		2F4C17FF1AAD5F99006E4A02 /* libBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBase64.a; sourceTree = "<group>"; };
+		2F4C18001AAD5F99006E4A02 /* libCyberPlayerController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCyberPlayerController.a; sourceTree = "<group>"; };
+		2F4C18011AAD5F99006E4A02 /* libCyberPlayerUtils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCyberPlayerUtils.a; sourceTree = "<group>"; };
+		2F4C18021AAD5F99006E4A02 /* libGzipCompressor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGzipCompressor.a; sourceTree = "<group>"; };
+		2F4C18031AAD5F99006E4A02 /* libReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libReachability.a; sourceTree = "<group>"; };
+		2F4C18041AAD5F99006E4A02 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
 		2F963CBA1AA944C200E7D754 /* Anthology_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anthology_bg@3x.png"; sourceTree = "<group>"; };
 		2F963CBB1AA944C200E7D754 /* bg_Comment@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Comment@3x .png"; sourceTree = "<group>"; };
 		2F963CBC1AA944C200E7D754 /* bg_Label@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Label@3x .png"; sourceTree = "<group>"; };
@@ -503,14 +511,6 @@
 		2FEC0A7F1AABFE3200CFE389 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2FEC0A811AABFE3C00CFE389 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2FEC0A831AABFE4B00CFE389 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2FEC0A851AABFEDF00CFE389 /* libASIHTTP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASIHTTP.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libASIHTTP.a"; sourceTree = "<group>"; };
-		2FEC0A861AABFEDF00CFE389 /* libBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBase64.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libBase64.a"; sourceTree = "<group>"; };
-		2FEC0A871AABFEDF00CFE389 /* libCyberPlayerUtils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCyberPlayerUtils.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libCyberPlayerUtils.a"; sourceTree = "<group>"; };
-		2FEC0A881AABFEDF00CFE389 /* libGzipCompressor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGzipCompressor.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libGzipCompressor.a"; sourceTree = "<group>"; };
-		2FEC0A891AABFEDF00CFE389 /* libReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReachability.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libReachability.a"; sourceTree = "<group>"; };
-		2FEC0A8F1AABFF1300CFE389 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSBJSON.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libSBJSON.a"; sourceTree = "<group>"; };
-		2FEC0A911AAC000000CFE389 /* CyberPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CyberPlayerController.h; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/CyberPlayerController.h"; sourceTree = "<group>"; };
-		2FEC0A921AAC000000CFE389 /* libCyberPlayerController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCyberPlayerController.a; path = "../../Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos/libCyberPlayerController.a"; sourceTree = "<group>"; };
 		2FEC0A941AAC045800CFE389 /* NewFileDispalyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFileDispalyViewController.h; sourceTree = "<group>"; };
 		2FEC0A951AAC045800CFE389 /* NewFileDispalyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFileDispalyViewController.m; sourceTree = "<group>"; };
 		2FEC0A971AAC064100CFE389 /* CBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBViewController.h; sourceTree = "<group>"; };
@@ -524,23 +524,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FEC0A901AABFF1300CFE389 /* libSBJSON.a in Frameworks */,
-				2FEC0A8A1AABFEDF00CFE389 /* libASIHTTP.a in Frameworks */,
-				2FEC0A8B1AABFEDF00CFE389 /* libBase64.a in Frameworks */,
-				2FEC0A8C1AABFEDF00CFE389 /* libCyberPlayerUtils.a in Frameworks */,
-				2FEC0A8D1AABFEDF00CFE389 /* libGzipCompressor.a in Frameworks */,
-				2FEC0A8E1AABFEDF00CFE389 /* libReachability.a in Frameworks */,
 				2FEC0A841AABFE4C00CFE389 /* SystemConfiguration.framework in Frameworks */,
 				2FEC0A821AABFE3C00CFE389 /* CFNetwork.framework in Frameworks */,
 				2FEC0A801AABFE3200CFE389 /* MobileCoreServices.framework in Frameworks */,
 				2FEC0A7E1AABFE0E00CFE389 /* Foundation.framework in Frameworks */,
+				2F4C18061AAD5F99006E4A02 /* libBase64.a in Frameworks */,
 				2FEC0A7C1AABFDF800CFE389 /* Security.framework in Frameworks */,
+				2F4C18071AAD5F9A006E4A02 /* libCyberPlayerController.a in Frameworks */,
+				2F4C180A1AAD5F9A006E4A02 /* libReachability.a in Frameworks */,
+				2F4C180B1AAD5F9A006E4A02 /* libSBJSON.a in Frameworks */,
 				2FEC0A7A1AABFDEB00CFE389 /* AudioToolbox.framework in Frameworks */,
 				2FEC0A781AABFDCE00CFE389 /* libz.dylib in Frameworks */,
+				2F4C18051AAD5F99006E4A02 /* libASIHTTP.a in Frameworks */,
 				2FEC0A761AABFDC100CFE389 /* libbz2.1.0.dylib in Frameworks */,
-				2FEC0A931AAC000000CFE389 /* libCyberPlayerController.a in Frameworks */,
 				2FEC0A741AABFD4300CFE389 /* QuartzCore.framework in Frameworks */,
+				2F4C18091AAD5F9A006E4A02 /* libGzipCompressor.a in Frameworks */,
 				2FEC0A721AABFD3900CFE389 /* UIKit.framework in Frameworks */,
+				2F4C18081AAD5F9A006E4A02 /* libCyberPlayerUtils.a in Frameworks */,
 				2FEC0A701AABFD1900CFE389 /* OpenGLES.framework in Frameworks */,
 				2FEC0A6E1AABFD0D00CFE389 /* CoreGraphics.framework in Frameworks */,
 				2FEC0A6C1AABFCFF00CFE389 /* OpenAL.framework in Frameworks */,
@@ -914,6 +914,21 @@
 			name = More;
 			sourceTree = "<group>";
 		};
+		2F4C17FC1AAD5F99006E4A02 /* videolib */ = {
+			isa = PBXGroup;
+			children = (
+				2F4C17FD1AAD5F99006E4A02 /* CyberPlayerController.h */,
+				2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */,
+				2F4C17FF1AAD5F99006E4A02 /* libBase64.a */,
+				2F4C18001AAD5F99006E4A02 /* libCyberPlayerController.a */,
+				2F4C18011AAD5F99006E4A02 /* libCyberPlayerUtils.a */,
+				2F4C18021AAD5F99006E4A02 /* libGzipCompressor.a */,
+				2F4C18031AAD5F99006E4A02 /* libReachability.a */,
+				2F4C18041AAD5F99006E4A02 /* libSBJSON.a */,
+			);
+			path = videolib;
+			sourceTree = "<group>";
+		};
 		2F963CB91AA944C200E7D754 /* SPTD_Drama */ = {
 			isa = PBXGroup;
 			children = (
@@ -1237,14 +1252,7 @@
 		2FE7919F1AAC5D0C0001804D /* Framwork */ = {
 			isa = PBXGroup;
 			children = (
-				2FEC0A911AAC000000CFE389 /* CyberPlayerController.h */,
-				2FEC0A921AAC000000CFE389 /* libCyberPlayerController.a */,
-				2FEC0A8F1AABFF1300CFE389 /* libSBJSON.a */,
-				2FEC0A851AABFEDF00CFE389 /* libASIHTTP.a */,
-				2FEC0A861AABFEDF00CFE389 /* libBase64.a */,
-				2FEC0A871AABFEDF00CFE389 /* libCyberPlayerUtils.a */,
-				2FEC0A881AABFEDF00CFE389 /* libGzipCompressor.a */,
-				2FEC0A891AABFEDF00CFE389 /* libReachability.a */,
+				2F4C17FC1AAD5F99006E4A02 /* videolib */,
 				2FEC0A831AABFE4B00CFE389 /* SystemConfiguration.framework */,
 				2FEC0A811AABFE3C00CFE389 /* CFNetwork.framework */,
 				2FEC0A7F1AABFE3200CFE389 /* MobileCoreServices.framework */,
@@ -1678,6 +1686,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/lixiaohu/Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos",
+					"$(PROJECT_DIR)/videolib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1696,6 +1705,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/lixiaohu/Downloads/Baidu-T5Player-SDK-iOS-1.3.5/lib/Release-iphoneos",
+					"$(PROJECT_DIR)/videolib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
