@@ -11,6 +11,7 @@
 @protocol NAApiLogoutResultHandlerDelegate <NABaseApiResultHandlerDelegate>
 
 // 处理session过期
+@optional
 - (void)failCauseSessionInvalid:(id)apiRequest;
 
 @end

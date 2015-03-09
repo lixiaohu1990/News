@@ -8,6 +8,9 @@
 
 #import "NAUrlEncodeParamApi.h"
 
+/**
+ *  注册，没有需要关心的正确返回值
+ */
 @interface NAApiRegister : NAUrlEncodeParamApi
 
 @property (nonatomic, readonly) NSString *validateCode;
