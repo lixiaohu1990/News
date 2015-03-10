@@ -9,17 +9,29 @@
 #import "NewsFilmTableViewCell.h"
 
 @implementation NewsFilmTableViewCell
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self.contentView setBackgroundColor:[UIColor clearColor]];
+
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *ID = @"NewsFilmTableViewCell";
+    NewsFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        NSArray *cellList = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmTableViewCell" owner:nil options:nil];
         
-        
+        cell = (NewsFilmTableViewCell *)cellList[0];
+
     }
-    return self;
+    return cell;
+}
+
+//- (void)setNewsListItem:(NewsList *)newsListItem{
+//    _newsListItem = newsListItem;
+//    self.titleLabel.text = _newsListItem.title;
+//}
+
+- (void)setItem:(NANewsResp *)item{
+    _item = item;
+    self.titleLabel.text = _item.name;
+    NSString *imageStr = [NSString stringWithFormat:@"%@%@", @"",_item.imageUrl];
+    [self.image setImageWithURL:[NSURL URLWithString:imageStr]];
 }
 
 - (void)awakeFromNib {

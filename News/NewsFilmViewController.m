@@ -10,78 +10,90 @@
 #import "NewsFilmTableViewCell.h"
 #import "NewFileDispalyViewController.h"
 #import "CBViewController.h"
+#import "NAApiGetNewsList.h"
+#import "NewsList.h"
+#import "NANewsResp.h"
+//#import "XCTAssert.h"
+@interface NewsFilmViewController ()<NABaseApiResultHandlerDelegate>
+@property (nonatomic) NAApiGetNewsList *getNewsListReq;
+@property(nonatomic, strong)NSArray *ListArray;
+@end
 @implementation NewsFilmViewController
 
 
 - (void)viewDidLoad{
     self.view.backgroundColor = [UIColor yellowColor];
     self.tableview.rowHeight = 260;
-    NSLog(@"%@", NSStringFromCGRect(self.tableview.frame));
+//    NSLog(@"%@", NSStringFromCGRect(self.tableview.frame));
+    [self GetNewsList];
+}
+
+- (void)GetNewsList
+{
+    self.getNewsListReq = [[NAApiGetNewsList alloc]initWithType:1 pageNo:1 pageSize:10];
+    self.getNewsListReq.APIRequestResultHandlerDelegate = self;
+    [self.getNewsListReq asyncRequest];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return self.ListArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"NewsFilmTableViewCell";
-    NewsFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if(!cell){
-        
-        NSArray *cellList = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmTableViewCell" owner:nil options:nil];
-        
-        cell = (NewsFilmTableViewCell *)cellList[0];
-    }
-    
+    NewsFilmTableViewCell *cell = [NewsFilmTableViewCell cellWithTableView:tableView];
+    cell.item = self.ListArray[indexPath.row];
     return cell;
 
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.row != 0 || indexPath.row != 1) {
-        NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] init];
+    NANewsResp *item = self.ListArray[indexPath.row];
+    DLOG(@"%@", item);
+    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
 //        [self.navigationController pushViewController:control animated:YES];
-        [self presentModalViewController:control animated:YES];
-    }else{
-        NewsDetailTableViewController *control = [[NewsDetailTableViewController alloc] init];
-        [self.navigationController pushViewController:control animated:YES];
-
+    [self presentModalViewController:control animated:YES];
     }
-}
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskPortrait;
-//}
-//
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-//{
-//    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
-//}
 
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-//
-//{
-//    
-//    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
-//    
-//}
-//
-//- (BOOL)shouldAutorotate
-//
-//{
-//    
-//    return NO;
-//    
-//}
-//
-//- (NSUInteger)supportedInterfaceOrientations
-//
-//{
-//    
-//    return UIInterfaceOrientationMaskPortrait;//只支持这一个方向(正常的方向)
-//    
-//}
+#pragma mark - NABaseApiResultHandlerDelegate methods
+
+- (void)failCauseNetworkUnavaliable:(id)request
+{
+    DLOG(@"failCauseNetworkUnavaliable");
+}
+
+- (void)failCauseRequestTimeout:(id)request
+{
+    DLOG(@"failCauseRequestTimeout");
+}
+
+- (void)failCauseServerError:(id)request
+{
+    DLOG(@"failCauseServerError");
+}
+
+- (void)failCauseBissnessError:(id)apiRequest
+{
+    DLOG(@"failCauseBissnessError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseSystemError:(id)apiRequest
+{
+    DLOG(@"failCauseSystemError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseParamError:(id)apiRequest
+{
+    DLOG(@"failCauseParamError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+#pragma mark - Correct result handler
+- (void)request:(id)request successRequestWithResult:(id)requestResult
+{
+    
+    self.ListArray = requestResult;
+    [self.tableview reloadData];
+}
+
+
 @end

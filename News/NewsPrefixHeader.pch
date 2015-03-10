@@ -16,6 +16,7 @@
 #import "UIImage+DD.h"
 #import "LvJsonResultApiRequest.h"
 #import "UIAlertView+lv.h"
+#import "UIImageView+WebCache.h"
 // 1.判断是否为iOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 

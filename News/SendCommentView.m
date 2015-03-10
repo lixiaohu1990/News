@@ -7,7 +7,10 @@
 //
 
 #import "SendCommentView.h"
-
+#import "NAApiSaveComment.h"
+@interface SendCommentView ()<NABaseApiResultHandlerDelegate>
+@property (nonatomic) NAApiSaveComment *saveCommentReq;
+@end
 @implementation SendCommentView
 
 
@@ -34,6 +37,14 @@
             [UIAlertView commonAlert:@"评论内容不能为空"];
         }
         NSLog(@"评论");
+        [self saveComment];
     }
+}
+
+- (void)saveComment
+{
+    self.saveCommentReq = [[NAApiSaveComment alloc]initWithUserId:1 text:self.commentTexfield.text nsId:1 type:@"新闻片"];
+    self.saveCommentReq.APIRequestResultHandlerDelegate = self;
+    [self.saveCommentReq asyncRequest];
 }
 @end

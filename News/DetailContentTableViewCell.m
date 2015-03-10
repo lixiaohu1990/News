@@ -9,6 +9,17 @@
 #import "DetailContentTableViewCell.h"
 
 @implementation DetailContentTableViewCell
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *ID = @"DetailContentTableViewCell";
+    DetailContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        NSArray *cellList = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil];
+        
+        cell = (DetailContentTableViewCell *)cellList[1];
+        
+    }
+    return cell;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -23,4 +34,10 @@
 - (IBAction)detailContentAciton:(id)sender {
     NSLog(@"查看详细");
 }
+- (void)setItem:(NANewsResp *)item{
+    _item = item;
+    self.titleLabel.text = item.name;
+    self.contentLabel.text = item.nsDescription;
+}
+
 @end

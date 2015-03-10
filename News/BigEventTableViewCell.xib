@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -83,9 +83,14 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="commentLabel" destination="uC0-GQ-u9J" id="Jnb-cM-qtX"/>
+                <outlet property="imagePic" destination="NeI-3Z-ZPC" id="S98-VJ-v4i"/>
+                <outlet property="titleLabel" destination="z9h-mb-J5S" id="s1o-rx-84r"/>
+            </connections>
             <point key="canvasLocation" x="197" y="237.5"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BigEventTableViewCell2" rowHeight="115" id="4rY-dO-bdg">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BigEventTableViewCell2" rowHeight="115" id="4rY-dO-bdg" customClass="BigEventTableViewCell1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4rY-dO-bdg" id="Iiw-Lf-mVR">
@@ -94,8 +99,12 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqL-FT-1rf">
                         <rect key="frame" x="18" y="3" width="284" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="史上最全空难波段图" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJT-bi-bzT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="史上最全空难波段图" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJT-bi-bzT">
                                 <rect key="frame" x="8" y="14" width="146" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="gIj-0B-fAz"/>
+                                    <constraint firstAttribute="height" constant="21" id="njS-m0-cF2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -131,22 +140,32 @@
                             <constraint firstAttribute="trailing" secondItem="HUN-Mo-3o0" secondAttribute="trailing" constant="8" id="EJ3-Jr-4sQ"/>
                             <constraint firstAttribute="height" constant="50" id="EO4-rB-wTm"/>
                             <constraint firstItem="HUN-Mo-3o0" firstAttribute="leading" secondItem="7VZ-D9-7Kv" secondAttribute="trailing" constant="51" id="Z4r-4c-y4I"/>
+                            <constraint firstItem="zJT-bi-bzT" firstAttribute="top" secondItem="vqL-FT-1rf" secondAttribute="top" constant="14" id="cFe-5j-6IG"/>
                             <constraint firstItem="HUN-Mo-3o0" firstAttribute="top" secondItem="vqL-FT-1rf" secondAttribute="top" constant="19" id="gGz-vE-v0h"/>
                             <constraint firstItem="NUT-mB-VSo" firstAttribute="centerY" secondItem="7VZ-D9-7Kv" secondAttribute="centerY" constant="-0.5" id="h9K-xF-kZ7"/>
                             <constraint firstItem="HUN-Mo-3o0" firstAttribute="leading" secondItem="NUT-mB-VSo" secondAttribute="trailing" constant="-1" id="k0S-r6-u05"/>
+                            <constraint firstItem="zJT-bi-bzT" firstAttribute="leading" secondItem="vqL-FT-1rf" secondAttribute="leading" constant="8" id="qrH-US-nl9"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UjL-8A-tRa">
                         <rect key="frame" x="18" y="53" width="284" height="38"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="航空史上最完整空难发生的时间表" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfF-pV-KCi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="航空史上最完整空难发生的时间表" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfF-pV-KCi">
                                 <rect key="frame" x="8" y="0.0" width="278" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="278" id="2HI-nF-aGu"/>
+                                    <constraint firstAttribute="height" constant="28" id="SbZ-uI-tk0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.79607843137254897" green="0.80000000000000004" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JfF-pV-KCi" firstAttribute="top" secondItem="UjL-8A-tRa" secondAttribute="top" id="h9q-Cg-wjZ"/>
+                            <constraint firstItem="JfF-pV-KCi" firstAttribute="leading" secondItem="UjL-8A-tRa" secondAttribute="leading" constant="8" id="orR-es-p2x"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -160,24 +179,17 @@
                     <constraint firstAttribute="bottomMargin" secondItem="vqL-FT-1rf" secondAttribute="bottom" constant="38" id="oxF-K9-et2"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="commentNumLabel" destination="NUT-mB-VSo" id="QMw-9j-apl"/>
+                <outlet property="contentLabel" destination="JfF-pV-KCi" id="XGn-xV-J4r"/>
+                <outlet property="titleLabel" destination="zJT-bi-bzT" id="3A2-5V-veM"/>
+            </connections>
             <point key="canvasLocation" x="188" y="481"/>
         </tableViewCell>
-        <view contentMode="scaleToFill" id="8Yt-Sa-QTG">
-            <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <point key="canvasLocation" x="333" y="175"/>
-        </view>
     </objects>
     <resources>
         <image name="8b13632762d0f703f90662ca0bfa513d2697c574.jpg" width="1440" height="900"/>
         <image name="icon_Add .png" width="30" height="30"/>
         <image name="icon_Comment.png" width="19" height="18"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

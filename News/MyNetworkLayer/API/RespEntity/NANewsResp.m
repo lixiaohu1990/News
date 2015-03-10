@@ -17,7 +17,7 @@
         self.nsDescription = respDictionay[@"description"];
         self.releaseDate = ((NSNumber *)respDictionay[@"releaseDate"]).intValue;
         self.imageUrl = respDictionay[@"imageUrl"];
-        self.vedioUrl = respDictionay[@"vedioUrl"];
+        self.vedioUrl = respDictionay[@"videoUrl"];
         self.flowId = respDictionay[@"flowId"];
         self.favoriteFlag = respDictionay[@"favoriteFlag"];
         self.commentCount = ((NSNumber *)respDictionay[@"commentCount"]).intValue;

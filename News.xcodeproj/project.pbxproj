@@ -69,6 +69,7 @@
 		2F39B1EC1AA43B2C00575A76 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1B91AA43B2C00575A76 /* UIImageView+WebCache.m */; };
 		2F39B1ED1AA43B2C00575A76 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1BC1AA43B2C00575A76 /* HttpTool.m */; };
 		2F39B1F61AA440A100575A76 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1F51AA440A100575A76 /* BaseTableViewController.m */; };
+		2F46E07C1AAE87FC0010C70A /* BigEventTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E07B1AAE87FC0010C70A /* BigEventTableViewCell1.m */; };
 		2F4BC6B21AA4ACD700BA8AB6 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BC6B11AA4ACD700BA8AB6 /* MoreView.xib */; };
 		2F4C18051AAD5F99006E4A02 /* libASIHTTP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */; };
 		2F4C18061AAD5F99006E4A02 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C17FF1AAD5F99006E4A02 /* libBase64.a */; };
@@ -77,6 +78,7 @@
 		2F4C18091AAD5F9A006E4A02 /* libGzipCompressor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18021AAD5F99006E4A02 /* libGzipCompressor.a */; };
 		2F4C180A1AAD5F9A006E4A02 /* libReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18031AAD5F99006E4A02 /* libReachability.a */; };
 		2F4C180B1AAD5F9A006E4A02 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18041AAD5F99006E4A02 /* libSBJSON.a */; };
+		2F4C180F1AADB3E2006E4A02 /* NewsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4C180E1AADB3E2006E4A02 /* NewsList.m */; };
 		2F963CCB1AA944C200E7D754 /* Anthology_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBA1AA944C200E7D754 /* Anthology_bg@3x.png */; };
 		2F963CCC1AA944C200E7D754 /* bg_Comment@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBB1AA944C200E7D754 /* bg_Comment@3x .png */; };
 		2F963CCD1AA944C200E7D754 /* bg_Label@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBC1AA944C200E7D754 /* bg_Label@3x .png */; };
@@ -356,6 +358,8 @@
 		2F39B1BC1AA43B2C00575A76 /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		2F39B1F41AA440A100575A76 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		2F39B1F51AA440A100575A76 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		2F46E07A1AAE87FC0010C70A /* BigEventTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventTableViewCell1.h; sourceTree = "<group>"; };
+		2F46E07B1AAE87FC0010C70A /* BigEventTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventTableViewCell1.m; sourceTree = "<group>"; };
 		2F4BC6B11AA4ACD700BA8AB6 /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
 		2F4C17FD1AAD5F99006E4A02 /* CyberPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CyberPlayerController.h; sourceTree = "<group>"; };
 		2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libASIHTTP.a; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 		2F4C18021AAD5F99006E4A02 /* libGzipCompressor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGzipCompressor.a; sourceTree = "<group>"; };
 		2F4C18031AAD5F99006E4A02 /* libReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libReachability.a; sourceTree = "<group>"; };
 		2F4C18041AAD5F99006E4A02 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
+		2F4C180D1AADB3E2006E4A02 /* NewsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsList.h; sourceTree = "<group>"; };
+		2F4C180E1AADB3E2006E4A02 /* NewsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsList.m; sourceTree = "<group>"; };
 		2F963CBA1AA944C200E7D754 /* Anthology_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anthology_bg@3x.png"; sourceTree = "<group>"; };
 		2F963CBB1AA944C200E7D754 /* bg_Comment@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Comment@3x .png"; sourceTree = "<group>"; };
 		2F963CBC1AA944C200E7D754 /* bg_Label@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Label@3x .png"; sourceTree = "<group>"; };
@@ -784,6 +790,7 @@
 		2F39B0961AA42CEC00575A76 /* NewsFilm */ = {
 			isa = PBXGroup;
 			children = (
+				2F4C180C1AADB39F006E4A02 /* Model */,
 				2F3432DF1AA68CC30096949C /* View */,
 				2F3432E01AA68CDC0096949C /* Controller */,
 			);
@@ -974,6 +981,15 @@
 			path = videolib;
 			sourceTree = "<group>";
 		};
+		2F4C180C1AADB39F006E4A02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F4C180D1AADB3E2006E4A02 /* NewsList.h */,
+				2F4C180E1AADB3E2006E4A02 /* NewsList.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		2F963CB91AA944C200E7D754 /* SPTD_Drama */ = {
 			isa = PBXGroup;
 			children = (
@@ -1079,6 +1095,8 @@
 			children = (
 				2F963D2C1AA94EBB00E7D754 /* BigEventTableViewCell.h */,
 				2F963D2D1AA94EBB00E7D754 /* BigEventTableViewCell.m */,
+				2F46E07A1AAE87FC0010C70A /* BigEventTableViewCell1.h */,
+				2F46E07B1AAE87FC0010C70A /* BigEventTableViewCell1.m */,
 				2F963D2E1AA94EBB00E7D754 /* BigEventTableViewCell.xib */,
 			);
 			name = View;
@@ -1639,6 +1657,7 @@
 				2F39B1DB1AA43B2C00575A76 /* MJRefreshBaseView.m in Sources */,
 				5983D37A1AAD7A00005B8FAD /* NANewsResp.m in Sources */,
 				2FEC0A5F1AABCA6400CFE389 /* DetailCommentTableViewCell.m in Sources */,
+				2F4C180F1AADB3E2006E4A02 /* NewsList.m in Sources */,
 				5983D3731AAD7A00005B8FAD /* NAApiGetMulPrismList.m in Sources */,
 				5983D3851AAD7A41005B8FAD /* NABaseModel.m in Sources */,
 				2F3398231AA5631B001DA4C5 /* UIImage+L.m in Sources */,
@@ -1654,6 +1673,7 @@
 				5983D3741AAD7A00005B8FAD /* NAApiGetNews.m in Sources */,
 				2FEC0A561AABC98700CFE389 /* DetailContentTableViewCell.m in Sources */,
 				2F39B1E91AA43B2C00575A76 /* UIImage+GIF.m in Sources */,
+				2F46E07C1AAE87FC0010C70A /* BigEventTableViewCell1.m in Sources */,
 				2F39B1C41AA43B2C00575A76 /* AFURLResponseSerialization.m in Sources */,
 				5983D3861AAD7A41005B8FAD /* NANews.m in Sources */,
 				5983D3791AAD7A00005B8FAD /* NAMulPrismResp.m in Sources */,

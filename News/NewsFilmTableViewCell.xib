@@ -75,6 +75,10 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="image" destination="KUQ-3X-YWO" id="b3j-0O-evO"/>
+                <outlet property="titleLabel" destination="ESa-b2-5Ex" id="89n-Sw-gyn"/>
+            </connections>
             <point key="canvasLocation" x="280" y="311"/>
         </tableViewCell>
     </objects>

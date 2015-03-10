@@ -12,7 +12,10 @@
 #import "CyberPlayerController.h"
 #import "NewsFilmDetailTableViewCell.h"
 #import "NewFileDispalyViewController.h"
-@interface NewsDetailTableViewController ()<DetailDiscussTableViewCellDelegate>
+#import "NAApiGetNews.h"
+#import "NANewsResp.h"
+#import "DetailContentTableViewCell.h"
+@interface NewsDetailTableViewController ()<DetailDiscussTableViewCellDelegate, NABaseApiResultHandlerDelegate>
 {
     NSString *videoFullPath;
     CyberPlayerController *cbPlayerController;
@@ -25,10 +28,18 @@
     
 }
 @property (retain, nonatomic)UILabel *remainsProgress;
+@property (nonatomic) NAApiGetNews *getNewsDetaiReq;
+@property(nonatomic, strong)NANewsResp *detailItem;
 @end
 
 @implementation NewsDetailTableViewController
 
+- (instancetype)initWithVideoPath:(NSString *)videoStr{
+    if (self = [super init]) {
+        videoFullPath = [NSString stringWithFormat:@"%@%@", @"http://115.29.248.18:8080/NewsAgency/file",videoStr];
+    }
+    return self;
+}
 - (void)dealloc{
     cbPlayerController = nil;
 }
@@ -37,14 +48,19 @@
     self.title = @"立场新闻社";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [UIApplication sharedApplication].statusBarHidden = YES;
-    
+    [self getNewsDetail];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+- (void)getNewsDetail
+{
+    self.getNewsDetaiReq = [[NAApiGetNews alloc]initWithItemId:1 type:1];
+    self.getNewsDetaiReq.APIRequestResultHandlerDelegate = self;
+    [self.getNewsDetaiReq asyncRequest];
+}
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:YES];
     [cbPlayerController stop];
@@ -70,7 +86,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return (fullScreen ? 1 : 7);
+    return (fullScreen ? 1 : 6);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,16 +114,17 @@
         return cell;
         
     }else if(indexPath.row == 1){
-        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][1];
-        
+        DetailContentTableViewCell *cell = [DetailContentTableViewCell cellWithTableView:tableView];
+        cell.item = self.detailItem;
         return cell;
-    }else if(indexPath.row ==2){
-        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
-        
-        return cell;
+//    }else if(indexPath.row ==2){
+//        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
+//        
+//        return cell;
 
-    }else if (indexPath.row == 3){
+    }else if (indexPath.row == 2){
         DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
+        cell.countLabel.text = [NSString stringWithFormat:@"%d", self.detailItem.commentCount];
         cell.dicDelegate = self;
         return cell;
 
@@ -120,7 +137,7 @@
 }
 
 - (void)configureVideoWithCell:(UITableViewCell *)cell{
-    videoFullPath = @"http://115.29.248.18:8080/NewsAgency/file/getVideo/3/1";
+//    videoFullPath = @"http://115.29.248.18:8080/NewsAgency/file/getVideo/3/1";
     NSURL *url = [NSURL URLWithString: videoFullPath];
     if (!url) {
         url = [NSURL URLWithString:[videoFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; }
@@ -377,4 +394,45 @@
     }
     timer = nil;
 }
+
+#pragma mark - NABaseApiResultHandlerDelegate methods
+
+- (void)failCauseNetworkUnavaliable:(id)request
+{
+    DLOG(@"failCauseNetworkUnavaliable");
+}
+
+- (void)failCauseRequestTimeout:(id)request
+{
+    DLOG(@"failCauseRequestTimeout");
+}
+
+- (void)failCauseServerError:(id)request
+{
+    DLOG(@"failCauseServerError");
+}
+
+- (void)failCauseBissnessError:(id)apiRequest
+{
+    DLOG(@"failCauseBissnessError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseSystemError:(id)apiRequest
+{
+    DLOG(@"failCauseSystemError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseParamError:(id)apiRequest
+{
+    DLOG(@"failCauseParamError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+#pragma mark - Correct result handler
+- (void)request:(id)request successRequestWithResult:(id)requestResult
+{
+    
+    self.detailItem = requestResult;
+    [self.tableView reloadData];
+}
+
 @end

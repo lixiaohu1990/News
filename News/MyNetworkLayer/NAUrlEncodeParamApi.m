@@ -21,7 +21,7 @@
     
     // 对于一些含有特殊字符的url需要处理下
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+    DLOG(@"--------------url***%@******", url);
     LvUrlEncodeParamApiRequestObject
     *reqObject = [[LvUrlEncodeParamApiRequestObject alloc]initWithUrl:url
                                                       paramDictioanry:paramDictionary

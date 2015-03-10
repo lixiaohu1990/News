@@ -20,4 +20,23 @@
     // Configure the view for the selected state
 }
 
++ (instancetype)cellWithTableview:(UITableView *)tableview{
+    static NSString *ID = @"BigEventTableViewCell";
+    BigEventTableViewCell *cell = [tableview dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        NSArray *cellList = [[NSBundle mainBundle] loadNibNamed:@"BigEventTableViewCell" owner:nil options:nil];
+        
+        cell = (BigEventTableViewCell *)cellList[0];
+        
+    }
+    return cell;
+}
+
+- (void)setItem:(NANewsResp *)item{
+    _item = item;
+    self.titleLabel.text = item.name;
+    self.commentLabel.text = [NSString stringWithFormat:@"%d", item.commentCount];
+    NSString *imageStr = [NSString stringWithFormat:@"%@%@", @"http://115.29.248.18:8080/NewsAgency/file",_item.imageUrl];
+    [self.imagePic setImageWithURL:[NSURL URLWithString:imageStr]];
+}
 @end

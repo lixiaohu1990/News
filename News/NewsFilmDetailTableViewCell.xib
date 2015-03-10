@@ -73,17 +73,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="归途" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqj-0w-vvv">
-                        <rect key="frame" x="13" y="8" width="42" height="21"/>
+                        <rect key="frame" x="13" y="8" width="200" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="dbv-Wc-bZJ"/>
+                            <constraint firstAttribute="width" constant="200" id="dbv-Wc-bZJ"/>
                             <constraint firstAttribute="height" constant="21" id="sWx-QS-8R3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" red="0.22745098039215686" green="0.55294117647058827" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共5集" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQu-nT-KSb">
-                        <rect key="frame" x="56" y="8" width="42" height="21"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共5集" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQu-nT-KSb">
+                        <rect key="frame" x="214" y="8" width="42" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="RrS-yO-Z6z"/>
                             <constraint firstAttribute="height" constant="21" id="uf3-02-Whc"/>
@@ -140,8 +140,9 @@
             <connections>
                 <outlet property="CountLabel" destination="YQu-nT-KSb" id="LAR-9U-bXA"/>
                 <outlet property="contentLabel" destination="DRD-jd-rnk" id="DcU-JF-C7s"/>
+                <outlet property="titleLabel" destination="vqj-0w-vvv" id="fKG-cj-XxG"/>
             </connections>
-            <point key="canvasLocation" x="186" y="480"/>
+            <point key="canvasLocation" x="186" y="478"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsFilmDetailTableViewCell3" id="TMb-lr-D4U" customClass="DetailAnthologyTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

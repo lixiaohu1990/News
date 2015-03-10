@@ -13,11 +13,13 @@
 - (instancetype)initWithUserId:(int)userId text:(NSString *)text nsId:(int)nsId type:(NSString *)type
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@(userId) forKey:@"userId"];
+//    [params setObject:@(userId) forKey:@"userId"];
+    [params setObject:@"1" forKey:@"userId"];
     if (text) {
         [params setObject:text forKey:@"text"];
     }
-    [params setObject:@(nsId) forKey:@"newsId"];
+//    [params setObject:@(nsId) forKey:@"newsId"];
+    [params setObject:@"1" forKey:@"newsId"];
     if (type) {
         [params setObject:type forKey:@"type"];
     }
