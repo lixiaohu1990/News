@@ -25,11 +25,13 @@
     UIButton *_fullScreenBtn;
     UITableViewCell *_cell;
     BOOL fullScreen;
+    int _currentPage;
     
 }
 @property (retain, nonatomic)UILabel *remainsProgress;
 @property (nonatomic) NAApiGetNews *getNewsDetaiReq;
 @property(nonatomic, strong)NANewsResp *detailItem;
+@property (nonatomic, strong)NSMutableArray *commentArray;
 @end
 
 @implementation NewsDetailTableViewController
@@ -45,21 +47,79 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.commentArray = [NSMutableArray array];
     self.title = @"立场新闻社";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [UIApplication sharedApplication].statusBarHidden = YES;
     [self getNewsDetail];
+    [self setupRefresh];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+- (void)setupRefresh
+{
+//    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
+#warning 自动刷新(一进入程序就下拉刷新)
+//    [self.tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+//    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+//    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+//    self.tableView.headerRefreshingText = @"正在拼命加载中,请稍候...";
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在拼命加载中,请稍候...";
+}
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [self getItemListConnection];
+    [self.tableView headerEndRefreshing];
+}
+
+- (void)footerRereshing
+{
+    [self pullUpgetItemListConnection];
+    [self.tableView footerEndRefreshing];
+}
+- (void)pullUpgetItemListConnection{
+    _currentPage++;
+    [self getCommentList];
+}
+
+- (void)getItemListConnection{
+    _currentPage = PAGENO;
+//    [self GetNewsList];
+    
+}
+
 - (void)getNewsDetail
 {
     self.getNewsDetaiReq = [[NAApiGetNews alloc]initWithItemId:1 type:1];
     self.getNewsDetaiReq.APIRequestResultHandlerDelegate = self;
     [self.getNewsDetaiReq asyncRequest];
+}
+
+- (void)getCommentList{
+    NSString *str = @"";
+    [self.commentArray addObject:str];
+//    NSMutableArray *array = [NSMutableArray array];
+//    for (int i=0; i<=self.commentArray.count; i++) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i+3 inSection:0];
+//        [array addObject:indexPath];
+//    }
+//    
+//    [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
+
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:YES];
@@ -86,7 +146,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return (fullScreen ? 1 : 6);
+    return (fullScreen ? 1 : 3+self.commentArray.count);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

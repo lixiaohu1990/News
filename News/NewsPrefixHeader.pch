@@ -17,6 +17,7 @@
 #import "LvJsonResultApiRequest.h"
 #import "UIAlertView+lv.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 // 1.判断是否为iOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 
@@ -36,5 +37,6 @@ typedef NS_ENUM(NSInteger, DDCityOptionType) {
     DDCityOptionTypeLocation,
     DDCityOptionTypeHomedown
 };
-
+#define PAGESIZE 20
+#define PAGENO 1
 #endif

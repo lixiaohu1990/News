@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
-@interface NewsFilmViewController : BaseTableViewController
+@interface NewsFilmViewController : UITableViewController
 
 @end

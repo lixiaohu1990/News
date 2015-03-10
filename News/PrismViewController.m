@@ -8,13 +8,66 @@
 
 #import "PrismViewController.h"
 
+@interface PrismViewController ()
+{
+    int _currentPage;
+}
+@end
 @implementation PrismViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self setupRefresh];
 }
 
+- (void)setupRefresh
+{
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
+#warning 自动刷新(一进入程序就下拉刷新)
+    [self.tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    self.tableView.headerRefreshingText = @"正在拼命加载中,请稍候...";
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在拼命加载中,请稍候...";
+}
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    [self getItemListConnection];
+    [self.tableView headerEndRefreshing];
+}
+
+- (void)footerRereshing
+{
+    [self pullUpgetItemListConnection];
+    [self.tableView footerEndRefreshing];
+}
+- (void)pullUpgetItemListConnection{
+    _currentPage++;
+    [self GetNewsList];
+}
+
+- (void)getItemListConnection{
+    _currentPage = PAGENO;
+    [self GetNewsList];
+    
+}
+
+- (void)GetNewsList
+{
+//    self.getNewsListReq = [[NAApiGetNewsList alloc]initWithType:1 pageNo:_currentPage pageSize:PAGESIZE];
+//    self.getNewsListReq.APIRequestResultHandlerDelegate = self;
+//    [self.getNewsListReq asyncRequest];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
