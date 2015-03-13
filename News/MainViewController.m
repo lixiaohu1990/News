@@ -14,6 +14,7 @@
 #import "UISearchView.h"
 #import "LoginViewController.h"
 #import "MainTitleView.h"
+#import "SettingTableViewController.h"
 @interface MainViewController ()<MoreViewDelegate>
 
 @end
@@ -102,5 +103,15 @@
     LoginViewController *control =  [[LoginViewController alloc] init];
 //    [self.navigationController pushViewController:control animated:YES];
     [self presentViewController:control animated:YES completion:nil];
+}
+
+- (void)moreViewDidsetAction:(MoreView *)moreView{
+    SettingTableViewController *control = [[SettingTableViewController alloc] init];
+    [self.navigationController pushViewController:control animated:YES];
+}
+
+- (void)moreViewDidNextDevAction:(MoreView *)moreView{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"神秘功能，尽在下一版，敬请期待～" delegate:self cancelButtonTitle:@"好的，我知道了" otherButtonTitles:nil, nil];
+    [alert show];
 }
 @end

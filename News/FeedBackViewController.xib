@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedBackViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o49-u0-lqB">
+                    <rect key="frame" x="10" y="100" width="580" height="250"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-0i-KKb">
+                            <rect key="frame" x="0.0" y="0.0" width="580" height="250"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="5cG-0i-KKb" secondAttribute="bottom" id="Jbp-pL-V9A"/>
+                        <constraint firstAttribute="height" constant="250" id="TT6-Kj-CE5"/>
+                        <constraint firstAttribute="trailing" secondItem="5cG-0i-KKb" secondAttribute="trailing" id="b8f-NP-Mw6"/>
+                        <constraint firstItem="5cG-0i-KKb" firstAttribute="top" secondItem="o49-u0-lqB" secondAttribute="top" id="eb7-Yo-odu"/>
+                        <constraint firstItem="5cG-0i-KKb" firstAttribute="leading" secondItem="o49-u0-lqB" secondAttribute="leading" id="hxL-z5-ZfI"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的每一条意见我们都会认真阅读并采纳。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSX-e9-xeA">
+                    <rect key="frame" x="10" y="71" width="580" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.74509803919999995" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="tSX-e9-xeA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="71" id="BfG-Ex-gGT"/>
+                <constraint firstItem="o49-u0-lqB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Q87-5U-faz"/>
+                <constraint firstAttribute="trailing" secondItem="o49-u0-lqB" secondAttribute="trailing" constant="10" id="YbS-5A-Fh2"/>
+                <constraint firstAttribute="trailing" secondItem="tSX-e9-xeA" secondAttribute="trailing" constant="10" id="YiR-l9-Y4t"/>
+                <constraint firstItem="o49-u0-lqB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="bWD-Rr-Ysv"/>
+                <constraint firstItem="tSX-e9-xeA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="d1i-U3-J01"/>
+                <constraint firstItem="o49-u0-lqB" firstAttribute="top" secondItem="tSX-e9-xeA" secondAttribute="bottom" constant="8" id="kPE-Zy-cpw"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

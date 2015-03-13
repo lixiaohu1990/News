@@ -12,7 +12,8 @@
 #import "BigEventTableViewCell.h"
 #import "BigEventTableViewCell1.h"
 #import "NANewsResp.h"
-#import "NewsDetailTableViewController.h"
+#import "BigEventDetailTableViewController.h"
+#import "AboutUSViewController.h"
 //#import "BigEventTextTableViewCell.h"
 @interface BigEventViewController ()<NABaseApiResultHandlerDelegate>{
     int _currentPage;
@@ -88,7 +89,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NANewsResp *item = self.listArray[indexPath.row];
-    if (!item.imageUrl) {
+    if (item.imageUrl && ([item.imageUrl isKindOfClass:[NSString class]])) {
         return 206;
     }else{
         return 100;
@@ -96,18 +97,18 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NANewsResp *item = self.listArray[indexPath.row];
-    if (!item.vedioUrl) {
+    if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
         BigEventTableViewCell *cell = [BigEventTableViewCell cellWithTableview:tableView];
         cell.item = item;
         return cell;
 
     }else{
-        if (!item.imageUrl) {
-            BigEventTableViewCell1 *cell = [BigEventTableViewCell1 cellWithTableView:tableView];
+        if (item.imageUrl && ([item.imageUrl isKindOfClass:[NSString class]])) {
+            BigEventTableViewCell *cell = [BigEventTableViewCell cellWithTableview:tableView];
             cell.item = item;
             return cell;
         }else{
-            BigEventTableViewCell *cell = [BigEventTableViewCell cellWithTableview:tableView];
+            BigEventTableViewCell1 *cell = [BigEventTableViewCell1 cellWithTableView:tableView];
             cell.item = item;
             return cell;
 
@@ -118,11 +119,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    NANewsResp *item = self.ListArray[indexPath.row];
-    DLOG(@"%@", item);
-    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
+    NANewsResp *item = self.listArray[indexPath.row];
+    NSString *videoStr;
+    if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
+        videoStr = item.vedioUrl;
+    }else{
+        videoStr = @" ";
+    }
+    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithVideoPath:videoStr];
     //        [self.navigationController pushViewController:control animated:YES];
-    [self presentModalViewController:control animated:YES];
+    if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
+        [self presentModalViewController:control animated:YES];
+    }else{
+//        AboutUSViewController *control = [[AboutUSViewController alloc] init];
+        [self.navigationController pushViewController:control animated:YES];
+    }
+    
 }
 
 #pragma mark - NABaseApiResultHandlerDelegate methods

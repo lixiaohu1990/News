@@ -30,7 +30,7 @@
 - (void)setItem:(NANewsResp *)item{
     _item = item;
     self.titleLabel.text = _item.name;
-    NSString *imageStr = [NSString stringWithFormat:@"%@%@", @"http://115.29.248.18:8080/NewsAgency/file",_item.imageUrl];
+    NSString *imageStr = [NSString stringWithFormat:@"%@%@",BASEIAMGEURL,_item.imageUrl];
     [self.image setImageWithURL:[NSURL URLWithString:imageStr]];
 }
 

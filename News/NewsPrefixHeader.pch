@@ -39,4 +39,6 @@ typedef NS_ENUM(NSInteger, DDCityOptionType) {
 };
 #define PAGESIZE 20
 #define PAGENO 1
+#define BASEIAMGEURL @"http://115.29.248.18:8080/NewsAgency"
+#define BASEVIDEOURL @"http://115.29.248.18:8080/NewsAgency/file"
 #endif

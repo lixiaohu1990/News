@@ -36,7 +36,13 @@
     _item = item;
     self.titleLabel.text = item.name;
     self.commentLabel.text = [NSString stringWithFormat:@"%d", item.commentCount];
-    NSString *imageStr = [NSString stringWithFormat:@"%@%@", @"http://115.29.248.18:8080/NewsAgency/file",_item.imageUrl];
+    NSString *imageStr = [NSString string];
+    if (item.imageUrl && [item.imageUrl isKindOfClass:[NSString class]]){
+        imageStr = [NSString stringWithFormat:@"%@%@", BASEIAMGEURL,_item.imageUrl];
+    }else{
+        imageStr = @"";
+    }
+    
     [self.imagePic setImageWithURL:[NSURL URLWithString:imageStr]];
 }
 @end

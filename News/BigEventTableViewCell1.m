@@ -24,7 +24,8 @@
     self.titleLabel.text = item.name;
     self.commentNumLabel.text = [NSString stringWithFormat:@"%d", item.commentCount];
     self.contentLabel.text = item.nsDescription;
-}
+    
+    }
 - (void)awakeFromNib {
     // Initialization code
 }

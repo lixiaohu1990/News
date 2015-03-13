@@ -62,16 +62,25 @@
                             <constraint firstAttribute="height" constant="210" id="fUb-eW-Y4G"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="QBp-FV-AzH">
+                        <rect key="frame" x="115" y="109" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="ts4-co-tIr"/>
+                            <constraint firstAttribute="width" constant="90" id="vp8-7F-uoq"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="KUQ-3X-YWO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="2Mt-FB-O3n"/>
+                    <constraint firstItem="QBp-FV-AzH" firstAttribute="centerY" secondItem="KUQ-3X-YWO" secondAttribute="centerY" id="GyS-LO-JuP"/>
                     <constraint firstItem="vND-bg-PWS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Iy8-GC-iiE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="vND-bg-PWS" secondAttribute="trailing" constant="13" id="RTp-ul-dHH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="KUQ-3X-YWO" secondAttribute="trailing" constant="13" id="U2I-jR-DOX"/>
                     <constraint firstItem="vND-bg-PWS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="f6B-2a-Xsf"/>
                     <constraint firstItem="KUQ-3X-YWO" firstAttribute="top" secondItem="vND-bg-PWS" secondAttribute="bottom" constant="-2" id="fNG-N9-AmQ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="KUQ-3X-YWO" secondAttribute="bottom" constant="-8" id="yRX-2x-atR"/>
+                    <constraint firstItem="QBp-FV-AzH" firstAttribute="centerX" secondItem="KUQ-3X-YWO" secondAttribute="centerX" id="zCk-53-11C"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -86,5 +95,6 @@
         <image name="8b13632762d0f703f90662ca0bfa513d2697c574.jpg" width="1440" height="900"/>
         <image name="icon_photo.png" width="21" height="18"/>
         <image name="icon_share.png" width="23" height="19"/>
+        <image name="video_icon.png" width="91" height="90"/>
     </resources>
 </document>

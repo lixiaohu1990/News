@@ -64,6 +64,9 @@
                 </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="imagePic" destination="24R-qO-wyO" id="944-VJ-kGU"/>
+            </connections>
             <point key="canvasLocation" x="218" y="236"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsFilmDetailTableViewCell2" id="LN7-zm-uQV" customClass="DetailContentTableViewCell">

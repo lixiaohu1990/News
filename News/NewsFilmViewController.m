@@ -96,7 +96,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NANewsResp *item = self.ListArray[indexPath.row];
     DLOG(@"%@", item);
-    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:@"http://115.29.248.18:8080/NewsAgency/file"];
+    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
 //        [self.navigationController pushViewController:control animated:YES];
     [self presentModalViewController:control animated:YES];
 }

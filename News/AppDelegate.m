@@ -43,7 +43,7 @@
 //    prismVc.title = @"多棱镜";
     
     MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
-    BaseNavigationViewController *navi = [[BaseNavigationViewController alloc] initWithRootViewController:main];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:main];
     _nav = navi;
 
 }

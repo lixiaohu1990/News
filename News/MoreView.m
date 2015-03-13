@@ -7,6 +7,7 @@
 //
 
 #import "MoreView.h"
+
 @implementation MoreView
 
 /*
@@ -25,13 +26,26 @@
 
 - (IBAction)setAction:(id)sender {
     NSLog(@"set");
+    if (self.moreDelegate!=nil || [self respondsToSelector:@selector(moreViewDidsetAction:)]) {
+        [self.moreDelegate moreViewDidsetAction:self];
+    }
 }
 
 - (IBAction)collectionAction:(id)sender {
     NSLog(@"collect");
+    if (self.moreDelegate!=nil || [self respondsToSelector:@selector(moreViewDidsetAction:)]) {
+        [self.moreDelegate moreViewDidNextDevAction:self];
+    }
+
 }
 
 - (IBAction)dissSelf:(id)sender {
     [self removeFromSuperview];
+}
+
+- (IBAction)nextDev:(id)sender {
+    if (self.moreDelegate!=nil || [self respondsToSelector:@selector(moreViewDidsetAction:)]) {
+        [self.moreDelegate moreViewDidNextDevAction:self];
+    }
 }
 @end

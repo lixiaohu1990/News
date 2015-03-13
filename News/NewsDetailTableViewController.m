@@ -38,7 +38,11 @@
 
 - (instancetype)initWithVideoPath:(NSString *)videoStr{
     if (self = [super init]) {
-        videoFullPath = [NSString stringWithFormat:@"%@%@", @"http://115.29.248.18:8080/NewsAgency/file",videoStr];
+        if ([videoStr isEqualToString:@" "]) {
+            videoFullPath = @" ";
+        }else{
+            videoFullPath = [NSString stringWithFormat:@"%@%@", BASEVIDEOURL,videoStr];
+        }
     }
     return self;
 }
@@ -165,7 +169,9 @@
         NewsFilmDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][0];
-            [self configureVideoWithCell:cell];
+            if (![videoFullPath isEqualToString:@" "]) {
+                [self configureVideoWithCell:cell];
+            }
         }
         if (!fullScreen) {
             _cell = cell;

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutUSViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uUI-WY-beh">
+                    <rect key="frame" x="250" y="100" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="AK0-YI-m00"/>
+                        <constraint firstAttribute="height" constant="100" id="b3r-1b-Bze"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新闻局App是一款基于新闻事件的app。新闻局App是一款基于新闻事件的app。新闻局App是一款基于新闻事件的app。新闻局App是一款基于新闻事件的app。新闻局App是一款基于新闻事件的app。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aM-a6-AuG">
+                    <rect key="frame" x="15" y="231" width="570" height="61"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="501" id="EEd-JE-NAr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="EEd-JE-NAr"/>
+                        </mask>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话：15000157239" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBj-H7-FWk">
+                    <rect key="frame" x="50" y="498" width="501" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="VJK-K2-rTT"/>
+                        <constraint firstAttribute="width" constant="501" id="u3h-Tz-fln"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="　官方网址:www.xinwenju.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bx-jo-JFD">
+                    <rect key="frame" x="50" y="540" width="501" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="5oT-fd-Fah"/>
+                        <constraint firstAttribute="width" constant="501" id="tR5-Pf-yix"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8aM-a6-AuG" firstAttribute="top" secondItem="uUI-WY-beh" secondAttribute="bottom" constant="31" id="Bnn-ma-HRo"/>
+                <constraint firstItem="6Bx-jo-JFD" firstAttribute="top" secondItem="OBj-H7-FWk" secondAttribute="bottom" constant="21" id="Bnt-rC-8j8"/>
+                <constraint firstItem="uUI-WY-beh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="Dre-ig-j4x"/>
+                <constraint firstAttribute="centerX" secondItem="uUI-WY-beh" secondAttribute="centerX" id="XFA-vJ-xiv"/>
+                <constraint firstAttribute="bottom" secondItem="6Bx-jo-JFD" secondAttribute="bottom" constant="39" id="XnP-aJ-nX3"/>
+                <constraint firstAttribute="trailing" secondItem="8aM-a6-AuG" secondAttribute="trailing" constant="15" id="juW-gg-dOW"/>
+                <constraint firstItem="8aM-a6-AuG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="mLZ-3x-e6I"/>
+                <constraint firstAttribute="centerX" secondItem="OBj-H7-FWk" secondAttribute="centerX" id="w9e-cq-bCO"/>
+                <constraint firstAttribute="centerX" secondItem="6Bx-jo-JFD" secondAttribute="centerX" id="x2p-vQ-NNg"/>
+            </constraints>
+            <point key="canvasLocation" x="178" y="295"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg" width="1920" height="1080"/>
+    </resources>
+</document>

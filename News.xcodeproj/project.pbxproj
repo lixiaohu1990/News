@@ -73,6 +73,15 @@
 		2F46E0AC1AAE9E190010C70A /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E0A21AAE9E190010C70A /* UIScrollView+MJExtension.m */; };
 		2F46E0AD1AAE9E190010C70A /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E0A41AAE9E190010C70A /* UIScrollView+MJRefresh.m */; };
 		2F46E0AE1AAE9E190010C70A /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E0A61AAE9E190010C70A /* UIView+MJExtension.m */; };
+		2F47D3C31AAFCB7B00A6E34B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F47D3C11AAFCB7B00A6E34B /* SettingTableViewController.m */; };
+		2F47D3C41AAFCB7B00A6E34B /* SettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F47D3C21AAFCB7B00A6E34B /* SettingTableViewController.xib */; };
+		2F47D3D21AAFD34E00A6E34B /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F47D3D01AAFD34E00A6E34B /* FeedBackViewController.m */; };
+		2F47D3D31AAFD34E00A6E34B /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F47D3D11AAFD34E00A6E34B /* FeedBackViewController.xib */; };
+		2F47D3D71AAFD36700A6E34B /* AboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F47D3D51AAFD36700A6E34B /* AboutUSViewController.m */; };
+		2F47D3D81AAFD36700A6E34B /* AboutUSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F47D3D61AAFD36700A6E34B /* AboutUSViewController.xib */; };
+		2F490BD31AB275D20057F039 /* BigEventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F490BD21AB275D20057F039 /* BigEventDetailTableViewController.m */; };
+		2F490BD61AB27BDB0057F039 /* video_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F490BD41AB27BDB0057F039 /* video_icon@2x.png */; };
+		2F490BD71AB27BDB0057F039 /* video_icon@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F490BD51AB27BDB0057F039 /* video_icon@3x .png */; };
 		2F4BC6B21AA4ACD700BA8AB6 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BC6B11AA4ACD700BA8AB6 /* MoreView.xib */; };
 		2F4C18051AAD5F99006E4A02 /* libASIHTTP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */; };
 		2F4C18061AAD5F99006E4A02 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C17FF1AAD5F99006E4A02 /* libBase64.a */; };
@@ -369,6 +378,19 @@
 		2F46E0A41AAE9E190010C70A /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		2F46E0A51AAE9E190010C70A /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		2F46E0A61AAE9E190010C70A /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		2F47D3C01AAFCB7B00A6E34B /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		2F47D3C11AAFCB7B00A6E34B /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		2F47D3C21AAFCB7B00A6E34B /* SettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewController.xib; sourceTree = "<group>"; };
+		2F47D3CF1AAFD34E00A6E34B /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		2F47D3D01AAFD34E00A6E34B /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		2F47D3D11AAFD34E00A6E34B /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
+		2F47D3D41AAFD36700A6E34B /* AboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUSViewController.h; sourceTree = "<group>"; };
+		2F47D3D51AAFD36700A6E34B /* AboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUSViewController.m; sourceTree = "<group>"; };
+		2F47D3D61AAFD36700A6E34B /* AboutUSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUSViewController.xib; sourceTree = "<group>"; };
+		2F490BD11AB275D20057F039 /* BigEventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventDetailTableViewController.h; sourceTree = "<group>"; };
+		2F490BD21AB275D20057F039 /* BigEventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventDetailTableViewController.m; sourceTree = "<group>"; };
+		2F490BD41AB27BDB0057F039 /* video_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_icon@2x.png"; sourceTree = "<group>"; };
+		2F490BD51AB27BDB0057F039 /* video_icon@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_icon@3x .png"; sourceTree = "<group>"; };
 		2F4BC6B11AA4ACD700BA8AB6 /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
 		2F4C17FD1AAD5F99006E4A02 /* CyberPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CyberPlayerController.h; sourceTree = "<group>"; };
 		2F4C17FE1AAD5F99006E4A02 /* libASIHTTP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libASIHTTP.a; sourceTree = "<group>"; };
@@ -712,6 +734,8 @@
 		2F39B0581AA4298700575A76 = {
 			isa = PBXGroup;
 			children = (
+				2F490BD41AB27BDB0057F039 /* video_icon@2x.png */,
+				2F490BD51AB27BDB0057F039 /* video_icon@3x .png */,
 				2FE791A41AAC74CE0001804D /* 36@2x.png */,
 				2FE791A51AAC74CE0001804D /* 37@2x.png */,
 				2FE791A01AAC73670001804D /* 24@2x.png */,
@@ -812,6 +836,8 @@
 				2F963D2B1AA94E8F00E7D754 /* View */,
 				2F39B09C1AA42EA900575A76 /* BigEventViewController.h */,
 				2F39B09D1AA42EA900575A76 /* BigEventViewController.m */,
+				2F490BD11AB275D20057F039 /* BigEventDetailTableViewController.h */,
+				2F490BD21AB275D20057F039 /* BigEventDetailTableViewController.m */,
 			);
 			name = BigEvent;
 			sourceTree = "<group>";
@@ -977,6 +1003,15 @@
 			children = (
 				2FCE08C71AAAAAEF007795C4 /* Login */,
 				2FCE08D51AAAC8EF007795C4 /* View */,
+				2F47D3C01AAFCB7B00A6E34B /* SettingTableViewController.h */,
+				2F47D3C11AAFCB7B00A6E34B /* SettingTableViewController.m */,
+				2F47D3C21AAFCB7B00A6E34B /* SettingTableViewController.xib */,
+				2F47D3CF1AAFD34E00A6E34B /* FeedBackViewController.h */,
+				2F47D3D01AAFD34E00A6E34B /* FeedBackViewController.m */,
+				2F47D3D11AAFD34E00A6E34B /* FeedBackViewController.xib */,
+				2F47D3D41AAFD36700A6E34B /* AboutUSViewController.h */,
+				2F47D3D51AAFD36700A6E34B /* AboutUSViewController.m */,
+				2F47D3D61AAFD36700A6E34B /* AboutUSViewController.xib */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -1505,6 +1540,7 @@
 				2F963CD41AA944C200E7D754 /* icon_News film@3x .png in Resources */,
 				2F963D301AA94EBB00E7D754 /* BigEventTableViewCell.xib in Resources */,
 				2F963CFB1AA946B400E7D754 /* icon_share@2x.png in Resources */,
+				2F490BD71AB27BDB0057F039 /* video_icon@3x .png in Resources */,
 				2F963CF31AA946B400E7D754 /* default@2x.png in Resources */,
 				2F963D241AA94ABB00E7D754 /* icon_Add @2x.png in Resources */,
 				2F963CFA1AA946B400E7D754 /* icon_seach@2x.png in Resources */,
@@ -1518,6 +1554,7 @@
 				2FCE08C31AAA932C007795C4 /* SVProgressHUD.bundle in Resources */,
 				2F963D201AA94ABB00E7D754 /* bg_title2@2x.png in Resources */,
 				2F963D1F1AA94ABB00E7D754 /* icon_Comment@2x.png in Resources */,
+				2F47D3C41AAFCB7B00A6E34B /* SettingTableViewController.xib in Resources */,
 				2F963CEF1AA946B400E7D754 /* bg_Comment@2x.png in Resources */,
 				2F963CF01AA946B400E7D754 /* bg_Label@2x.png in Resources */,
 				2F963CD31AA944C200E7D754 /* icon_more@3x .png in Resources */,
@@ -1530,6 +1567,7 @@
 				2F963CCD1AA944C200E7D754 /* bg_Label@3x .png in Resources */,
 				2FE791A31AAC73680001804D /* 25@2x.png in Resources */,
 				2F963D291AA94ABB00E7D754 /* icon_share_black@2x.png in Resources */,
+				2F47D3D31AAFD34E00A6E34B /* FeedBackViewController.xib in Resources */,
 				2F963D221AA94ABB00E7D754 /* logo@2x.png in Resources */,
 				2F963CFD1AA946B400E7D754 /* list Selected@2x.png in Resources */,
 				2F963D0A1AA9480700E7D754 /* 3@3x.png in Resources */,
@@ -1557,6 +1595,7 @@
 				2F963D071AA9480700E7D754 /* 2@2x.png in Resources */,
 				2FCE08C61AAA9885007795C4 /* back_icon01@2x.png in Resources */,
 				2F963CD51AA944C200E7D754 /* icon_Other@3x .png in Resources */,
+				2F47D3D81AAFD36700A6E34B /* AboutUSViewController.xib in Resources */,
 				2FE791A21AAC73680001804D /* 24@2x.png in Resources */,
 				2F39B0721AA4298800575A76 /* Images.xcassets in Resources */,
 				2F963CDB1AA944C200E7D754 /* Multi Ling mirror@3x.png in Resources */,
@@ -1570,6 +1609,7 @@
 				2F963CD91AA944C200E7D754 /* icon_Sunny@3x .png in Resources */,
 				2F963D051AA9480700E7D754 /* 1@2x.png in Resources */,
 				2F39B1C71AA43B2C00575A76 /* MBProgressHUD.bundle in Resources */,
+				2F490BD61AB27BDB0057F039 /* video_icon@2x.png in Resources */,
 				2F963D351AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib in Resources */,
 				2F963CF71AA946B400E7D754 /* icon_News film@2x.png in Resources */,
 				2F963CCB1AA944C200E7D754 /* Anthology_bg@3x.png in Resources */,
@@ -1635,12 +1675,15 @@
 				2FCE0A801AAAFA5C007795C4 /* UIAlertView+lv.m in Sources */,
 				2F39B1C81AA43B2C00575A76 /* MBProgressHUD.m in Sources */,
 				2FCE0A5D1AAAF539007795C4 /* LvHTTPURLRequest.m in Sources */,
+				2F47D3D71AAFD36700A6E34B /* AboutUSViewController.m in Sources */,
 				2F39B1BF1AA43B2C00575A76 /* AFHTTPSessionManager.m in Sources */,
 				2F39B1D11AA43B2C00575A76 /* NSObject+MJMember.m in Sources */,
 				2FEC0A591AABC9F800CFE389 /* DetailAnthologyTableViewCell.m in Sources */,
 				5983D3781AAD7A00005B8FAD /* NACommentResp.m in Sources */,
+				2F47D3D21AAFD34E00A6E34B /* FeedBackViewController.m in Sources */,
 				2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */,
 				2FCE0A7D1AAAF559007795C4 /* NAUrlEncodeParamApi.m in Sources */,
+				2F47D3C31AAFCB7B00A6E34B /* SettingTableViewController.m in Sources */,
 				2F46E0AB1AAE9E190010C70A /* MJRefreshHeaderView.m in Sources */,
 				2FCE08B81AAA91C5007795C4 /* DDBarButton.m in Sources */,
 				2FCE0A7B1AAAF559007795C4 /* NAApiConstants.m in Sources */,
@@ -1706,6 +1749,7 @@
 				2FEC0A961AAC045800CFE389 /* NewFileDispalyViewController.m in Sources */,
 				2FCE0A611AAAF539007795C4 /* ReachableSingleton.m in Sources */,
 				2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */,
+				2F490BD31AB275D20057F039 /* BigEventDetailTableViewController.m in Sources */,
 				2FCE0A631AAAF539007795C4 /* LvPostJsonApiRequestObject.m in Sources */,
 				5983D3721AAD7A00005B8FAD /* NAApiGetMulPrism.m in Sources */,
 			);

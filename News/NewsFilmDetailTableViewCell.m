@@ -20,4 +20,8 @@
     // Configure the view for the selected state
 }
 
+- (void)setPicStr:(NSString *)picStr{
+    NSString *imageStr = [NSString stringWithFormat:@"%@%@",BASEIAMGEURL,self.picStr];
+    [self.imagePic setImageWithURL:[NSURL URLWithString:imageStr]];
+}
 @end

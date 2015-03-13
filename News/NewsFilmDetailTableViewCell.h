@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsFilmDetailTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imagePic;
+@property (nonatomic, strong)NSString *picStr;
 @property(nonatomic, assign)CGFloat cellHeight;
 @end
