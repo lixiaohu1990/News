@@ -18,5 +18,8 @@
 @property (nonatomic) NSString *flowId;
 @property (nonatomic) NSString *favoriteFlag;
 @property (nonatomic) int commentCount;
+@property (nonatomic) NSArray *imageList;
+@property (nonatomic) NSString *tag;
+@property (nonatomic) NSString *author;
 
 @end

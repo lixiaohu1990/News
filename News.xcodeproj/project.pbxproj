@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F07EAAA1AAA0986004B2A91 /* PrismTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F07EAA81AAA0986004B2A91 /* PrismTableViewCell.m */; };
-		2F07EAAB1AAA0986004B2A91 /* PrismTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F07EAA91AAA0986004B2A91 /* PrismTableViewCell.xib */; };
 		2F07EAAD1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F07EAAC1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg */; };
 		2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2FE9BA1AA5E39800AC6E44 /* MoreView.m */; };
 		2F33981A1AA54522001DA4C5 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3398191AA54522001DA4C5 /* BaseNavigationViewController.m */; };
@@ -26,7 +24,6 @@
 		2F39B0931AA42A7800575A76 /* SlideSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B08F1AA42A7800575A76 /* SlideSegmentController.m */; };
 		2F39B09B1AA42DC100575A76 /* NewsFilmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B09A1AA42DC100575A76 /* NewsFilmViewController.m */; };
 		2F39B09E1AA42EA900575A76 /* BigEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B09D1AA42EA900575A76 /* BigEventViewController.m */; };
-		2F39B0A11AA42ECB00575A76 /* PrismViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B0A01AA42ECB00575A76 /* PrismViewController.m */; };
 		2F39B1BD1AA43B2C00575A76 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1551AA43B2B00575A76 /* AFHTTPRequestOperation.m */; };
 		2F39B1BE1AA43B2C00575A76 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1571AA43B2B00575A76 /* AFHTTPRequestOperationManager.m */; };
 		2F39B1BF1AA43B2C00575A76 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1591AA43B2B00575A76 /* AFHTTPSessionManager.m */; };
@@ -217,6 +214,12 @@
 		2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC0A981AAC064100CFE389 /* CBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2FEC0A9B1AAC064100CFE389 /* CBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A991AAC064100CFE389 /* CBViewController.xib */; };
 		2FEC0A9D1AAC15F100CFE389 /* CBViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */; };
+		59780CFA1AB28FD100FE3A43 /* Prism.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59780CF21AB28FD100FE3A43 /* Prism.xcassets */; };
+		59780CFB1AB28FD100FE3A43 /* Prism.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59780CF41AB28FD100FE3A43 /* Prism.storyboard */; };
+		59780CFC1AB28FD100FE3A43 /* PrismPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59780CF71AB28FD100FE3A43 /* PrismPageVC.m */; };
+		59780CFD1AB28FD100FE3A43 /* PrismViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59780CF91AB28FD100FE3A43 /* PrismViewController.m */; };
+		59780D021AB2901600FE3A43 /* NSObject+ClassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 59780CFF1AB2901600FE3A43 /* NSObject+ClassFilter.m */; };
+		59780D031AB2901600FE3A43 /* NSString+lv.m in Sources */ = {isa = PBXBuildFile; fileRef = 59780D011AB2901600FE3A43 /* NSString+lv.m */; };
 		5983D3701AAD7A00005B8FAD /* NAApiGetComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D35A1AAD7A00005B8FAD /* NAApiGetComment.m */; };
 		5983D3711AAD7A00005B8FAD /* NAApiGetCommentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D35C1AAD7A00005B8FAD /* NAApiGetCommentList.m */; };
 		5983D3721AAD7A00005B8FAD /* NAApiGetMulPrism.m in Sources */ = {isa = PBXBuildFile; fileRef = 5983D35E1AAD7A00005B8FAD /* NAApiGetMulPrism.m */; };
@@ -245,9 +248,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F07EAA71AAA0986004B2A91 /* PrismTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismTableViewCell.h; sourceTree = "<group>"; };
-		2F07EAA81AAA0986004B2A91 /* PrismTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrismTableViewCell.m; sourceTree = "<group>"; };
-		2F07EAA91AAA0986004B2A91 /* PrismTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrismTableViewCell.xib; sourceTree = "<group>"; };
 		2F07EAAC1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg; path = ../../ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg; sourceTree = "<group>"; };
 		2F2FE9B91AA5E39800AC6E44 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		2F2FE9BA1AA5E39800AC6E44 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
@@ -281,8 +281,6 @@
 		2F39B09A1AA42DC100575A76 /* NewsFilmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmViewController.m; sourceTree = "<group>"; };
 		2F39B09C1AA42EA900575A76 /* BigEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventViewController.h; sourceTree = "<group>"; };
 		2F39B09D1AA42EA900575A76 /* BigEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventViewController.m; sourceTree = "<group>"; };
-		2F39B09F1AA42ECB00575A76 /* PrismViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismViewController.h; sourceTree = "<group>"; };
-		2F39B0A01AA42ECB00575A76 /* PrismViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrismViewController.m; sourceTree = "<group>"; };
 		2F39B1281AA436C300575A76 /* BMXinCaiFu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMXinCaiFu.h; path = ../BMXinCaiFu.h; sourceTree = "<group>"; };
 		2F39B1541AA43B2B00575A76 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		2F39B1551AA43B2B00575A76 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -569,6 +567,16 @@
 		2FEC0A981AAC064100CFE389 /* CBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBViewController.m; sourceTree = "<group>"; };
 		2FEC0A991AAC064100CFE389 /* CBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBViewController.xib; sourceTree = "<group>"; };
 		2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBViewController1.xib; sourceTree = "<group>"; };
+		59780CF21AB28FD100FE3A43 /* Prism.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Prism.xcassets; sourceTree = "<group>"; };
+		59780CF41AB28FD100FE3A43 /* Prism.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Prism.storyboard; sourceTree = "<group>"; };
+		59780CF61AB28FD100FE3A43 /* PrismPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismPageVC.h; sourceTree = "<group>"; };
+		59780CF71AB28FD100FE3A43 /* PrismPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrismPageVC.m; sourceTree = "<group>"; };
+		59780CF81AB28FD100FE3A43 /* PrismViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismViewController.h; sourceTree = "<group>"; };
+		59780CF91AB28FD100FE3A43 /* PrismViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrismViewController.m; sourceTree = "<group>"; };
+		59780CFE1AB2901600FE3A43 /* NSObject+ClassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ClassFilter.h"; sourceTree = "<group>"; };
+		59780CFF1AB2901600FE3A43 /* NSObject+ClassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ClassFilter.m"; sourceTree = "<group>"; };
+		59780D001AB2901600FE3A43 /* NSString+lv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+lv.h"; sourceTree = "<group>"; };
+		59780D011AB2901600FE3A43 /* NSString+lv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+lv.m"; sourceTree = "<group>"; };
 		5983D3591AAD7A00005B8FAD /* NAApiGetComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetComment.h; sourceTree = "<group>"; };
 		5983D35A1AAD7A00005B8FAD /* NAApiGetComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiGetComment.m; sourceTree = "<group>"; };
 		5983D35B1AAD7A00005B8FAD /* NAApiGetCommentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiGetCommentList.h; sourceTree = "<group>"; };
@@ -639,16 +647,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F07EAA61AAA095F004B2A91 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2F07EAA71AAA0986004B2A91 /* PrismTableViewCell.h */,
-				2F07EAA81AAA0986004B2A91 /* PrismTableViewCell.m */,
-				2F07EAA91AAA0986004B2A91 /* PrismTableViewCell.xib */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		2F2FE9BC1AA5F3B300AC6E44 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,13 +794,13 @@
 		2F39B08A1AA42A6500575A76 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				59780CF01AB28FD100FE3A43 /* PrismModule */,
 				2FCE0A811AAAFFC8007795C4 /* Model */,
 				2FCE0A0F1AAAF517007795C4 /* Service */,
 				2F39B0941AA42C6300575A76 /* Main */,
 				2F39B1BA1AA43B2C00575A76 /* Tool */,
 				2F39B0961AA42CEC00575A76 /* NewsFilm */,
 				2F39B0971AA42D3800575A76 /* BigEvent */,
-				2F39B0981AA42D6100575A76 /* Prism */,
 				2F4BC6AD1AA4AB9100BA8AB6 /* More */,
 				2F33981E1AA5621D001DA4C5 /* Other */,
 				2F2FE9BC1AA5F3B300AC6E44 /* Base */,
@@ -840,15 +838,6 @@
 				2F490BD21AB275D20057F039 /* BigEventDetailTableViewController.m */,
 			);
 			name = BigEvent;
-			sourceTree = "<group>";
-		};
-		2F39B0981AA42D6100575A76 /* Prism */ = {
-			isa = PBXGroup;
-			children = (
-				2F07EAA61AAA095F004B2A91 /* View */,
-				2FCE08D41AAAC8D8007795C4 /* Controller */,
-			);
-			name = Prism;
 			sourceTree = "<group>";
 		};
 		2F39B1521AA43B2B00575A76 /* Lib */ = {
@@ -1215,15 +1204,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		2FCE08D41AAAC8D8007795C4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				2F39B09F1AA42ECB00575A76 /* PrismViewController.h */,
-				2F39B0A01AA42ECB00575A76 /* PrismViewController.m */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
 		2FCE08D51AAAC8EF007795C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1268,6 +1248,10 @@
 		2FCE0A321AAAF539007795C4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				59780CFE1AB2901600FE3A43 /* NSObject+ClassFilter.h */,
+				59780CFF1AB2901600FE3A43 /* NSObject+ClassFilter.m */,
+				59780D001AB2901600FE3A43 /* NSString+lv.h */,
+				59780D011AB2901600FE3A43 /* NSString+lv.m */,
 				2FCE0A331AAAF539007795C4 /* UIAlertView+lv.h */,
 				2FCE0A341AAAF539007795C4 /* UIAlertView+lv.m */,
 			);
@@ -1420,6 +1404,43 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		59780CF01AB28FD100FE3A43 /* PrismModule */ = {
+			isa = PBXGroup;
+			children = (
+				59780CF11AB28FD100FE3A43 /* Image */,
+				59780CF31AB28FD100FE3A43 /* View */,
+				59780CF51AB28FD100FE3A43 /* ViewController */,
+			);
+			path = PrismModule;
+			sourceTree = "<group>";
+		};
+		59780CF11AB28FD100FE3A43 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				59780CF21AB28FD100FE3A43 /* Prism.xcassets */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		59780CF31AB28FD100FE3A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				59780CF41AB28FD100FE3A43 /* Prism.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		59780CF51AB28FD100FE3A43 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				59780CF61AB28FD100FE3A43 /* PrismPageVC.h */,
+				59780CF71AB28FD100FE3A43 /* PrismPageVC.m */,
+				59780CF81AB28FD100FE3A43 /* PrismViewController.h */,
+				59780CF91AB28FD100FE3A43 /* PrismViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		5983D3671AAD7A00005B8FAD /* RespEntity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1552,12 +1573,14 @@
 				2FEC0A6A1AABCF5100CFE389 /* SendCommentView.xib in Resources */,
 				2F963CF81AA946B400E7D754 /* icon_Other@2x.png in Resources */,
 				2FCE08C31AAA932C007795C4 /* SVProgressHUD.bundle in Resources */,
+				59780CFA1AB28FD100FE3A43 /* Prism.xcassets in Resources */,
 				2F963D201AA94ABB00E7D754 /* bg_title2@2x.png in Resources */,
 				2F963D1F1AA94ABB00E7D754 /* icon_Comment@2x.png in Resources */,
 				2F47D3C41AAFCB7B00A6E34B /* SettingTableViewController.xib in Resources */,
 				2F963CEF1AA946B400E7D754 /* bg_Comment@2x.png in Resources */,
 				2F963CF01AA946B400E7D754 /* bg_Label@2x.png in Resources */,
 				2F963CD31AA944C200E7D754 /* icon_more@3x .png in Resources */,
+				59780CFB1AB28FD100FE3A43 /* Prism.storyboard in Resources */,
 				2FCE08AA1AAA90DA007795C4 /* login_btn@2x.png in Resources */,
 				2F963CD71AA944C200E7D754 /* icon_seach@3x.png in Resources */,
 				2F963D271AA94ABB00E7D754 /* icon_next@2x.png in Resources */,
@@ -1587,7 +1610,6 @@
 				2F963CD21AA944C200E7D754 /* icon_liebiao@3x .png in Resources */,
 				2F39B0751AA4298800575A76 /* LaunchScreen.xib in Resources */,
 				2F07EAAD1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg in Resources */,
-				2F07EAAB1AAA0986004B2A91 /* PrismTableViewCell.xib in Resources */,
 				2F963CF11AA946B400E7D754 /* bg_photo@2x.png in Resources */,
 				2F963D061AA9480700E7D754 /* 1@3x.png in Resources */,
 				2F963D1E1AA94ABB00E7D754 /* icon_add@2x.png in Resources */,
@@ -1644,7 +1666,6 @@
 				2FCE0A651AAAF539007795C4 /* LvUrlEncodeParamApiRequestObject.m in Sources */,
 				2FCE0A771AAAF559007795C4 /* NAApiCVC.m in Sources */,
 				5983D3871AAD7A41005B8FAD /* NAUser.m in Sources */,
-				2F39B0A11AA42ECB00575A76 /* PrismViewController.m in Sources */,
 				2FCE08CA1AAABEAC007795C4 /* UISearchView.m in Sources */,
 				2F39B0931AA42A7800575A76 /* SlideSegmentController.m in Sources */,
 				5983D3711AAD7A00005B8FAD /* NAApiGetCommentList.m in Sources */,
@@ -1656,7 +1677,6 @@
 				2F46E0AE1AAE9E190010C70A /* UIView+MJExtension.m in Sources */,
 				2F39B1CA1AA43B2C00575A76 /* MJIvar.m in Sources */,
 				2F39B1C61AA43B2C00575A76 /* MBProgressHUD+MJ.m in Sources */,
-				2F07EAAA1AAA0986004B2A91 /* PrismTableViewCell.m in Sources */,
 				2F3432DD1AA68CB20096949C /* NewsFilmTableViewCell.m in Sources */,
 				2FCE0A781AAAF559007795C4 /* NAApiLogin.m in Sources */,
 				2F3398291AA56853001DA4C5 /* MainViewController.m in Sources */,
@@ -1716,12 +1736,14 @@
 				5983D37A1AAD7A00005B8FAD /* NANewsResp.m in Sources */,
 				2FEC0A5F1AABCA6400CFE389 /* DetailCommentTableViewCell.m in Sources */,
 				2F4C180F1AADB3E2006E4A02 /* NewsList.m in Sources */,
+				59780CFD1AB28FD100FE3A43 /* PrismViewController.m in Sources */,
 				5983D3731AAD7A00005B8FAD /* NAApiGetMulPrismList.m in Sources */,
 				5983D3851AAD7A41005B8FAD /* NABaseModel.m in Sources */,
 				2F3398231AA5631B001DA4C5 /* UIImage+L.m in Sources */,
 				2F46E0AD1AAE9E190010C70A /* UIScrollView+MJRefresh.m in Sources */,
 				5983D3701AAD7A00005B8FAD /* NAApiGetComment.m in Sources */,
 				2F39B1CF1AA43B2C00575A76 /* NSObject+MJCoding.m in Sources */,
+				59780D021AB2901600FE3A43 /* NSObject+ClassFilter.m in Sources */,
 				2FCE089E1AAA8BFF007795C4 /* LoginViewController.m in Sources */,
 				2FCE0A791AAAF559007795C4 /* NAApiLogout.m in Sources */,
 				2FCE089F1AAA8BFF007795C4 /* RegisterViewController.m in Sources */,
@@ -1734,6 +1756,8 @@
 				5983D3741AAD7A00005B8FAD /* NAApiGetNews.m in Sources */,
 				2FEC0A561AABC98700CFE389 /* DetailContentTableViewCell.m in Sources */,
 				2F39B1E91AA43B2C00575A76 /* UIImage+GIF.m in Sources */,
+				59780D031AB2901600FE3A43 /* NSString+lv.m in Sources */,
+				59780CFC1AB28FD100FE3A43 /* PrismPageVC.m in Sources */,
 				2F46E07C1AAE87FC0010C70A /* BigEventTableViewCell1.m in Sources */,
 				2F39B1C41AA43B2C00575A76 /* AFURLResponseSerialization.m in Sources */,
 				5983D3861AAD7A41005B8FAD /* NANews.m in Sources */,
