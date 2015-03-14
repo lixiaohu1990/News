@@ -8,5 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+// 服务器base url
+extern NSString *const NAServerBaseUrl;
+
 // api base url
-extern NSString const* NAApiBaseUrl;
+extern NSString *const NAApiBaseUrl;

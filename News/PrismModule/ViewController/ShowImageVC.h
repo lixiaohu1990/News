@@ -1,5 +1,5 @@
 //
-//  PrismViewController.h
+//  ShowImageVC.h
 //  PrismDemo
 //
 //  Created by 彭光波 on 15-3-14.
@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PrismViewController : UICollectionViewController
+@interface ShowImageVC : UIViewController
 
 #pragma mark - Init
 
 - (instancetype)init;
 
 - (instancetype)initFromStoryboard;
+
+@property (nonatomic) NSArray *imageUrlList;
+
+- (void)reloadData;
 
 @end
