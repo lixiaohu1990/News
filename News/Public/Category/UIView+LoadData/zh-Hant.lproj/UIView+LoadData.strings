@@ -1,0 +1,9 @@
+/* 
+  UIView+LoadData.strings
+  CommunityDemo
+
+  Created by guangbo on 14/12/10.
+  Copyright (c) 2014年 1024. All rights reserved.
+*/
+
+"loading" = "載入...";
