@@ -13,6 +13,7 @@
 #import "NAApiGetNewsList.h"
 #import "NewsList.h"
 #import "NANewsResp.h"
+#import "BigEventDetailTableViewController.h"
 //#import "XCTAssert.h"
 @interface NewsFilmViewController ()<NABaseApiResultHandlerDelegate>{
     int _currentPage;
@@ -96,8 +97,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NANewsResp *item = self.ListArray[indexPath.row];
     DLOG(@"%@", item);
-    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
+//    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
 //        [self.navigationController pushViewController:control animated:YES];
+    BigEventDetailTableViewController *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:BigeventdetailStyleVideo newsId:item.newsID videoPath:item.vedioUrl listType:NewsFilmType];
     [self presentModalViewController:control animated:YES];
 }
 

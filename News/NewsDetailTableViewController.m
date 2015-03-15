@@ -15,6 +15,7 @@
 #import "NAApiGetNews.h"
 #import "NANewsResp.h"
 #import "DetailContentTableViewCell.h"
+#import "DetailCommentTableViewCell.h"
 @interface NewsDetailTableViewController ()<DetailDiscussTableViewCellDelegate, NABaseApiResultHandlerDelegate>
 {
     NSString *videoFullPath;
@@ -195,8 +196,8 @@
         return cell;
 
     }else{
-        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][4];
-        
+        DetailCommentTableViewCell *cell = [DetailCommentTableViewCell cellWithTableView:tableView];
+        cell.item = self.commentArray[indexPath.row];
         return cell;
     }
     

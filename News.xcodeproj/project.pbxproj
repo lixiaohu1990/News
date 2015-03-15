@@ -88,6 +88,13 @@
 		2F4C180A1AAD5F9A006E4A02 /* libReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18031AAD5F99006E4A02 /* libReachability.a */; };
 		2F4C180B1AAD5F9A006E4A02 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4C18041AAD5F99006E4A02 /* libSBJSON.a */; };
 		2F4C180F1AADB3E2006E4A02 /* NewsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4C180E1AADB3E2006E4A02 /* NewsList.m */; };
+		2F559EBE1AB45F740060AC56 /* NAApiSendFeedBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559EBD1AB45F740060AC56 /* NAApiSendFeedBack.m */; };
+		2F559EC11AB465DD0060AC56 /* NAAPIGetTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559EC01AB465DD0060AC56 /* NAAPIGetTag.m */; };
+		2F559EC51AB466870060AC56 /* NATagResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559EC41AB466870060AC56 /* NATagResp.m */; };
+		2F559EC81AB472930060AC56 /* NAAPIGetTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559EC71AB472930060AC56 /* NAAPIGetTagList.m */; };
+		2F559ECB1AB474CE0060AC56 /* SearchTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559ECA1AB474CE0060AC56 /* SearchTagTableViewController.m */; };
+		2F559ECE1AB482F70060AC56 /* SearchResaultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559ECD1AB482F70060AC56 /* SearchResaultTableViewController.m */; };
+		2F559ED11AB4839E0060AC56 /* NAAPISearhResaultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F559ED01AB4839E0060AC56 /* NAAPISearhResaultList.m */; };
 		2F963CCB1AA944C200E7D754 /* Anthology_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBA1AA944C200E7D754 /* Anthology_bg@3x.png */; };
 		2F963CCC1AA944C200E7D754 /* bg_Comment@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBB1AA944C200E7D754 /* bg_Comment@3x .png */; };
 		2F963CCD1AA944C200E7D754 /* bg_Label@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 2F963CBC1AA944C200E7D754 /* bg_Label@3x .png */; };
@@ -400,6 +407,20 @@
 		2F4C18041AAD5F99006E4A02 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
 		2F4C180D1AADB3E2006E4A02 /* NewsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsList.h; sourceTree = "<group>"; };
 		2F4C180E1AADB3E2006E4A02 /* NewsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsList.m; sourceTree = "<group>"; };
+		2F559EBC1AB45F740060AC56 /* NAApiSendFeedBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAApiSendFeedBack.h; sourceTree = "<group>"; };
+		2F559EBD1AB45F740060AC56 /* NAApiSendFeedBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAApiSendFeedBack.m; sourceTree = "<group>"; };
+		2F559EBF1AB465DD0060AC56 /* NAAPIGetTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAAPIGetTag.h; sourceTree = "<group>"; };
+		2F559EC01AB465DD0060AC56 /* NAAPIGetTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAAPIGetTag.m; sourceTree = "<group>"; };
+		2F559EC31AB466870060AC56 /* NATagResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NATagResp.h; sourceTree = "<group>"; };
+		2F559EC41AB466870060AC56 /* NATagResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NATagResp.m; sourceTree = "<group>"; };
+		2F559EC61AB472930060AC56 /* NAAPIGetTagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAAPIGetTagList.h; sourceTree = "<group>"; };
+		2F559EC71AB472930060AC56 /* NAAPIGetTagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAAPIGetTagList.m; sourceTree = "<group>"; };
+		2F559EC91AB474CE0060AC56 /* SearchTagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTagTableViewController.h; sourceTree = "<group>"; };
+		2F559ECA1AB474CE0060AC56 /* SearchTagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTagTableViewController.m; sourceTree = "<group>"; };
+		2F559ECC1AB482F70060AC56 /* SearchResaultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResaultTableViewController.h; sourceTree = "<group>"; };
+		2F559ECD1AB482F70060AC56 /* SearchResaultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResaultTableViewController.m; sourceTree = "<group>"; };
+		2F559ECF1AB4839E0060AC56 /* NAAPISearhResaultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAAPISearhResaultList.h; sourceTree = "<group>"; };
+		2F559ED01AB4839E0060AC56 /* NAAPISearhResaultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAAPISearhResaultList.m; sourceTree = "<group>"; };
 		2F963CBA1AA944C200E7D754 /* Anthology_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anthology_bg@3x.png"; sourceTree = "<group>"; };
 		2F963CBB1AA944C200E7D754 /* bg_Comment@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Comment@3x .png"; sourceTree = "<group>"; };
 		2F963CBC1AA944C200E7D754 /* bg_Label@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Label@3x .png"; sourceTree = "<group>"; };
@@ -1001,6 +1022,10 @@
 				2F47D3D41AAFD36700A6E34B /* AboutUSViewController.h */,
 				2F47D3D51AAFD36700A6E34B /* AboutUSViewController.m */,
 				2F47D3D61AAFD36700A6E34B /* AboutUSViewController.xib */,
+				2F559EC91AB474CE0060AC56 /* SearchTagTableViewController.h */,
+				2F559ECA1AB474CE0060AC56 /* SearchTagTableViewController.m */,
+				2F559ECC1AB482F70060AC56 /* SearchResaultTableViewController.h */,
+				2F559ECD1AB482F70060AC56 /* SearchResaultTableViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -1340,9 +1365,17 @@
 				5983D3641AAD7A00005B8FAD /* NAApiGetNewsList.m */,
 				5983D3651AAD7A00005B8FAD /* NAApiSaveComment.h */,
 				5983D3661AAD7A00005B8FAD /* NAApiSaveComment.m */,
+				2F559EBF1AB465DD0060AC56 /* NAAPIGetTag.h */,
+				2F559EC01AB465DD0060AC56 /* NAAPIGetTag.m */,
+				2F559EC61AB472930060AC56 /* NAAPIGetTagList.h */,
+				2F559EC71AB472930060AC56 /* NAAPIGetTagList.m */,
+				2F559ECF1AB4839E0060AC56 /* NAAPISearhResaultList.h */,
+				2F559ED01AB4839E0060AC56 /* NAAPISearhResaultList.m */,
 				5983D3671AAD7A00005B8FAD /* RespEntity */,
 				2FCE0A681AAAF559007795C4 /* NAApiCVC.h */,
 				2FCE0A691AAAF559007795C4 /* NAApiCVC.m */,
+				2F559EBC1AB45F740060AC56 /* NAApiSendFeedBack.h */,
+				2F559EBD1AB45F740060AC56 /* NAApiSendFeedBack.m */,
 				2FCE0A6A1AAAF559007795C4 /* NAApiLogin.h */,
 				2FCE0A6B1AAAF559007795C4 /* NAApiLogin.m */,
 				2FCE0A6C1AAAF559007795C4 /* NAApiLogout.h */,
@@ -1452,6 +1485,8 @@
 				5983D36D1AAD7A00005B8FAD /* NAMulPrismResp.m */,
 				5983D36E1AAD7A00005B8FAD /* NANewsResp.h */,
 				5983D36F1AAD7A00005B8FAD /* NANewsResp.m */,
+				2F559EC31AB466870060AC56 /* NATagResp.h */,
+				2F559EC41AB466870060AC56 /* NATagResp.m */,
 			);
 			path = RespEntity;
 			sourceTree = "<group>";
@@ -1667,6 +1702,7 @@
 				2FCE0A771AAAF559007795C4 /* NAApiCVC.m in Sources */,
 				5983D3871AAD7A41005B8FAD /* NAUser.m in Sources */,
 				2FCE08CA1AAABEAC007795C4 /* UISearchView.m in Sources */,
+				2F559EC11AB465DD0060AC56 /* NAAPIGetTag.m in Sources */,
 				2F39B0931AA42A7800575A76 /* SlideSegmentController.m in Sources */,
 				5983D3711AAD7A00005B8FAD /* NAApiGetCommentList.m in Sources */,
 				2FCE08B51AAA91A5007795C4 /* DDBaseViewController.m in Sources */,
@@ -1692,6 +1728,7 @@
 				2FCE0A7A1AAAF559007795C4 /* NAApiRegister.m in Sources */,
 				2F39B1DF1AA43B2C00575A76 /* MKAnnotationView+WebCache.m in Sources */,
 				2F39B1E01AA43B2C00575A76 /* NSData+ImageContentType.m in Sources */,
+				2F559ECE1AB482F70060AC56 /* SearchResaultTableViewController.m in Sources */,
 				2FCE0A801AAAFA5C007795C4 /* UIAlertView+lv.m in Sources */,
 				2F39B1C81AA43B2C00575A76 /* MBProgressHUD.m in Sources */,
 				2FCE0A5D1AAAF539007795C4 /* LvHTTPURLRequest.m in Sources */,
@@ -1721,6 +1758,7 @@
 				2F39B0671AA4298700575A76 /* main.m in Sources */,
 				2F39B09B1AA42DC100575A76 /* NewsFilmViewController.m in Sources */,
 				2F39B1EA1AA43B2C00575A76 /* UIImage+MultiFormat.m in Sources */,
+				2F559EBE1AB45F740060AC56 /* NAApiSendFeedBack.m in Sources */,
 				2FCE08CF1AAAC5AA007795C4 /* MainTitleView.m in Sources */,
 				2FCE0A7C1AAAF559007795C4 /* NABaseApi.m in Sources */,
 				2F39B1E31AA43B2C00575A76 /* SDWebImageDecoder.m in Sources */,
@@ -1740,6 +1778,7 @@
 				5983D3731AAD7A00005B8FAD /* NAApiGetMulPrismList.m in Sources */,
 				5983D3851AAD7A41005B8FAD /* NABaseModel.m in Sources */,
 				2F3398231AA5631B001DA4C5 /* UIImage+L.m in Sources */,
+				2F559EC51AB466870060AC56 /* NATagResp.m in Sources */,
 				2F46E0AD1AAE9E190010C70A /* UIScrollView+MJRefresh.m in Sources */,
 				5983D3701AAD7A00005B8FAD /* NAApiGetComment.m in Sources */,
 				2F39B1CF1AA43B2C00575A76 /* NSObject+MJCoding.m in Sources */,
@@ -1757,6 +1796,7 @@
 				2FEC0A561AABC98700CFE389 /* DetailContentTableViewCell.m in Sources */,
 				2F39B1E91AA43B2C00575A76 /* UIImage+GIF.m in Sources */,
 				59780D031AB2901600FE3A43 /* NSString+lv.m in Sources */,
+				2F559ED11AB4839E0060AC56 /* NAAPISearhResaultList.m in Sources */,
 				59780CFC1AB28FD100FE3A43 /* PrismPageVC.m in Sources */,
 				2F46E07C1AAE87FC0010C70A /* BigEventTableViewCell1.m in Sources */,
 				2F39B1C41AA43B2C00575A76 /* AFURLResponseSerialization.m in Sources */,
@@ -1770,9 +1810,11 @@
 				2F39B1E21AA43B2C00575A76 /* SDWebImageCompat.m in Sources */,
 				2F39B1E11AA43B2C00575A76 /* SDImageCache.m in Sources */,
 				2FCE0A641AAAF539007795C4 /* LvPostMultiFormDataApiRequestObject.m in Sources */,
+				2F559EC81AB472930060AC56 /* NAAPIGetTagList.m in Sources */,
 				2FEC0A961AAC045800CFE389 /* NewFileDispalyViewController.m in Sources */,
 				2FCE0A611AAAF539007795C4 /* ReachableSingleton.m in Sources */,
 				2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */,
+				2F559ECB1AB474CE0060AC56 /* SearchTagTableViewController.m in Sources */,
 				2F490BD31AB275D20057F039 /* BigEventDetailTableViewController.m in Sources */,
 				2FCE0A631AAAF539007795C4 /* LvPostJsonApiRequestObject.m in Sources */,
 				5983D3721AAD7A00005B8FAD /* NAApiGetMulPrism.m in Sources */,

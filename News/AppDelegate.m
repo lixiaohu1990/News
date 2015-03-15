@@ -14,7 +14,7 @@
 #import "MainViewController.h"
 
 @interface AppDelegate ()
-@property(nonatomic, strong)BaseNavigationViewController *nav;
+@property(nonatomic, strong)UINavigationController *nav;
 @end
 
 @implementation AppDelegate
@@ -26,9 +26,10 @@
     
     
     self.window.rootViewController = _nav;
-    
+    [DDUser sharedUser].mobile = @"";
+    [[DDUser sharedUser] saveToDisk];
     [self.window makeKeyAndVisible];
-    return YES;
+    
     return YES;
 }
 

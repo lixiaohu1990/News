@@ -8,8 +8,11 @@
 //#import "DDForgetPwViewController.h"
 #import "SVProgressHUD.h"
 #import "RegisterViewController.h"
-
-//#import "LvJsonResultApiRequest.h"
+#import "NAApiLogin.h"
+#import "BigEventViewController.h"
+#import "NewsFilmViewController.h"
+#import "PrismViewController.h"
+#import "MainViewController.h"
 @interface LoginViewController ()<LvHTTPURLRequestDelegate,UITextFieldDelegate>
 {
 UITextField *iUsernameField;
@@ -20,6 +23,7 @@ UIImageView *imageView;
 @property(nonatomic, strong) NSString *userName;
 @property(nonatomic, strong) NSString *passWord;
 @property(nonatomic, assign) BOOL threeTimesError;
+@property (nonatomic) NAApiLogin *loginRec;
 
 @end
 
@@ -113,6 +117,14 @@ UIImageView *imageView;
     //    [self.navigationController popViewControllerAnimated:YES];
     [self dismissModalViewControllerAnimated:YES];
 }
+
+- (void)loginConnection{
+    [iUsernameField resignFirstResponder];
+    [iPasswordField resignFirstResponder];
+    self.loginRec = [[NAApiLogin alloc]initWithUsername:iUsernameField.text password:iPasswordField.text];
+    self.loginRec.APIRequestResultHandlerDelegate = self;
+    [self.loginRec asyncRequest];
+}
 - (void)buttonPressed:(UIButton *)sender
 {
 //    self.threeTimesError = YES;
@@ -123,7 +135,7 @@ UIImageView *imageView;
             [SVProgressHUD showErrorWithStatus:@"请输入正确的11位手机号"];
             return;
         }
-        if(!iPasswordField.text || iPasswordField.text.length < 6)
+        if(!iPasswordField.text || iPasswordField.text.length < 1)
         {
             [SVProgressHUD showErrorWithStatus:@"密码长度不得低于6位"];
             return;
@@ -137,65 +149,8 @@ UIImageView *imageView;
         NSString * timeString=[dateformatter stringFromDate:senddate];
         NSLog(@"%@", timeString);
         __block BOOL loginSuccess = 0;
-//        [DDConnection loginConnectionWithTimestamp:timeString password:iPasswordField.text username:iUsernameField.text version:@"1.0" finishBlock:^(NSDictionary *json, BOOL success) {
-//            if (success) {
-//                NSLog(@"aaaaaaaa%@", json);
-//            
-////                [DDUser sharedShip].sharedShip
-//                [DDConnection getUserInfoConnectionWithTimestamp:timeString WithFinishBlock:^(NSDictionary *json, BOOL success) {
-//                    if (success) {
-//                        NSLog(@"user%@", json);
-//                        if (![NSObject isNullWithObject:json[@"json"][@"address"]]) {
-//                            [DDUser sharedUser].address = json[@"json"][@"address"];
-//                        }else{
-//                            [DDUser sharedUser].address = @"";
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"city"]]) {
-//                            [DDUser sharedUser].city = json[@"json"][@"city"];
-//                        }else{
-//                            [DDUser sharedUser].city = @"";
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"imageUrl"]]) {
-//                            [DDUser sharedUser].imageUrl = json[@"json"][@"imageUrl"];
-//                        }else{
-//                            [DDUser sharedUser].imageUrl = @"";
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"nickName"]]) {
-//                            [DDUser sharedUser].nickName = json[@"json"][@"nickName"];
-//                        }else{
-//                            [DDUser sharedUser].nickName = json[@"json"][@"mobile"];
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"realName"]]) {
-//                            [DDUser sharedUser].realName = json[@"json"][@"realName"];
-//                        }else{
-//                            [DDUser sharedUser].realName = @"";
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"sex"]]) {
-//                            [DDUser sharedUser].sex = json[@"json"][@"sex"];
-//                        }else{
-//                            [DDUser sharedUser].sex = @"";
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"username"]]) {
-//                            [DDUser sharedUser].username = json[@"json"][@"username"];
-//                        }else{
-//                            [DDUser sharedUser].username = json[@"json"][@"mobile"];
-//                        }
-//                        if (![NSObject isNullWithObject:json[@"json"][@"mobile"]]) {
-//                            [DDUser sharedUser].mobile = json[@"json"][@"mobile"];
-//                        }else{
-//                            [DDUser sharedUser].mobile = @"";
-//                        }
-//                        [[DDUser sharedUser] saveToDisk];
-//                    }
-//                    [self dismissViewControllerAnimated:YES completion:nil];
-//                }];
-//
-//                
-//
-//            }
-//            
-//            
-//        }];
+        [self loginConnection];
+
     }
     else if(sender.tag == 200)
     {
@@ -230,5 +185,65 @@ UIImageView *imageView;
     [textField resignFirstResponder];
     return YES;
 }
+
+#pragma mark - NABaseApiResultHandlerDelegate methods
+
+- (void)failCauseNetworkUnavaliable:(id)request
+{
+    DLOG(@"failCauseNetworkUnavaliable");
+}
+
+- (void)failCauseRequestTimeout:(id)request
+{
+    DLOG(@"failCauseRequestTimeout");
+}
+
+- (void)failCauseServerError:(id)request
+{
+    DLOG(@"failCauseServerError");
+}
+
+- (void)failCauseBissnessError:(id)apiRequest
+{
+    DLOG(@"failCauseBissnessError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseSystemError:(id)apiRequest
+{
+    DLOG(@"failCauseSystemError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseParamError:(id)apiRequest
+{
+    DLOG(@"failCauseParamError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+#pragma mark - Correct result handler
+- (void)request:(id)request successRequestWithResult:(id)requestResult
+{
+    
+    [DDUser sharedUser].mobile = iUsernameField.text;
+    [[DDUser sharedUser] saveToDisk];
+    
+    NSLog(@"%@", requestResult);
+    //        [self dismissModalViewControllerAnimated:YES];
+    
+    NewsFilmViewController *newsVc = [[NewsFilmViewController alloc] init];
+    //    newsVc.title = @"新闻片";
+    
+    BigEventViewController *bigVc = [[BigEventViewController alloc] init];
+    //    bigVc.title = @"大事件";
+    
+    PrismViewController *prismVc = [[PrismViewController alloc] init];
+    //    prismVc.title = @"多棱镜";
+    
+    MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:main];
+    self.view.window.rootViewController = navi;
+    
+    return;
+
+}
+
 
 @end

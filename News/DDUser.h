@@ -8,19 +8,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DDUser : NSObject<NSCoding>
-typedef NS_ENUM(NSInteger, DDItemType) {
-    DDItemTypeImmigation        = 1,
-    DDItemTypeStudy,
-    DDItemTypeVisa,
-    DDItemTypeBear,
-    DDItemTypeHouse,
-    DDItemTypeTax,
-    DDItemTypeBusiness,
-    DDItemTypeBank,
-    DDItemTypeInvest,
-    DDItemTypeCourse,
-    DDItemTypeTravel
-};
+
 @property (nonatomic, strong) NSString *JSESSIONID;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *city;

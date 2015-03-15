@@ -15,7 +15,10 @@
 #import "NAApiGetNews.h"
 #import "NANewsResp.h"
 #import "DetailContentTableViewCell.h"
-@interface BigEventDetailTableViewController ()<DetailDiscussTableViewCellDelegate, NABaseApiResultHandlerDelegate>
+#import "NAApiGetCommentList.h"
+#import "DetailCommentTableViewCell.h"
+#import "LoginViewController.h"
+@interface BigEventDetailTableViewController ()<DetailDiscussTableViewCellDelegate, NABaseApiResultHandlerDelegate, SendCommentViewDelegate>
 {
     NSString *videoFullPath;
     CyberPlayerController *cbPlayerController;
@@ -26,23 +29,24 @@
     UITableViewCell *_cell;
     BOOL fullScreen;
     int _currentPage;
+    ListType _listType;
+    BigEventDetailStyle _detailStyle;
     
 }
 @property (retain, nonatomic)UILabel *remainsProgress;
 @property (nonatomic) NAApiGetNews *getNewsDetaiReq;
 @property(nonatomic, strong)NANewsResp *detailItem;
 @property (nonatomic, strong)NSMutableArray *commentArray;
+@property (nonatomic, strong)NAApiGetCommentList *commentReq;
 @end
 
 @implementation BigEventDetailTableViewController
-
-- (instancetype)initWithVideoPath:(NSString *)videoStr{
+- (instancetype)initWithEventStyle:(BigEventDetailStyle)eventStyle newsId:(NSInteger)newsId videoPath:(NSString *)videoStr listType:(ListType)listType{
     if (self = [super init]) {
-        if ([videoStr isEqualToString:@" "]) {
-            videoFullPath = @" ";
-        }else{
-            videoFullPath = [NSString stringWithFormat:@"%@%@", BASEVIDEOURL,videoStr];
-        }
+        _detailStyle = eventStyle;
+        _newsID = newsId;
+        videoFullPath = videoStr;
+        _listType = listType;
     }
     return self;
 }
@@ -51,11 +55,13 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _currentPage = 1;
     self.commentArray = [NSMutableArray array];
     self.title = @"大事件详情";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [UIApplication sharedApplication].statusBarHidden = YES;
     [self getNewsDetail];
+    [self getCommentList];
     [self setupRefresh];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -64,12 +70,19 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (BOOL)prefersStatusBarHidden{
+    if (_detailStyle == BigeventdetailStyleVideo) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
 - (void)setupRefresh
 {
     //    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
 #warning 自动刷新(一进入程序就下拉刷新)
     //    [self.tableView headerBeginRefreshing];
-    
+//    [self.tableView footerBeginRefreshing];
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
     
@@ -107,22 +120,22 @@
 
 - (void)getNewsDetail
 {
-    self.getNewsDetaiReq = [[NAApiGetNews alloc]initWithItemId:1 type:1];
+    self.getNewsDetaiReq = [[NAApiGetNews alloc]initWithItemId:self.newsID type:_listType];
     self.getNewsDetaiReq.APIRequestResultHandlerDelegate = self;
     [self.getNewsDetaiReq asyncRequest];
 }
 
+//- (void)getComment
+//{
+//    self.commentReq = [[NAApiGetCommentList alloc]initWithPage:_currentPage rows:PAGESIZE newsID:self.newsID];
+//    self.commentReq.APIRequestResultHandlerDelegate = self;
+//    [self.getNewsDetaiReq asyncRequest];
+//}
+
 - (void)getCommentList{
-    NSString *str = @"";
-    [self.commentArray addObject:str];
-    //    NSMutableArray *array = [NSMutableArray array];
-    //    for (int i=0; i<=self.commentArray.count; i++) {
-    //        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i+3 inSection:0];
-    //        [array addObject:indexPath];
-    //    }
-    //
-    //    [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView reloadData];
+    self.commentReq = [[NAApiGetCommentList alloc]initWithPage:_currentPage rows:PAGESIZE newsID:self.newsID];
+    self.commentReq.APIRequestResultHandlerDelegate = self;
+    [self.commentReq asyncRequest];
     
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -147,64 +160,103 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return (fullScreen ? 1 : 3+self.commentArray.count);
+    if (_detailStyle == BigeventdetailStyleText) {
+        return (fullScreen ? 1 : 2+self.commentArray.count);
+    }else{
+        return (fullScreen ? 1 : 3+self.commentArray.count);
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return (fullScreen ? self.view.frame.size.height:250);
-    }else if(indexPath.row == 1){
-        return 88;
+    
+    if (_detailStyle != BigeventdetailStyleText) {
+        if (indexPath.row == 0) {
+            return (fullScreen ? self.view.frame.size.height:250);
+        }else if(indexPath.row == 1){
+            return 88;
+        }else{
+            return 44;
+        }
     }else{
-        return 44;
+        if (indexPath.row == 0) {
+            return 88;
+        }else{
+            return 44;
+        }
     }
+    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
     static NSString *cellIdentifier = @"film";
     static NSString *cellIdentifier2 = @"film";
-    if (indexPath.row == 0) {
-        NewsFilmDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][0];
-            if (![videoFullPath isEqualToString:@" "]) {
-                [self configureVideoWithCell:cell];
+    if (_detailStyle != BigeventdetailStyleText) {
+        if (indexPath.row == 0) {
+            NewsFilmDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][0];
+                if (_detailStyle == BigeventdetailStyleVideo) {
+                    [self configureVideoWithCell:cell];
+                }
             }
+            if (!fullScreen) {
+                _cell = cell;
+            }
+            
+            return cell;
+            
+        }else if(indexPath.row == 1){
+            DetailContentTableViewCell *cell = [DetailContentTableViewCell cellWithTableView:tableView];
+            cell.item = self.detailItem;
+            return cell;
+            //    }else if(indexPath.row ==2){
+            //        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
+            //
+            //        return cell;
+            
+        }else if (indexPath.row == 2){
+            DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
+            cell.countLabel.text = [NSString stringWithFormat:@"%d", self.detailItem.commentCount];
+            cell.dicDelegate = self;
+            return cell;
+            
+        }else{
+            DetailCommentTableViewCell *cell = [DetailCommentTableViewCell cellWithTableView:tableView];
+            cell.item = self.commentArray[indexPath.row - 3];
+            return cell;
         }
-        if (!fullScreen) {
-            _cell = cell;
-        }
-        
-        return cell;
-        
-    }else if(indexPath.row == 1){
-        DetailContentTableViewCell *cell = [DetailContentTableViewCell cellWithTableView:tableView];
-        cell.item = self.detailItem;
-        return cell;
-        //    }else if(indexPath.row ==2){
-        //        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
-        //
-        //        return cell;
-        
-    }else if (indexPath.row == 2){
-        DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
-        cell.countLabel.text = [NSString stringWithFormat:@"%d", self.detailItem.commentCount];
-        cell.dicDelegate = self;
-        return cell;
-        
+
     }else{
-        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][4];
-        
-        return cell;
+        if(indexPath.row == 0){
+            DetailContentTableViewCell *cell = [DetailContentTableViewCell cellWithTableView:tableView];
+            cell.item = self.detailItem;
+            return cell;
+            //    }else if(indexPath.row ==2){
+            //        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
+            //
+            //        return cell;
+            
+        }else if (indexPath.row == 1){
+            DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
+            cell.countLabel.text = [NSString stringWithFormat:@"%d", self.detailItem.commentCount];
+            cell.dicDelegate = self;
+            return cell;
+            
+        }else{
+            DetailCommentTableViewCell *cell = [DetailCommentTableViewCell cellWithTableView:tableView];
+            cell.item = self.commentArray[indexPath.row - 2];
+            return cell;
+        }
+
     }
+    
+
     
 }
 
 - (void)configureVideoWithCell:(UITableViewCell *)cell{
     //    videoFullPath = @"http://115.29.248.18:8080/NewsAgency/file/getVideo/3/1";
-    NSURL *url = [NSURL URLWithString: videoFullPath];
+    NSString *videoPathM = [NSString stringWithFormat:@"%@%@", BASEVIDEOURL, videoFullPath];
+    NSURL *url = [NSURL URLWithString: videoPathM];
     if (!url) {
         url = [NSURL URLWithString:[videoFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; }
     [cbPlayerController setContentURL: url];
@@ -340,49 +392,6 @@
 }
 
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 #pragma mark ------  CELLDELEGATE
 - (void)didClickSendbutton:(DetailDiscussTableViewCell *)cell{
     //    UIView *viewM = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
@@ -390,7 +399,15 @@
     //    viewM.alpha = 0.5;
     //    viewM.tag = 1000;
     //    [self.view addSubview:viewM];
-    SendCommentView *view = [[SendCommentView alloc] initWithFrame:self.view.frame];
+    SendCommentView *view = [[SendCommentView alloc] init];
+    view.sDelegate = self;
+    if (_detailStyle == BigeventdetailStyleVideo) {
+        view.frame = self.view.frame;
+    }else{
+        CGRect frame = CGRectMake(0, -64, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-64);
+        view.frame = frame;
+    }
+         view.newsId = _newsID;
     //    view.center = CGPointMake(self.view.center.x, 200);
     //    view.window.windowLevel = UIWindowLevelAlert;
     [view.commentTexfield becomeFirstResponder];
@@ -497,8 +514,41 @@
 - (void)request:(id)request successRequestWithResult:(id)requestResult
 {
     
-    self.detailItem = requestResult;
-    [self.tableView reloadData];
+    
+    if ([request isEqual:_getNewsDetaiReq]) {
+//        NSString *validateCode = (NSString *)requestResult;
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            iCodeField.text = validateCode;
+            self.detailItem = requestResult;
+            [self.tableView reloadData];
+
+        });
+        return;
+    }
+    
+    if ([request isEqual:_commentReq]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        if (_currentPage == 1) {
+            self.commentArray = [NSMutableArray arrayWithArray:requestResult];
+        }else{
+            [self.commentArray addObjectsFromArray:requestResult];
+        }
+        
+        [self.tableView reloadData];
+            
+        });
+        return;
+    }
+}
+
+- (void)sendCommentDidFinishedWithSendCommentView:(SendCommentView *)view{
+    _currentPage = 1;
+    [self getCommentList];
+}
+
+-(void)sendCommentDidLoginWithSendCommentView:(SendCommentView *)view{
+    LoginViewController *control = [[LoginViewController alloc] init];
+    [self presentModalViewController:control animated:YES];
 }
 @end
 

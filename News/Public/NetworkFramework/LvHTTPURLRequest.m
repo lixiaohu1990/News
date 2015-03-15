@@ -43,7 +43,7 @@
         [self handleNetworkUnavaliable];
         return;
     }
-    
+//    DLOG(@"%@", URLRequest.URL);
     responseData = [NSMutableData data];
     isOnRequest = YES;
     conn = [NSURLConnection connectionWithRequest:URLRequest delegate:self];
@@ -129,6 +129,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    DLOG(@"%@", response.URL);
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)response;
         if (httpResp.statusCode >= 500) {
@@ -165,7 +166,7 @@
         DLOG(@"没有可用的网络，不能请求");
         return nil;
     }
-    
+    DLOG(@"%@", URLRequest.URL);
     NSHTTPURLResponse *response;
     NSError *error;
     NSData *syncResponseData = [NSURLConnection sendSynchronousRequest:URLRequest

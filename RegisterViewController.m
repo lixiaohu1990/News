@@ -383,7 +383,7 @@
     if ([request isEqual:_cvcReq]) {
         NSString *validateCode = (NSString *)requestResult;
         dispatch_async(dispatch_get_main_queue(), ^{
-            iCodeField.text = validateCode;
+//            iCodeField.text = validateCode;
         });
         return;
     }
@@ -391,6 +391,8 @@
     if ([request isEqual:_registerReq]) {
         
         [UIAlertView commonAlert:@"注册成功"];
+        [DDUser sharedUser].mobile = iUsernameField.text;
+        [[DDUser sharedUser] saveToDisk];
         
         NSLog(@"%@", requestResult);
 //        [self dismissModalViewControllerAnimated:YES];

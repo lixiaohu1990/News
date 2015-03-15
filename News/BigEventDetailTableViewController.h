@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BigEventDetailTableViewController : UITableViewController
--(instancetype)initWithVideoPath:(NSString *)videoStr;
+@property(nonatomic, assign)NSInteger newsID;
+- (instancetype)initWithEventStyle:(BigEventDetailStyle)eventStyle newsId:(NSInteger)newsId videoPath:(NSString *)videoStr listType:(ListType)listType;
 @end

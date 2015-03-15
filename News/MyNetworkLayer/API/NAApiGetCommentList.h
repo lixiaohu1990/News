@@ -13,10 +13,10 @@
 @interface NAApiGetCommentList : NAUrlEncodeParamApi
 
 // 页大小
-@property (nonatomic, readonly) int page;
+@property (nonatomic, readonly) NSInteger page;
 // 页码
-@property (nonatomic, readonly) int rows;
+@property (nonatomic, readonly) NSInteger rows;
 
-- (instancetype)initWithPage:(int)page rows:(int)rows;
+- (instancetype)initWithPage:(NSInteger)page rows:(NSInteger)rows newsID:(NSInteger)newsID;
 
 @end

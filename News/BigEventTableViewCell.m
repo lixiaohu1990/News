@@ -37,6 +37,11 @@
     self.titleLabel.text = item.name;
     self.commentLabel.text = [NSString stringWithFormat:@"%d", item.commentCount];
     NSString *imageStr = [NSString string];
+    
+    if (!(item.vedioUrl && [item.vedioUrl isKindOfClass:[NSString class]])){
+        self.startPicView.hidden = YES;
+    }
+    
     if (item.imageUrl && [item.imageUrl isKindOfClass:[NSString class]]){
         imageStr = [NSString stringWithFormat:@"%@%@", BASEIAMGEURL,_item.imageUrl];
     }else{

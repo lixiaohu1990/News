@@ -110,7 +110,7 @@ static DDUser *myUser = nil;
 
 - (BOOL)isLogin
 {
-    return (![NSObject isNullWithObject:self.mobile]);
+    return (self.mobile.length > 0);
 }
 
 - (void)onResignActive:(NSNotification*)notification

@@ -16,7 +16,9 @@
 #import "AboutUSViewController.h"
 //#import "BigEventTextTableViewCell.h"
 @interface BigEventViewController ()<NABaseApiResultHandlerDelegate>{
-    int _currentPage;
+    NSInteger _currentPage;
+    BigEventDetailStyle _eventStyle;
+    NSInteger _newsID;
 }
 @property(nonatomic, strong)NAApiGetNewsList *getNewsListReq;
 @property(nonatomic, strong)NSMutableArray *listArray;
@@ -122,13 +124,17 @@
     NANewsResp *item = self.listArray[indexPath.row];
     NSString *videoStr;
     if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
-        videoStr = item.vedioUrl;
+        _eventStyle = BigeventdetailStyleVideo;
     }else{
-        videoStr = @" ";
+        if (item.imageUrl && ([item.imageUrl isKindOfClass:[NSString class]])) {
+            _eventStyle = BigeventdetailStyleImage;
+        }else{
+            _eventStyle = BigeventdetailStyleText;
+        }
     }
-    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithVideoPath:videoStr];
+    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:_eventStyle newsId:item.newsID videoPath:item.vedioUrl listType:BigEventType];
     //        [self.navigationController pushViewController:control animated:YES];
-    if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
+    if (_eventStyle == BigeventdetailStyleVideo) {
         [self presentModalViewController:control animated:YES];
     }else{
 //        AboutUSViewController *control = [[AboutUSViewController alloc] init];
@@ -178,6 +184,7 @@
     }else{
         [self.listArray addObjectsFromArray:requestResult];
     }
+    
     [self.tableView reloadData];
 }
 

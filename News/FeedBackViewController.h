@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedBackViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *contentLabel;
 
 @end

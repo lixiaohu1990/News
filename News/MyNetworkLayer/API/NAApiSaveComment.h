@@ -10,6 +10,8 @@
 
 /**
  *  保存评论，无关注请求结果
+ 
+ http://115.29.248.18:8080/NewsAgency/rest?method=publishComment&newsId=1&text=很好  发评论
  */
 @interface NAApiSaveComment : NAUrlEncodeParamApi
 
@@ -18,6 +20,6 @@
 @property (nonatomic, readonly) int nsId;
 @property (nonatomic, readonly) NSString *type;
 
-- (instancetype)initWithUserId:(int)userId text:(NSString *)text nsId:(int)nsId type:(NSString *)type;
+- (instancetype)initWithText:(NSString *)text nsId:(NSInteger)nsId;
 
 @end

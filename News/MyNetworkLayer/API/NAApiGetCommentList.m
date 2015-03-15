@@ -10,9 +10,9 @@
 
 @implementation NAApiGetCommentList
 
-- (instancetype)initWithPage:(int)page rows:(int)rows
+- (instancetype)initWithPage:(NSInteger)page rows:(NSInteger)rows newsID:(NSInteger)newsID
 {
-    NSDictionary *params = @{@"page":@(page), @"rows":@(rows)};
+    NSDictionary *params = @{@"page":@(page), @"rows":@(rows), @"newsId":@(newsID)};
     if (self = [super initWithApiMethod:@"getCommentList"
                         paramDictioanry:params
                              httpMethod:HTTP_METHOD_POST]) {

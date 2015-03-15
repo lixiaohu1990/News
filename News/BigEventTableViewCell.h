@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imagePic;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *startPicView;
 @property (nonatomic, strong)NANewsResp *item;
 +(instancetype)cellWithTableview:(UITableView *)tableview;
 @end

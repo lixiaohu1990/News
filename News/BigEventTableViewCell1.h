@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "NANewsResp.h"
+#import "NACommentResp.h"
 @interface BigEventTableViewCell1 : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (nonatomic, strong)NANewsResp *item;
+@property (nonatomic, strong)NACommentResp *commentResp;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

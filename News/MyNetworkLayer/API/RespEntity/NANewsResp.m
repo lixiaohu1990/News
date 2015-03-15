@@ -15,14 +15,15 @@
 {
     if (self = [super initWithRespDictionay:respDictionay]) {
         self.name = [respDictionay[@"name"] objectIsKindOfClass:[NSString class]];
+        self.newsType = [respDictionay[@"type"] objectIsKindOfClass:[NSString class]];
         self.nsDescription = [respDictionay[@"description"] objectIsKindOfClass:[NSString class]];
         self.releaseDate = ((NSNumber *)[respDictionay[@"releaseDate"]objectIsKindOfClass:[NSNumber class]]).intValue;
         self.imageUrl = [respDictionay[@"imageUrl"] objectIsKindOfClass:[NSString class]];
         self.vedioUrl = [respDictionay[@"videoUrl"] objectIsKindOfClass:[NSString class]];
         self.flowId = [respDictionay[@"flowId"] objectIsKindOfClass:[NSString class]];
         self.favoriteFlag = [respDictionay[@"favoriteFlag"] objectIsKindOfClass:[NSString class]];
-        self.commentCount = ((NSNumber *)[respDictionay[@"commentCount"] objectIsKindOfClass:[NSNumber class]]).intValue;
-        
+        self.commentCount = ((NSNumber *)[respDictionay[@"commnetCount"] objectIsKindOfClass:[NSNumber class]]).intValue;
+        self.newsID = ((NSNumber *)[respDictionay[@"id"] objectIsKindOfClass:[NSNumber class]]).intValue;
         NSArray *imageUrlObjectList = [respDictionay[@"imageList"] objectIsKindOfClass:[NSArray class]];
         NSMutableArray *imageUrls = [NSMutableArray array];
         for (NSDictionary *imageUrlObject in imageUrlObjectList) {

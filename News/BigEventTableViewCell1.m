@@ -19,6 +19,10 @@
     return cell;
 }
 
+- (void)setCommentResp:(NACommentResp *)commentResp{
+    _commentResp = commentResp;
+    self.titleLabel.text = commentResp.createdDate;
+}
 - (void)setItem:(NANewsResp *)item{
     _item = item;
     self.titleLabel.text = item.name;

@@ -10,24 +10,27 @@
 
 @implementation NAApiSaveComment
 
-- (instancetype)initWithUserId:(int)userId text:(NSString *)text nsId:(int)nsId type:(NSString *)type
-{
+- (instancetype)initWithText:(NSString *)text nsId:(NSInteger)nsId{
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    [params setObject:@(userId) forKey:@"userId"];
-    [params setObject:@"1" forKey:@"userId"];
+//    [params setObject:@"1" forKey:@"userId"];
     if (text) {
         [params setObject:text forKey:@"text"];
     }
-//    [params setObject:@(nsId) forKey:@"newsId"];
-    [params setObject:@"1" forKey:@"newsId"];
-    if (type) {
-        [params setObject:type forKey:@"type"];
+    if (nsId) {
+        [params setObject:@(nsId) forKey:@"newsId"];
     }
-    if (self = [super initWithApiMethod:@"saveComment" paramDictioanry:params httpMethod:HTTP_METHOD_POST]) {
-        _userId = userId;
+//    [params setObject:@(nsId) forKey:@"newsId"];
+//    [params setObject:@"1" forKey:@"newsId"];
+//    if (type) {
+//        [params setObject:type forKey:@"type"];
+//    }
+    if (self = [super initWithApiMethod:@"publishComment" paramDictioanry:params httpMethod:HTTP_METHOD_POST]) {
+//        _userId = userId;
         _text = text;
         _nsId = nsId;
-        _type = type;
+//        _type = type;
     }
     return self;
 }

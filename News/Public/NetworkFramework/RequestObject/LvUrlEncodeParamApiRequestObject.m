@@ -61,6 +61,7 @@
         self.apiRequest = req;
         
         _url = url;
+        
         _paramDictioanry = paramDictioanry;
         _httpMethod = httpMethod;
     }

@@ -19,5 +19,24 @@
 
     // Configure the view for the selected state
 }
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *ID = @"NewsFilmDetailTableViewCell5";
+    DetailCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        NSArray *cellList = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil];
+        
+        cell = (DetailCommentTableViewCell *)cellList[4];
+        
+    }
+    return cell;
+}
 
+- (void)setItem:(NACommentResp *)item{
+    _item = item;
+    self.timeLabel.text = item.createdDate;
+    self.nameLabel.text = item.userName;
+    DLOG(@"%@", item.user.nickName);
+    self.contentLabel.text = item.text;
+    self.typeLabel.text = @"网友";
+}
 @end

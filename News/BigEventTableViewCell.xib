@@ -70,14 +70,23 @@
                             <constraint firstItem="ajY-hy-Qsf" firstAttribute="top" secondItem="9sv-94-rcd" secondAttribute="top" constant="13" id="oOX-7n-b0i"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="xiT-8U-UwJ">
+                        <rect key="frame" x="115" y="46" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="GGM-N0-Mmx"/>
+                            <constraint firstAttribute="height" constant="90" id="w2h-Gm-Or8"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="NeI-3Z-ZPC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5CQ-KG-PxX"/>
+                    <constraint firstItem="9sv-94-rcd" firstAttribute="top" secondItem="xiT-8U-UwJ" secondAttribute="bottom" constant="40" id="5dR-rL-f7o"/>
                     <constraint firstItem="9sv-94-rcd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="TS6-23-4Rx"/>
                     <constraint firstAttribute="trailing" secondItem="9sv-94-rcd" secondAttribute="trailing" constant="18" id="UFa-2z-3cB"/>
                     <constraint firstItem="NeI-3Z-ZPC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="Z8c-Hw-tWj"/>
                     <constraint firstAttribute="bottomMargin" secondItem="9sv-94-rcd" secondAttribute="bottom" constant="-8" id="eII-iz-XIC"/>
+                    <constraint firstItem="xiT-8U-UwJ" firstAttribute="centerX" secondItem="NeI-3Z-ZPC" secondAttribute="centerX" id="enn-25-jsv"/>
                     <constraint firstAttribute="bottom" secondItem="NeI-3Z-ZPC" secondAttribute="bottom" id="sNV-DC-Gby"/>
                     <constraint firstAttribute="trailing" secondItem="NeI-3Z-ZPC" secondAttribute="trailing" constant="18" id="uQ7-Ly-buX"/>
                 </constraints>
@@ -86,6 +95,7 @@
             <connections>
                 <outlet property="commentLabel" destination="uC0-GQ-u9J" id="Jnb-cM-qtX"/>
                 <outlet property="imagePic" destination="NeI-3Z-ZPC" id="S98-VJ-v4i"/>
+                <outlet property="startPicView" destination="xiT-8U-UwJ" id="Ktu-FV-aRi"/>
                 <outlet property="titleLabel" destination="z9h-mb-J5S" id="s1o-rx-84r"/>
             </connections>
             <point key="canvasLocation" x="197" y="237.5"/>
@@ -191,5 +201,6 @@
         <image name="8b13632762d0f703f90662ca0bfa513d2697c574.jpg" width="1440" height="900"/>
         <image name="icon_Add .png" width="30" height="30"/>
         <image name="icon_Comment.png" width="19" height="18"/>
+        <image name="video_icon.png" width="91" height="90"/>
     </resources>
 </document>

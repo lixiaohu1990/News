@@ -15,16 +15,25 @@
 #import "LoginViewController.h"
 #import "MainTitleView.h"
 #import "SettingTableViewController.h"
-@interface MainViewController ()<MoreViewDelegate>
-
+#import "NAAPIGetTag.h"
+#import "SearchTagTableViewController.h"
+#import "SearchResaultTableViewController.h"
+@interface MainViewController ()<MoreViewDelegate, NABaseApiResultHandlerDelegate, UISearchViewDelegate>
+@property(nonatomic, strong)NSArray *tagArray;
+@property(nonatomic, strong)NAAPIGetTag *req;
 @end
 
 @implementation MainViewController
 
 - (void)loadView {
     [super loadView];
+    [self getTag];
 }
-
+- (void)getTag{
+    self.req = [[NAAPIGetTag alloc] initWithSelf];
+    self.req.APIRequestResultHandlerDelegate = self;
+    [self.req asyncRequest];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
@@ -83,9 +92,11 @@
 }
 
 - (void)search{
-    UISearchView *moreView = [[[NSBundle mainBundle] loadNibNamed:@"UISearchView" owner:self options:nil] lastObject];
+    UISearchView *moreView = [UISearchView viewFromNib];
+    moreView.sDelegate = self;
 //    moreView.moreDelegate = self;
     //    MoreView *moreView = [[MoreView alloc] init];
+    moreView.tagArray = _tagArray;
     CGFloat height = CGRectGetHeight(self.view.bounds)-44;
     moreView.frame = CGRectMake(0, -height,  CGRectGetWidth(self.view.bounds),  height);
     moreView.tag = 1000;
@@ -113,5 +124,59 @@
 - (void)moreViewDidNextDevAction:(MoreView *)moreView{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"神秘功能，尽在下一版，敬请期待～" delegate:self cancelButtonTitle:@"好的，我知道了" otherButtonTitles:nil, nil];
     [alert show];
+}
+
+- (void)searchViewDidSelectedTagWithSearchView:(UISearchView *)view withTagStr:(NSString *)tagStr{
+    SearchTagTableViewController *control = [[SearchTagTableViewController alloc] initWithTagStr:tagStr];
+    [self.navigationController pushViewController:control animated:YES];
+    
+}
+
+- (void)searchViewDidSearchWithSearchStr:(NSString *)searchStr{
+    SearchResaultTableViewController *control = [[SearchResaultTableViewController alloc] initWithSearchStr:searchStr];
+    [self.navigationController pushViewController:control animated:YES];
+    
+}
+#pragma mark - NABaseApiResultHandlerDelegate methods
+
+- (void)failCauseNetworkUnavaliable:(id)request
+{
+    DLOG(@"failCauseNetworkUnavaliable");
+}
+
+- (void)failCauseRequestTimeout:(id)request
+{
+    DLOG(@"failCauseRequestTimeout");
+}
+
+- (void)failCauseServerError:(id)request
+{
+    //    if (request) {
+    //        <#statements#>
+    //    }
+    DLOG(@"failCauseServerError, %@", request);
+}
+
+- (void)failCauseBissnessError:(id)apiRequest
+{
+    DLOG(@"failCauseBissnessError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseSystemError:(id)apiRequest
+{
+    DLOG(@"failCauseSystemError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+
+- (void)failCauseParamError:(id)apiRequest
+{
+    DLOG(@"failCauseParamError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+}
+#pragma mark - Correct result handler
+- (void)request:(id)request successRequestWithResult:(id)requestResult
+{
+    DLOG(@"%@", requestResult);
+    NSArray *tagArray = requestResult[@"tags"];
+    self.tagArray = tagArray;
+    
 }
 @end

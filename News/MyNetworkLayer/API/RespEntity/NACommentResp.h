@@ -16,8 +16,9 @@
 @interface NACommentResp : NAApiRespBaseEntity
 
 @property (nonatomic) NAUser *user;
+@property (nonatomic, strong)NSString *userName;
 @property (nonatomic) NSString *text;
 @property (nonatomic) NANews *news;
 @property (nonatomic) NSString *type;
-
+@property (nonatomic, strong)NSString *createdDate;
 @end

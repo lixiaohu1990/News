@@ -26,6 +26,7 @@
     *reqObject = [[LvUrlEncodeParamApiRequestObject alloc]initWithUrl:url
                                                       paramDictioanry:paramDictionary
                                                            httpMethod:httpMethod];
+    DLOG(@"%@", reqObject.apiRequest);
     self = [super initWithURLRequest:reqObject.apiRequest];
     if (self) {
         _apiMethod = apiMethod;

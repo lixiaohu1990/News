@@ -28,7 +28,7 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Il-of-7Iy">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Il-of-7Iy">
                         <rect key="frame" x="259" y="8" width="32" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="38t-ZO-bdn"/>
@@ -105,7 +105,7 @@
                         <color key="textColor" red="0.33725490200000002" green="0.35686274509999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-YZ-Mkz">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-YZ-Mkz">
                         <rect key="frame" x="253" y="56" width="53" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="8lo-c5-ui0"/>
@@ -316,9 +316,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="里外" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr7-xw-BTi">
-                        <rect key="frame" x="55" y="0.0" width="39" height="21"/>
+                        <rect key="frame" x="55" y="0.0" width="150" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="39" id="39Y-dO-QCQ"/>
+                            <constraint firstAttribute="width" constant="150" id="39Y-dO-QCQ"/>
                             <constraint firstAttribute="height" constant="21" id="WN0-6B-ZgM"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -329,7 +329,7 @@
                         <rect key="frame" x="14" y="24" width="292" height="25"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="拍的太赞了，值得推荐......" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wE-9u-j0q">
-                                <rect key="frame" x="16" y="4" width="141" height="21"/>
+                                <rect key="frame" x="16" y="4" width="268" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -369,7 +369,13 @@
                     <constraint firstItem="euG-AH-Zzn" firstAttribute="leading" secondItem="R13-eC-y0e" secondAttribute="leading" constant="14" id="sdf-2d-Uub"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="167" y="866"/>
+            <connections>
+                <outlet property="contentLabel" destination="3wE-9u-j0q" id="JkL-h5-tTp"/>
+                <outlet property="nameLabel" destination="Qr7-xw-BTi" id="cgd-GH-aHK"/>
+                <outlet property="timeLabel" destination="STH-vL-BrS" id="cM5-OP-Tle"/>
+                <outlet property="typeLabel" destination="fqC-NM-9ZZ" id="QDQ-su-tz2"/>
+            </connections>
+            <point key="canvasLocation" x="167" y="865"/>
         </tableViewCell>
     </objects>
     <resources>

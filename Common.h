@@ -92,3 +92,13 @@ static NSString * const kUpdateNotificationBadgeNotification = @"UpdateNotificat
 
 static NSString * const kIgnoreTopicSuccessNotification = @"IgnoreTopicSuccessNotification";
 
+typedef enum : NSUInteger {
+    BigeventdetailStyleVideo = 1,
+    BigeventdetailStyleImage,
+    BigeventdetailStyleText,
+} BigEventDetailStyle;
+
+typedef enum : NSUInteger {
+    NewsFilmType = 1,
+    BigEventType,
+} ListType;
