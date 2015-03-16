@@ -12,7 +12,8 @@
 #import "BigEventViewController.h"
 #import "BaseNavigationViewController.h"
 #import "MainViewController.h"
-
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
 @interface AppDelegate ()
 @property(nonatomic, strong)UINavigationController *nav;
 @end
@@ -21,6 +22,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UmengAppkey];
+    
+    //打开调试log的开关
+    [UMSocialData openLog:YES];
+    
+    //如果你要支持不同的屏幕方向，需要这样设置，否则在iPhone只支持一个竖屏方向
+    //    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
+    
+    //设置微信AppId，设置分享url，默认使用友盟的网址
+    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self configureController];
     
@@ -70,19 +84,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
-//{
-//    
-//    if ([window.rootViewController isKindOfClass:NSClassFromString(@"CBViewController")]) {
-//        NSArray *arrays = [(UINavigationController *)window.rootViewController viewControllers];
-//        //        NSLog(@"[arrays lastObject]  %@",[arrays lastObject]);
-//        if (([[arrays lastObject] isKindOfClass:NSClassFromString(@"CBViewController")]
-//             )) {
-//            return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;//这里需要支持旋转
-//        }
-//        return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-//    }
-//
-//    return UIInterfaceOrientationMaskPortrait;
-//    }
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
 @end

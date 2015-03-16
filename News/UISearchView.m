@@ -51,6 +51,9 @@
 
 - (IBAction)dissMiss:(id)sender {
     [self removeFromSuperview];
+    if (self.sDelegate || [self.sDelegate respondsToSelector:@selector(searchViewDidDissmissSearchView:)]) {
+        [self.sDelegate searchViewDidDissmissSearchView:self];
+    }
 }
 
 

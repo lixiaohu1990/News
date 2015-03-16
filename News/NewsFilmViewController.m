@@ -15,7 +15,7 @@
 #import "NANewsResp.h"
 #import "BigEventDetailTableViewController.h"
 //#import "XCTAssert.h"
-@interface NewsFilmViewController ()<NABaseApiResultHandlerDelegate>{
+@interface NewsFilmViewController ()<NABaseApiResultHandlerDelegate, NewsFilmTableViewCellDelegate, UMSocialUIDelegate>{
     int _currentPage;
 }
 @property (nonatomic) NAApiGetNewsList *getNewsListReq;
@@ -88,6 +88,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsFilmTableViewCell *cell = [NewsFilmTableViewCell cellWithTableView:tableView];
+    cell.nDelegate = self;
     cell.item = self.ListArray[indexPath.row];
     return cell;
 
@@ -146,5 +147,8 @@
     [self.tableView reloadData];
 }
 
+- (void)newsFilmTableViewCellDidShare:(NewsFilmTableViewCell *)cell{
+    [UMShareTool initWechatshareWithController:self shareText:cell.item.name shareImageName:nil];
+}
 
 @end

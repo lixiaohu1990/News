@@ -214,8 +214,11 @@ NSString * const segmentBarItemID = @"SegmentBarItem";
     [toSelectController didMoveToParentViewController:self];
   }
   _selectedIndex = selectedIndex;
-    UIView *view = [[UIApplication sharedApplication].keyWindow.rootViewController.view viewWithTag:1000];
+    UIView *view = [[UIApplication sharedApplication].keyWindow.rootViewController.view viewWithTag:2000];
     [view removeFromSuperview];
+    
+    UIView *viewM = [[UIApplication sharedApplication].keyWindow.rootViewController.view viewWithTag:2001];
+    [viewM removeFromSuperview];
 }
 
 - (void)setViewControllers:(NSArray *)viewControllers

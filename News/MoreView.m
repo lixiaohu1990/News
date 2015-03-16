@@ -41,6 +41,9 @@
 
 - (IBAction)dissSelf:(id)sender {
     [self removeFromSuperview];
+    if (self.moreDelegate!=nil || [self respondsToSelector:@selector(moreViewDidDismissAction:)]) {
+        [self.moreDelegate moreViewDidDismissAction:self];
+    }
 }
 
 - (IBAction)nextDev:(id)sender {

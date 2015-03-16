@@ -15,6 +15,7 @@
 - (void)moreViewDidsetAction:(MoreView *)moreView;
 - (void)moreViewDidcollectAction:(MoreView *)moreView;
 - (void)moreViewDidNextDevAction:(MoreView *)moreView;
+- (void)moreViewDidDismissAction:(MoreView *)moreView;
 @end
 @interface MoreView : UIView
 - (IBAction)loginAction:(id)sender;

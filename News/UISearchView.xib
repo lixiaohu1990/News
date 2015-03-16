@@ -105,7 +105,7 @@
                         <action selector="dissMiss:" destination="iN0-l3-epB" eventType="touchUpInside" id="aQH-iS-Aww"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZk-yD-yk6">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZk-yD-yk6">
                     <rect key="frame" x="238" y="206" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="jUE-kf-ngH"/>

@@ -12,6 +12,7 @@
 
 @optional
 - (void)searchViewDidSelectedTagWithSearchView:(UISearchView *)view withTagStr:(NSString *)tagStr;
+- (void)searchViewDidDissmissSearchView:(UISearchView *)view;
 - (void)searchViewDidSearchWithSearchStr:(NSString *)searchStr;
 @end
 @interface UISearchView : UIView

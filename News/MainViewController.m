@@ -21,13 +21,15 @@
 @interface MainViewController ()<MoreViewDelegate, NABaseApiResultHandlerDelegate, UISearchViewDelegate>
 @property(nonatomic, strong)NSArray *tagArray;
 @property(nonatomic, strong)NAAPIGetTag *req;
+@property(nonatomic, strong)UISearchView *searchView;
+@property(nonatomic, strong)MoreView *moreView;
 @end
 
 @implementation MainViewController
 
 - (void)loadView {
     [super loadView];
-    [self getTag];
+    
 }
 - (void)getTag{
     self.req = [[NAAPIGetTag alloc] initWithSelf];
@@ -38,7 +40,7 @@
     [super viewDidLoad];
 //    self.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
     self.indicator.backgroundColor = [UIColor clearColor];
-    
+    [self getTag];
     
 //    UIBarButtonItem *changeVCsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
 //                                                                                   target:self
@@ -76,13 +78,20 @@
 }
 
 - (void)changeVCs{
+    if (self.moreView) {
+        return;
+    }
+    self.searchView = nil;
+    [[self.view viewWithTag:2001] removeFromSuperview];
     MoreView *moreView = [[[NSBundle mainBundle] loadNibNamed:@"MoreView" owner:self options:nil] lastObject];
+    moreView.tag = 2000;
     moreView.moreDelegate = self;
 //    MoreView *moreView = [[MoreView alloc] init];
     CGFloat height = CGRectGetHeight(self.view.bounds)-44;
     moreView.frame = CGRectMake(0, -height,  CGRectGetWidth(self.view.bounds),  height);
-    moreView.tag = 1000;
-    [self.view addSubview:moreView];
+//    moreView.tag = 2000;
+    self.moreView = moreView;
+    [self.view addSubview:self.moreView];
     
     [UIView transitionWithView:moreView duration:0.8 options:0 animations:^{
             moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
@@ -92,15 +101,22 @@
 }
 
 - (void)search{
+    if (self.searchView) {
+        return;
+    }
+    self.moreView = nil;
+    [[self.view viewWithTag:2000] removeFromSuperview];
     UISearchView *moreView = [UISearchView viewFromNib];
+    moreView.tag = 2001;
     moreView.sDelegate = self;
 //    moreView.moreDelegate = self;
     //    MoreView *moreView = [[MoreView alloc] init];
     moreView.tagArray = _tagArray;
     CGFloat height = CGRectGetHeight(self.view.bounds)-44;
     moreView.frame = CGRectMake(0, -height,  CGRectGetWidth(self.view.bounds),  height);
-    moreView.tag = 1000;
-    [self.view addSubview:moreView];
+//    moreView.tag = 1000;
+    self.searchView = moreView;
+    [self.view addSubview:self.searchView];
     
     [UIView transitionWithView:moreView duration:0.8 options:0 animations:^{
         moreView.frame = CGRectMake(0, 44,  CGRectGetWidth(self.view.bounds),  CGRectGetHeight(self.view.bounds)-44);
@@ -125,7 +141,9 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"神秘功能，尽在下一版，敬请期待～" delegate:self cancelButtonTitle:@"好的，我知道了" otherButtonTitles:nil, nil];
     [alert show];
 }
-
+- (void)moreViewDidDismissAction:(MoreView *)moreView{
+    self.moreView = nil;
+}
 - (void)searchViewDidSelectedTagWithSearchView:(UISearchView *)view withTagStr:(NSString *)tagStr{
     SearchTagTableViewController *control = [[SearchTagTableViewController alloc] initWithTagStr:tagStr];
     [self.navigationController pushViewController:control animated:YES];
@@ -136,6 +154,10 @@
     SearchResaultTableViewController *control = [[SearchResaultTableViewController alloc] initWithSearchStr:searchStr];
     [self.navigationController pushViewController:control animated:YES];
     
+}
+
+- (void)searchViewDidDissmissSearchView:(UISearchView *)view{
+    self.searchView = nil;
 }
 #pragma mark - NABaseApiResultHandlerDelegate methods
 

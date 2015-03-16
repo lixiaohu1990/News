@@ -10,6 +10,12 @@
 
 @implementation NewsFilmTableViewCell
 
+- (IBAction)shareAction:(id)sender {
+    if (self.nDelegate && [self.nDelegate respondsToSelector:@selector(newsFilmTableViewCellDidShare:)]) {
+        [self.nDelegate newsFilmTableViewCellDidShare:self];
+    }
+}
+
 + (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *ID = @"NewsFilmTableViewCell";
     NewsFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
