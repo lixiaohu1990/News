@@ -36,6 +36,9 @@
 
 @property (nonatomic) UIButton *selectedTabButn;
 
+@property (nonatomic) BOOL showingSearchVC;
+@property (nonatomic) BOOL showingMoreVC;
+
 @end
 
 @implementation MainVC
@@ -75,8 +78,8 @@
     self.navigationItem.leftBarButtonItem = btn;
     
     // 设置 search, more bar item
-    _searchBarItem = [UIBarButtonItem createBarButtonItemWithNormalImage:[UIImage imageNamed:@"icon_seach"] highlightImage:nil target:self action:@selector(showSearchView)];
-    _moreBarItem = [UIBarButtonItem createBarButtonItemWithNormalImage:[UIImage imageNamed:@"icon_List"] highlightImage:nil target:self action:@selector(showMoreView)];
+    _searchBarItem = [UIBarButtonItem createBarButtonItemWithNormalImage:[UIImage imageNamed:@"icon_seach"] highlightImage:nil target:self action:@selector(toggleShowSearchView)];
+    _moreBarItem = [UIBarButtonItem createBarButtonItemWithNormalImage:[UIImage imageNamed:@"icon_List"] highlightImage:nil target:self action:@selector(toggleShowMoreView)];
     self.navigationItem.rightBarButtonItems = @[_searchBarItem, _moreBarItem];
 }
 
@@ -138,6 +141,22 @@
         _prismVC = [[PrismViewController alloc]init];
     }
     return _prismVC;
+}
+
+- (SearchVC *)searchVC
+{
+    if (!_searchVC) {
+        _searchVC = [[SearchVC alloc]initFromStoryboard];
+    }
+    return _searchVC;
+}
+
+- (MoreVC *)moreVC
+{
+    if (!_moreVC) {
+        _moreVC = [[MoreVC alloc]initFromStoryboard];
+    }
+    return _moreVC;
 }
 
 - (void)tabButnClick:(UIButton *)butn
@@ -232,18 +251,77 @@
                                 
                                 [fromVC removeFromParentViewController];
                                 [fromVC.view removeFromSuperview];
+                                
                             }];
 }
 
 
-- (void)showSearchView
+- (void)toggleShowSearchView
 {
-    // TODO: 显示搜索的视图
+    if (!self.showingSearchVC) {
+        [self flipFromTopForVC:self.searchVC];
+        self.moreBarItem.enabled = NO;
+    } else {
+        [self flipToTopForVC:self.searchVC];
+        self.moreBarItem.enabled = YES;
+    }
+    self.showingSearchVC = !self.showingSearchVC;
 }
 
-- (void)showMoreView
+- (void)toggleShowMoreView
 {
-    // TODO: 显示more的视图
+    // 显示more的视图
+    if (!self.showingMoreVC) {
+        [self flipFromTopForVC:self.moreVC];
+        self.searchBarItem.enabled = NO;
+    } else {
+        [self flipToTopForVC:self.moreVC];
+        self.searchBarItem.enabled = YES;
+    }
+    self.showingMoreVC = !self.showingMoreVC;
+}
+
+
+// 向下飞入
+- (void)flipFromTopForVC:(UIViewController *)flipVC
+{
+    if (!flipVC)
+        return;
+    
+    CGSize viewSize = self.view.bounds.size;
+    CGFloat flipVCMarginTop = CGRectGetMaxY(_mainTabsView.frame) - CGRectGetHeight(_mainTabsView.newsFilmTabButn.frame);
+    CGFloat flipVCHeight = viewSize.height - flipVCMarginTop;
+    
+    flipVC.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth;
+    flipVC.view.frame = CGRectMake(0,
+                                   -flipVCHeight,
+                                   viewSize.width,
+                                   flipVCHeight);
+    [self addChildViewController:flipVC];
+    [self.view addSubview:flipVC.view];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{
+        CGRect f = flipVC.view.frame;
+        f.origin.y = flipVCMarginTop;
+        flipVC.view.frame = f;
+    } completion:^(BOOL finished) {
+        [flipVC didMoveToParentViewController:self];
+    }];
+}
+
+- (void)flipToTopForVC:(UIViewController *)flipVC
+{
+    if (!flipVC)
+        return;
+    [flipVC willMoveToParentViewController:nil];
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+        CGRect f = flipVC.view.frame;
+        f.origin.y = -CGRectGetHeight(f);
+        flipVC.view.frame = f;
+    } completion:^(BOOL finished) {
+        [flipVC removeFromParentViewController];
+        [flipVC.view removeFromSuperview];
+    }];
 }
 
 

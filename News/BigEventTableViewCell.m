@@ -38,7 +38,7 @@
     self.commentLabel.text = [NSString stringWithFormat:@"%d", item.commentCount];
     NSString *imageStr = [NSString string];
     
-    if (!(item.vedioUrl && [item.vedioUrl isKindOfClass:[NSString class]])){
+    if (!(item.videoUrl && [item.videoUrl isKindOfClass:[NSString class]])){
         self.startPicView.hidden = YES;
     }
     

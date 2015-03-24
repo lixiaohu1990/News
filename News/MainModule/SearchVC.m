@@ -7,8 +7,64 @@
 //
 
 #import "SearchVC.h"
+#import "NSString+lv.h"
+#import "NAAPIGetTagList.h"
+#import "NAAPIGetTag.h"
+#import "SVProgressHUD.h"
 
-@interface SearchVC ()
+@interface TagCell : UICollectionViewCell
+@property (nonatomic, readonly) UILabel *tagLabel;
+
++ (UIFont *)tagLabelFont;
+
+@end
+
+@implementation TagCell
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setupTagCell];
+    }
+    return self;
+}
+
+- (void)setupTagCell
+{
+    UILabel *tagLabel = [[UILabel alloc]initWithFrame:self.contentView.bounds];
+    tagLabel.backgroundColor = [UIColor clearColor];
+    tagLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    tagLabel.textColor = [UIColor colorWithRed:1.f/255.f
+                                         green:19.f/255.f
+                                          blue:43.f/255.f
+                                         alpha:1];
+    tagLabel.font = [TagCell tagLabelFont];
+    [self.contentView addSubview:tagLabel];
+    
+    _tagLabel = tagLabel;
+}
+
++ (UIFont *)tagLabelFont
+{
+    static UIFont *font = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        font = [UIFont systemFontOfSize:14.f];
+    });
+    return font;
+}
+
+@end
+
+static NSString *const TagCellIdentifier = @"TagCell";
+
+@interface SearchVC () <UICollectionViewDataSource, UICollectionViewDelegate, NABaseApiResultHandlerDelegate>
+
+@property (nonatomic, weak) IBOutlet UITextField *searchField;
+@property (nonatomic, weak) IBOutlet UICollectionView *tagCollectionView;
+
+@property (nonatomic) NAAPIGetTag *getTagReq;
+@property (nonatomic) NSArray *tagArray;
 
 @end
 
@@ -24,84 +80,158 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self setupSearchVC];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self loadTags];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)setupSearchVC
+{
+    _tagCollectionView.delegate = self;
+    _tagCollectionView.dataSource = self;
+    [_tagCollectionView registerClass:[TagCell class]
+           forCellWithReuseIdentifier:TagCellIdentifier];
+    _tagCollectionView.backgroundColor = [UIColor clearColor];
     
-    // Configure the cell...
+    [((UIControl *)self.view) addTarget:self
+                                 action:@selector(touchDownBackground)
+                       forControlEvents:UIControlEventTouchDown];
     
-    return cell;
+    self.searchField.returnKeyType = UIReturnKeySearch;
+    [self.searchField addTarget:self
+                         action:@selector(searchFieldEditingDidEndOnExit)
+               forControlEvents:UIControlEventEditingDidEndOnExit];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)touchDownBackground
+{
+    [self.searchField resignFirstResponder];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)searchFieldEditingDidEndOnExit
+{
+    [self.searchField resignFirstResponder];
+    
+    NSString *searchTag = [self.searchField text];
+    DLOG(@"searchTag: %@", searchTag);
+    
+    // TODO: goto search view controller
+    
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+#pragma mark - Requests
+
+- (void)loadTags
+{
+    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        _getTagReq = [[NAAPIGetTag alloc] initWithSelf];
+        _getTagReq.APIRequestResultHandlerDelegate = self;
+        [_getTagReq asyncRequest];
+    });
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+#pragma mark - NABaseApiResultHandlerDelegate methods
+
+- (void)failCauseNetworkUnavaliable:(id)request
+{
+    DLOG(@"failCauseNetworkUnavaliable");
+    [SVProgressHUD dismiss];
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)failCauseRequestTimeout:(id)request
+{
+    DLOG(@"failCauseRequestTimeout");
+    [SVProgressHUD dismiss];
 }
-*/
+
+- (void)failCauseServerError:(id)request
+{
+    DLOG(@"failCauseServerError.");
+    [SVProgressHUD dismiss];
+}
+
+- (void)failCauseBissnessError:(id)apiRequest
+{
+    DLOG(@"failCauseBissnessError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+    [SVProgressHUD dismiss];
+}
+
+- (void)failCauseSystemError:(id)apiRequest
+{
+    DLOG(@"failCauseSystemError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+    [SVProgressHUD dismiss];
+}
+
+- (void)failCauseParamError:(id)apiRequest
+{
+    DLOG(@"failCauseParamError, status:%@", ((NABaseApi *)apiRequest).respStatus);
+    [SVProgressHUD dismiss];
+}
+
+#pragma mark - Correct result handler
+- (void)request:(id)request successRequestWithResult:(id)requestResult
+{
+    [SVProgressHUD dismiss];
+    
+    // TODO：这个api不应该这样写
+    NSArray *tagArray = requestResult[@"tags"];
+    self.tagArray = tagArray;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tagCollectionView reloadData];
+    });
+}
+
+#pragma mark - Collection view data source
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _tagArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    TagCell *tagCell = (TagCell *)[collectionView dequeueReusableCellWithReuseIdentifier:TagCellIdentifier
+                                                                            forIndexPath:indexPath];
+    tagCell.backgroundColor = [UIColor clearColor];
+    
+    NSString *tag = _tagArray[indexPath.row];
+    tagCell.tagLabel.text = tag;
+    
+    return tagCell;
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout methods
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 计算大小，也可以使用缓存
+    NSString *tag = _tagArray[indexPath.row];
+    CGSize tagTxtSize = [tag sizeWithConstraintWidth:MAXFLOAT font:[TagCell tagLabelFont]];
+    
+    return tagTxtSize;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10;
+}
+
+#pragma mark - Collection view delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: Go to tag view controller
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    NSString *tag = _tagArray[indexPath.row];
+    DLOG(@"select tag: %@", tag);
+}
 
 @end

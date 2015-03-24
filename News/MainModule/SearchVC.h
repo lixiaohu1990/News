@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchVC : UITableViewController
+@interface SearchVC : UIViewController
 
 - (instancetype)initFromStoryboard;
 

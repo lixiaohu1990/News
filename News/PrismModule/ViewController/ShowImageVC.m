@@ -18,14 +18,18 @@ static const CGFloat PrismCollectionViewCellHorizonSpacing = 10.f;
 
 static NSString * const ShowedImageCellReuseIdentifier = @"ShowedImageCell";
 
-@interface ShowImageVC () <UICollectionViewDataSource, UICollectionViewDelegate>
-
-@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@interface ShowImageVC ()
 
 @end
 
 @implementation ShowImageVC
+
++ (UINavigationController *)initShowImageNavVCFromStoryboard
+{
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Prism" bundle:nil];
+    UINavigationController *nav = [board instantiateViewControllerWithIdentifier:@"ShowImageNavVC"];
+    return nav;
+}
 
 - (instancetype)init
 {
@@ -43,8 +47,6 @@ static NSString * const ShowedImageCellReuseIdentifier = @"ShowedImageCell";
     
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
     [self.collectionView registerClass:[PrismCommImageCell class]
             forCellWithReuseIdentifier:ShowedImageCellReuseIdentifier];
 }

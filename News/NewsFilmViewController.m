@@ -100,7 +100,7 @@
     DLOG(@"%@", item);
 //    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
 //        [self.navigationController pushViewController:control animated:YES];
-    BigEventDetailTableViewController *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:BigeventdetailStyleVideo newsId:item.newsID videoPath:item.vedioUrl listType:NewsFilmType];
+    BigEventDetailTableViewController *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:BigeventdetailStyleVideo newsId:item.itemId videoPath:item.videoUrl listType:NewsFilmType];
     [self presentModalViewController:control animated:YES];
 }
 
