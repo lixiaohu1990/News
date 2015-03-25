@@ -19,7 +19,7 @@
 #import "MainTabsView.h"
 
 
-@interface MainVC ()
+@interface MainVC () <MoreVCDelegate>
 
 @property (nonatomic) MainTitleView *mainTitleView;
 @property (nonatomic) UIBarButtonItem *searchBarItem;
@@ -155,6 +155,7 @@
 {
     if (!_moreVC) {
         _moreVC = [[MoreVC alloc]initFromStoryboard];
+        _moreVC.delegate = self;
     }
     return _moreVC;
 }
@@ -168,47 +169,64 @@
     self.selectedTabButn = butn;
     
     if ([butn isEqual:_mainTabsView.newsFilmTabButn]) {
-        [self.mainTabsView updateSelected:YES
-                             forTabButton:butn
-                        tabBackgroundView:self.mainTabsView.newsFilmTabBackgroundView];
-        [self.mainTabsView updateSelected:NO
-                             forTabButton:self.mainTabsView.bigEventTabButn
-                        tabBackgroundView:self.mainTabsView.bigEventTabBackgroundView];
-        [self.mainTabsView updateSelected:NO
-                             forTabButton:self.mainTabsView.prismTabButn
-                        tabBackgroundView:self.mainTabsView.prismTabBackgroundView];
-        [self transitionToTabVC:self.newsFilmVC];
+        [self transitionToNewsFilmTab];
         return;
     }
     
     if ([butn isEqual:_mainTabsView.bigEventTabButn]) {
-        [self.mainTabsView updateSelected:YES
-                             forTabButton:butn
-                        tabBackgroundView:self.mainTabsView.bigEventTabBackgroundView];
-        [self.mainTabsView updateSelected:NO
-                             forTabButton:self.mainTabsView.newsFilmTabButn
-                        tabBackgroundView:self.mainTabsView.newsFilmTabBackgroundView];
-        [self.mainTabsView updateSelected:NO
-                             forTabButton:self.mainTabsView.prismTabButn
-                        tabBackgroundView:self.mainTabsView.prismTabBackgroundView];
-        [self transitionToTabVC:self.bigEventVC];
+        [self transitionToBigEventTab];
         return;
     }
     
     if ([butn isEqual:_mainTabsView.prismTabButn]) {
-        [self.mainTabsView updateSelected:YES
-                             forTabButton:butn
-                        tabBackgroundView:self.mainTabsView.prismTabBackgroundView];
-        [self.mainTabsView updateSelected:NO
-                             forTabButton:self.mainTabsView.newsFilmTabButn
-                        tabBackgroundView:self.mainTabsView.newsFilmTabBackgroundView];
-        [self.mainTabsView updateSelected:NO
-                             forTabButton:self.mainTabsView.bigEventTabButn
-                        tabBackgroundView:self.mainTabsView.bigEventTabBackgroundView];
-        [self transitionToTabVC:self.prismVC];
+        [self transitionToPrismTab];
         return;
     }
 }
+
+- (void)transitionToNewsFilmTab
+{
+    [self.mainTabsView updateSelected:YES
+                         forTabButton:self.mainTabsView.newsFilmTabButn
+                    tabBackgroundView:self.mainTabsView.newsFilmTabBackgroundView];
+    [self.mainTabsView updateSelected:NO
+                         forTabButton:self.mainTabsView.bigEventTabButn
+                    tabBackgroundView:self.mainTabsView.bigEventTabBackgroundView];
+    [self.mainTabsView updateSelected:NO
+                         forTabButton:self.mainTabsView.prismTabButn
+                    tabBackgroundView:self.mainTabsView.prismTabBackgroundView];
+    [self transitionToTabVC:self.newsFilmVC];
+}
+
+- (void)transitionToBigEventTab
+{
+    [self.mainTabsView updateSelected:YES
+                         forTabButton:self.mainTabsView.bigEventTabButn
+                    tabBackgroundView:self.mainTabsView.bigEventTabBackgroundView];
+    [self.mainTabsView updateSelected:NO
+                         forTabButton:self.mainTabsView.newsFilmTabButn
+                    tabBackgroundView:self.mainTabsView.newsFilmTabBackgroundView];
+    [self.mainTabsView updateSelected:NO
+                         forTabButton:self.mainTabsView.prismTabButn
+                    tabBackgroundView:self.mainTabsView.prismTabBackgroundView];
+    [self transitionToTabVC:self.bigEventVC];
+}
+
+- (void)transitionToPrismTab
+{
+    [self.mainTabsView updateSelected:YES
+                         forTabButton:self.mainTabsView.prismTabButn
+                    tabBackgroundView:self.mainTabsView.prismTabBackgroundView];
+    [self.mainTabsView updateSelected:NO
+                         forTabButton:self.mainTabsView.newsFilmTabButn
+                    tabBackgroundView:self.mainTabsView.newsFilmTabBackgroundView];
+    [self.mainTabsView updateSelected:NO
+                         forTabButton:self.mainTabsView.bigEventTabButn
+                    tabBackgroundView:self.mainTabsView.bigEventTabBackgroundView];
+    [self transitionToTabVC:self.prismVC];
+}
+
+
 
 - (void)transitionToTabVC:(UIViewController *)tabVC
 {
@@ -324,5 +342,55 @@
     }];
 }
 
+#pragma mark - MoreVC delegate
+
+- (void)menuNewsFilmButnClick:(MoreVC *)moreVC
+{
+    self.searchBarItem.enabled = YES;
+    [self flipToTopForVC:moreVC];
+    [self transitionToNewsFilmTab];
+    self.showingMoreVC = NO;
+}
+
+- (void)menuBigEventButnClick:(MoreVC *)moreVC
+{
+    self.searchBarItem.enabled = YES;
+    [self flipToTopForVC:moreVC];
+    [self transitionToBigEventTab];
+    self.showingMoreVC = NO;
+}
+
+- (void)menuPrismButnClick:(MoreVC *)moreVC
+{
+    self.searchBarItem.enabled = YES;
+    [self flipToTopForVC:moreVC];
+    [self transitionToPrismTab];
+    self.showingMoreVC = NO;
+}
+
+- (void)menuLoginButnClick:(MoreVC *)moreVC
+{
+    // TODO: 到登录页面
+}
+
+- (void)menuSettingButnClick:(MoreVC *)moreVC
+{
+    // TODO: 到设置页面
+}
+
+- (void)menuFavorButnClick:(MoreVC *)moreVC
+{
+    // TODO: 到收藏页面
+}
+
+- (void)menuSubscribeButnClick:(MoreVC *)moreVC
+{
+    // TODO: 到订阅页面
+}
+
+- (void)menuTemplateButnClick:(MoreVC *)moreVC
+{
+    // TODO: 到模版页面
+}
 
 @end
