@@ -28,5 +28,7 @@
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
                                        delegate:control];
 }
-
 @end
+
+
+

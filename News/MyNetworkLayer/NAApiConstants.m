@@ -8,5 +8,5 @@
 
 #import "NAApiConstants.h"
 
-NSString *const NAServerBaseUrl = @"http://115.29.248.18:8080/NewsAgency";
-NSString *const NAApiBaseUrl = @"http://115.29.248.18:8080/NewsAgency/rest";
+NSString *const NAServerBaseUrl = @"http://115.29.248.18:80/NewsAgency";
+NSString *const NAApiBaseUrl = @"http://115.29.248.18:80/NewsAgency/rest";
