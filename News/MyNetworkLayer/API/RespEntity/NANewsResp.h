@@ -11,17 +11,15 @@
 @interface NANewsResp : NAApiRespBaseEntity
 
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSString *newsType;
 @property (nonatomic) NSString *nsDescription;
-@property (nonatomic) int releaseDate;
+@property (nonatomic) long long releaseDate;
 @property (nonatomic) NSString *imageUrl;
-@property (nonatomic) NSString *vedioUrl;
+@property (nonatomic) NSString *videoUrl;
 @property (nonatomic) NSString *flowId;
 @property (nonatomic) NSString *favoriteFlag;
 @property (nonatomic) int commentCount;
 @property (nonatomic) NSArray *imageList;
 @property (nonatomic) NSString *tag;
 @property (nonatomic) NSString *author;
-@property (nonatomic) NSInteger newsID;
 
 @end

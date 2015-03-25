@@ -13,6 +13,7 @@
 #import "UIAlertView+lv.h"
 #import "AllAroundPullView.h"
 #import "ShowImageVC.h"
+#import "SVProgressHUD.h"
 
 #ifndef NEWS_TYPE_PRISM
 #define NEWS_TYPE_PRISM 3
@@ -21,6 +22,51 @@
 #ifndef LOAD_DATA_PAGE_SIZE
 #define LOAD_DATA_PAGE_SIZE 15
 #endif
+
+@interface NANewsResp (Coding) <NSCoding>
+
+@end
+
+@implementation NANewsResp (Coding)
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init]) {
+        self.itemId = [aDecoder decodeIntForKey:@"itemId"];
+        
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.nsDescription = [aDecoder decodeObjectForKey:@"nsDescription"];
+        self.releaseDate = [aDecoder decodeInt64ForKey:@"releaseDate"];
+        self.imageUrl = [aDecoder decodeObjectForKey:@"imageUrl"];
+        self.videoUrl = [aDecoder decodeObjectForKey:@"videoUrl"];
+        self.flowId = [aDecoder decodeObjectForKey:@"flowId"];
+        self.favoriteFlag = [aDecoder decodeObjectForKey:@"favoriteFlag"];
+        self.commentCount = [aDecoder decodeIntForKey:@"commentCount"];
+        self.imageList = [aDecoder decodeObjectForKey:@"imageList"];
+        self.tag = [aDecoder decodeObjectForKey:@"tag"];
+        self.author = [aDecoder decodeObjectForKey:@"author"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInt:self.itemId forKey:@"itemId"];
+    
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.nsDescription forKey:@"nsDescription"];
+    [aCoder encodeInt64:self.releaseDate forKey:@"releaseDate"];
+    [aCoder encodeObject:self.imageUrl forKey:@"imageUrl"];
+    [aCoder encodeObject:self.videoUrl forKey:@"videoUrl"];
+    [aCoder encodeObject:self.flowId forKey:@"flowId"];
+    [aCoder encodeObject:self.favoriteFlag forKey:@"favoriteFlag"];
+    [aCoder encodeInt:self.commentCount forKey:@"commentCount"];
+    [aCoder encodeObject:self.imageList forKey:@"imageList"];
+    [aCoder encodeObject:self.tag forKey:@"tag"];
+    [aCoder encodeObject:self.author forKey:@"author"];
+}
+
+@end
 
 static NSString * const PrismCellViewReuseIdentifier = @"PrismCellView";
 
@@ -75,6 +121,14 @@ static NSString * const PrismCellViewReuseIdentifier = @"PrismCellView";
                                              selector:@selector(recvMoreCellSelectedNote:)
                                                  name:PrismCellViewMoreCellSelectedNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recvPrismCellCacheButnClickNote:)
+                                                 name:PrismCellViewCacheButnClickNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recvPrismCellShareButnClickNote:)
+                                                 name:PrismCellViewShareButnClickNotification
+                                               object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -83,17 +137,62 @@ static NSString * const PrismCellViewReuseIdentifier = @"PrismCellView";
     [[NSNotificationCenter defaultCenter]removeObserver:self
                                                    name:PrismCellViewMoreCellSelectedNotification
                                                  object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self
+                                                   name:PrismCellViewCacheButnClickNotification
+                                                 object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self
+                                                   name:PrismCellViewShareButnClickNotification
+                                                 object:nil];
 }
 
 - (void)recvMoreCellSelectedNote:(NSNotification *)note
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        ShowImageVC *showAllImageVC = [[ShowImageVC alloc]init];
-        showAllImageVC.imageUrlList = [(NANewsResp *)self.prismList[[self currentShowPage]] imageList];
-        [self presentViewController:showAllImageVC animated:YES completion:^{
-            [showAllImageVC reloadData];
-        }];
+        UINavigationController *showImageNavVC = [ShowImageVC initShowImageNavVCFromStoryboard];
+        ShowImageVC *showImageVC = showImageNavVC.childViewControllers[0];
+        showImageVC.imageUrlList = [(NANewsResp *)self.prismList[[self currentShowPage]] imageList];
+        [self presentViewController:showImageNavVC animated:YES completion:nil];
     });
+}
+
+static NSString *const PrismCacheKeyFormat = @"__cache_prism_key_%d";
+
+- (BOOL)hasCachePrism:(NANewsResp *)prism
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:PrismCacheKeyFormat, prism.itemId]] != nil;
+}
+
+- (void)toggleCacheForPrism:(NANewsResp *)prism
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *cacheKey = [NSString stringWithFormat:PrismCacheKeyFormat, prism.itemId];
+    if (![self hasCachePrism:prism]) {
+        NSData* archivedObj = [NSKeyedArchiver archivedDataWithRootObject:prism];
+        [userDefaults setObject:archivedObj forKey:cacheKey];
+        [SVProgressHUD showImage:nil status:@"已添加至缓存"];
+    } else {
+        [userDefaults removeObjectForKey:cacheKey];
+        [SVProgressHUD showImage:nil status:@"已取消缓存"];
+    }
+}
+
+- (void)recvPrismCellCacheButnClickNote:(NSNotification *)note
+{
+    NSInteger curentShowPage = [self currentShowPage];
+    NANewsResp *currentShowPrism = self.prismList[curentShowPage];
+    
+    // 切换缓存
+    [self toggleCacheForPrism:currentShowPrism];
+    
+    PrismCellView *cellView = (PrismCellView *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curentShowPage inSection:0]];
+    
+    // 更新缓存表现在界面上的信息
+    cellView.prismHasCached = [self hasCachePrism:currentShowPrism];
+}
+
+- (void)recvPrismCellShareButnClickNote:(NSNotification *)note
+{
+    // TODO: 分享多棱镜
 }
 
 - (NSUInteger)currentShowPage

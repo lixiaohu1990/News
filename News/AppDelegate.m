@@ -14,8 +14,11 @@
 #import "MainViewController.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+
+#import "MainVC.h"
+
 @interface AppDelegate ()
-@property(nonatomic, strong)UINavigationController *nav;
+
 @end
 
 @implementation AppDelegate
@@ -36,31 +39,17 @@
     [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self configureController];
+    
+    UINavigationController *mainNav = [[UINavigationController alloc]initWithRootViewController:[[MainVC alloc]init]];
     
     
-    self.window.rootViewController = _nav;
+    self.window.rootViewController = mainNav;
+    
     [DDUser sharedUser].mobile = @"";
     [[DDUser sharedUser] saveToDisk];
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-
-- (void)configureController{
-    NewsFilmViewController *newsVc = [[NewsFilmViewController alloc] init];
-//    newsVc.title = @"新闻片";
-    
-    BigEventViewController *bigVc = [[BigEventViewController alloc] init];
-//    bigVc.title = @"大事件";
-    
-    PrismViewController *prismVc = [[PrismViewController alloc] init];
-//    prismVc.title = @"多棱镜";
-    
-    MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:main];
-    _nav = navi;
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

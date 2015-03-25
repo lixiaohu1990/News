@@ -99,7 +99,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NANewsResp *item = self.listArray[indexPath.row];
-    if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
+    if (item.videoUrl && ([item.videoUrl isKindOfClass:[NSString class]])) {
         BigEventTableViewCell *cell = [BigEventTableViewCell cellWithTableview:tableView];
         cell.item = item;
         return cell;
@@ -123,7 +123,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NANewsResp *item = self.listArray[indexPath.row];
     NSString *videoStr;
-    if (item.vedioUrl && ([item.vedioUrl isKindOfClass:[NSString class]])) {
+    if (item.videoUrl && ([item.videoUrl isKindOfClass:[NSString class]])) {
         _eventStyle = BigeventdetailStyleVideo;
     }else{
         if (item.imageUrl && ([item.imageUrl isKindOfClass:[NSString class]])) {
@@ -132,7 +132,7 @@
             _eventStyle = BigeventdetailStyleText;
         }
     }
-    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:_eventStyle newsId:item.newsID videoPath:item.vedioUrl listType:BigEventType];
+    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:_eventStyle newsId:item.itemId videoPath:item.videoUrl listType:BigEventType];
     //        [self.navigationController pushViewController:control animated:YES];
     if (_eventStyle == BigeventdetailStyleVideo) {
         [self presentModalViewController:control animated:YES];

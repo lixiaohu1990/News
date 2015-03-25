@@ -12,6 +12,12 @@
 // 多棱镜更多cell的点击通知
 extern NSString *const PrismCellViewMoreCellSelectedNotification;
 
+// 多棱镜缓存按钮的点击通知
+extern NSString *const PrismCellViewCacheButnClickNotification;
+
+// 多棱镜分享按钮的点击通知
+extern NSString *const PrismCellViewShareButnClickNotification;
+
 /**
  *  单个多棱镜View
  */
@@ -21,5 +27,10 @@ extern NSString *const PrismCellViewMoreCellSelectedNotification;
  *  通过设置多棱镜信息更新界面展示的数据信息
  */
 @property (nonatomic) NANewsResp *prismInfo;
+
+/**
+ *  通过设置已缓存信息更新界面的相关信息
+ */
+@property (nonatomic) BOOL prismHasCached;
 
 @end

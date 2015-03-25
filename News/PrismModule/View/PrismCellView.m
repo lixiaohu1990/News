@@ -15,6 +15,8 @@
 #import "NAApiConstants.h"
 
 NSString *const PrismCellViewMoreCellSelectedNotification = @"PrismCellViewMoreCellSelectedNotification";
+NSString *const PrismCellViewCacheButnClickNotification = @"PrismCellViewCacheButnClickNotification";
+NSString *const PrismCellViewShareButnClickNotification = @"PrismCellViewShareButnClickNotification";
 
 static const NSUInteger PrismSizePerRow = 3;
 static const CGFloat PrismCollectionViewSectionHorizonPadding = 22.f;
@@ -37,6 +39,9 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
 @property (nonatomic, weak) IBOutlet UILabel *prismTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *prismContentLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *prismContentLabelHeightConst;
+
+@property (nonatomic, weak) IBOutlet UIButton *cacheButn;
+@property (nonatomic, weak) IBOutlet UIButton *shareButn;
 
 @end
 
@@ -62,6 +67,13 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
         forCellWithReuseIdentifier:PrismCommonImageCellIdentifier];
     [_collectionView registerClass:[PrismCommImageCell class]
         forCellWithReuseIdentifier:PrismMoreImageCellIdentifier];
+    
+    [_cacheButn addTarget:self
+                   action:@selector(cacheButnClick:)
+         forControlEvents:UIControlEventTouchUpInside];
+    [_shareButn addTarget:self
+                   action:@selector(shareButnClick:)
+         forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setPrismInfo:(NANewsResp *)prismInfo
@@ -86,6 +98,32 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
         }
         self.prismContentLabelHeightConst.constant = finalHeight;
     });
+}
+
+- (void)setPrismHasCached:(BOOL)prismHasCached
+{
+    _prismHasCached = prismHasCached;
+    
+    // 更新界面
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (prismHasCached) {
+            // 设置已经缓存的效果
+        } else {
+            // 设置没有缓存的效果
+        }
+    });
+}
+
+#pragma mark - Button action
+
+- (void)cacheButnClick:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:PrismCellViewCacheButnClickNotification object:self];
+}
+
+- (void)shareButnClick:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:PrismCellViewShareButnClickNotification object:self];
 }
 
 #pragma mark - Collect view data source

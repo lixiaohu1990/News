@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShowImageVC : UIViewController
+@interface ShowImageVC : UICollectionViewController
 
 #pragma mark - Init
 
 - (instancetype)init;
 
 - (instancetype)initFromStoryboard;
+
++ (UINavigationController *)initShowImageNavVCFromStoryboard;
 
 @property (nonatomic) NSArray *imageUrlList;
 
