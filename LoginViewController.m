@@ -130,16 +130,16 @@ UIImageView *imageView;
 //    self.threeTimesError = YES;
     if(sender.tag == 100)
     {
-        if(!iUsernameField.text || iUsernameField.text.length != 11)
-        {
-            [SVProgressHUD showErrorWithStatus:@"请输入正确的11位手机号"];
-            return;
-        }
-        if(!iPasswordField.text || iPasswordField.text.length < 1)
-        {
-            [SVProgressHUD showErrorWithStatus:@"密码长度不得低于6位"];
-            return;
-        }
+//        if(!iUsernameField.text || iUsernameField.text.length != 11)
+//        {
+//            [SVProgressHUD showErrorWithStatus:@"请输入正确的11位手机号"];
+//            return;
+//        }
+//        if(!iPasswordField.text || iPasswordField.text.length < 1)
+//        {
+//            [SVProgressHUD showErrorWithStatus:@"密码长度不得低于6位"];
+//            return;
+//        }
         //获得系统时间
         NSDate * senddate=[NSDate date];
         NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];

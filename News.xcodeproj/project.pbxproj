@@ -2225,8 +2225,10 @@
 					"$(PROJECT_DIR)/Lib/UMSocial_Sdk_4.2.1",
 					"$(PROJECT_DIR)/Lib/Wechat",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -2248,8 +2250,10 @@
 					"$(PROJECT_DIR)/Lib/UMSocial_Sdk_4.2.1",
 					"$(PROJECT_DIR)/Lib/Wechat",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

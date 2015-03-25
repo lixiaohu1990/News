@@ -163,7 +163,7 @@
     if (_detailStyle == BigeventdetailStyleText) {
         return (fullScreen ? 1 : 2+self.commentArray.count);
     }else{
-        return (fullScreen ? 1 : 3+self.commentArray.count);
+        return (fullScreen ? 1 : 4+self.commentArray.count);
     }
 }
 
@@ -208,12 +208,12 @@
             DetailContentTableViewCell *cell = [DetailContentTableViewCell cellWithTableView:tableView];
             cell.item = self.detailItem;
             return cell;
-            //    }else if(indexPath.row ==2){
-            //        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
-            //
-            //        return cell;
+        }else if(indexPath.row ==2){
+            UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
+    
+            return cell;
             
-        }else if (indexPath.row == 2){
+        }else if (indexPath.row == 3){
             DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
             cell.countLabel.text = [NSString stringWithFormat:@"%d", self.detailItem.commentCount];
             cell.dicDelegate = self;
@@ -221,7 +221,7 @@
             
         }else{
             DetailCommentTableViewCell *cell = [DetailCommentTableViewCell cellWithTableView:tableView];
-            cell.item = self.commentArray[indexPath.row - 3];
+            cell.item = self.commentArray[indexPath.row - 4];
             return cell;
         }
 
@@ -230,10 +230,10 @@
             DetailContentTableViewCell *cell = [DetailContentTableViewCell cellWithTableView:tableView];
             cell.item = self.detailItem;
             return cell;
-            //    }else if(indexPath.row ==2){
-            //        UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
-            //
-            //        return cell;
+//                }else if(indexPath.row ==2){
+//                    UITableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][2];
+//            
+//                    return cell;
             
         }else if (indexPath.row == 1){
             DetailDiscussTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmDetailTableViewCell" owner:nil options:nil][3];
