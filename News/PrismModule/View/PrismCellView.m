@@ -13,6 +13,7 @@
 
 #import "PrismCommImageCell.h"
 #import "NAApiConstants.h"
+#import "PrismFooter.h"
 
 NSString *const PrismCellViewMoreCellSelectedNotification = @"PrismCellViewMoreCellSelectedNotification";
 NSString *const PrismCellViewCacheButnClickNotification = @"PrismCellViewCacheButnClickNotification";
@@ -30,15 +31,12 @@ static NSString *const PrismCommonImageCellIdentifier = @"PrismImageCell";
 // more图片的复用标示
 static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
 
+static NSString *const PrismFooteridentifier = @"PrismFooter";
+
 @interface PrismCellView () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 // 用于展示图片的collection视图
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-// 底部容器视图
-@property (nonatomic, weak) IBOutlet UIView *bottomContainnerView;
-@property (nonatomic, weak) IBOutlet UILabel *prismTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *prismContentLabel;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *prismContentLabelHeightConst;
 
 @property (nonatomic, weak) IBOutlet UIButton *cacheButn;
 @property (nonatomic, weak) IBOutlet UIButton *shareButn;
@@ -67,6 +65,7 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
         forCellWithReuseIdentifier:PrismCommonImageCellIdentifier];
     [_collectionView registerClass:[PrismCommImageCell class]
         forCellWithReuseIdentifier:PrismMoreImageCellIdentifier];
+    [_collectionView registerClass:[PrismFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:PrismFooteridentifier];
     
     [_cacheButn addTarget:self
                    action:@selector(cacheButnClick:)
@@ -83,20 +82,6 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
     // 改变页面
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadData];
-        
-        self.prismTitleLabel.text = prismInfo.name;
-        self.prismContentLabel.text = prismInfo.nsDescription;
-        
-        // 改变内容高度
-        CGSize despSize = [prismInfo.nsDescription sizeWithConstraintWidth:CGRectGetWidth(self.prismContentLabel.frame) font:self.prismContentLabel.font];
-        
-        CGFloat finalHeight = despSize.height;
-        CGFloat lineHeight = self.prismContentLabel.font.lineHeight;
-        NSInteger row = ceilf(despSize.height/lineHeight);
-        if (row > 2) {
-            finalHeight = 2*lineHeight;
-        }
-        self.prismContentLabelHeightConst.constant = finalHeight;
     });
 }
 
@@ -160,6 +145,7 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
                                              imageUrl]];
         }
         commCell.backgroundColor = [UIColor blackColor];
+        commCell.pActyIndicatorView.color = [UIColor whiteColor];
         [commCell.pActyIndicatorView startAnimating];
         [commCell.pImageView setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -192,7 +178,7 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
             PrismCommImageCell *coverHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:PrismCoverImageHeaderIdentifier forIndexPath:indexPath];
             
             coverHeader.backgroundColor = [UIColor blackColor];
-            
+            coverHeader.pActyIndicatorView.color = [UIColor whiteColor];
             [coverHeader.pActyIndicatorView startAnimating];
             [coverHeader.pImageView setImageWithURL:coverURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -203,6 +189,11 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
         } else {
             reusableView = [[UICollectionReusableView alloc]initWithFrame:CGRectZero];
         }
+    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        PrismFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:PrismFooteridentifier forIndexPath:indexPath];
+        footer.title = self.prismInfo.name;
+        footer.content = self.prismInfo.nsDescription;
+        reusableView = footer;
     }
     return reusableView;
 }
@@ -229,6 +220,16 @@ referenceSizeForHeaderInSection:(NSInteger)section
     CGFloat headerHeight = headerWidth * 718.f/1246.f;
     
     return CGSizeMake(headerWidth, headerHeight);
+}
+
+- (CGSize)          collectionView:(UICollectionView *)collectionView
+                            layout:(UICollectionViewLayout*)collectionViewLayout
+   referenceSizeForFooterInSection:(NSInteger)section
+{
+    CGFloat width = CGRectGetWidth(collectionView.frame);
+    CGFloat height = [PrismFooter footerHeightForContent:self.prismInfo.nsDescription
+                                         constraintWidth:width];
+    return CGSizeMake(width, height);
 }
 
 

@@ -263,6 +263,7 @@
 		867E57F71ABB1B5900D29BDB /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E57F61ABB1B5900D29BDB /* SearchVC.m */; };
 		867E57F91ABB1BF700D29BDB /* MainModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867E57F81ABB1BF700D29BDB /* MainModule.storyboard */; };
 		867E57FB1AC19BF600D29BDB /* MainModule.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867E57FA1AC19BF600D29BDB /* MainModule.xcassets */; };
+		867E57FE1AC6F8FD00D29BDB /* PrismFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E57FD1AC6F8FD00D29BDB /* PrismFooter.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -700,6 +701,8 @@
 		867E57F61ABB1B5900D29BDB /* SearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		867E57F81ABB1BF700D29BDB /* MainModule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainModule.storyboard; sourceTree = "<group>"; };
 		867E57FA1AC19BF600D29BDB /* MainModule.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MainModule.xcassets; sourceTree = "<group>"; };
+		867E57FC1AC6F8FD00D29BDB /* PrismFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismFooter.h; sourceTree = "<group>"; };
+		867E57FD1AC6F8FD00D29BDB /* PrismFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrismFooter.m; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1616,6 +1619,8 @@
 				869842861AB4A09F005EB63C /* PrismCommImageCell.h */,
 				869842871AB4A09F005EB63C /* PrismCommImageCell.m */,
 				59780CF41AB28FD100FE3A43 /* Prism.storyboard */,
+				867E57FC1AC6F8FD00D29BDB /* PrismFooter.h */,
+				867E57FD1AC6F8FD00D29BDB /* PrismFooter.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1786,7 +1791,6 @@
 				TargetAttributes = {
 					2F39B0601AA4298700575A76 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = J7JSRSE85C;
 					};
 					2F39B0791AA4298800575A76 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2022,6 +2026,7 @@
 				2F39B1EC1AA43B2C00575A76 /* UIImageView+WebCache.m in Sources */,
 				2F39B1E81AA43B2C00575A76 /* UIButton+WebCache.m in Sources */,
 				2F39B1CC1AA43B2C00575A76 /* MJMethod.m in Sources */,
+				867E57FE1AC6F8FD00D29BDB /* PrismFooter.m in Sources */,
 				2F39B1F61AA440A100575A76 /* BaseTableViewController.m in Sources */,
 				2F3432E91AA6A7370096949C /* NewsDetailTableViewController.m in Sources */,
 				2F39B1E71AA43B2C00575A76 /* SDWebImagePrefetcher.m in Sources */,
