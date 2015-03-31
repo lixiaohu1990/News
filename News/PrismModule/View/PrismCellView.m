@@ -14,6 +14,8 @@
 #import "PrismCommImageCell.h"
 #import "NAApiConstants.h"
 #import "PrismFooter.h"
+#import "LvModelWindow.h"
+#import "LvPhotoViewerView.h"
 
 NSString *const PrismCellViewMoreCellSelectedNotification = @"PrismCellViewMoreCellSelectedNotification";
 NSString *const PrismCellViewCacheButnClickNotification = @"PrismCellViewCacheButnClickNotification";
@@ -33,13 +35,16 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
 
 static NSString *const PrismFooteridentifier = @"PrismFooter";
 
-@interface PrismCellView () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PrismCellView () <UICollectionViewDataSource, UICollectionViewDelegate, LvModelWindowDelegate, LvPhotoViewerViewDelegate>
 
 // 用于展示图片的collection视图
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, weak) IBOutlet UIButton *cacheButn;
 @property (nonatomic, weak) IBOutlet UIButton *shareButn;
+
+@property (nonatomic) LvModelWindow *photoViewerModelWindow;
+@property (nonatomic) LvPhotoViewerView *photoViewer;
 
 @end
 
@@ -73,6 +78,18 @@ static NSString *const PrismFooteridentifier = @"PrismFooter";
     [_shareButn addTarget:self
                    action:@selector(shareButnClick:)
          forControlEvents:UIControlEventTouchUpInside];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recvPhotoItemScrollViewTapNote:)
+                                                 name:LvPhotoItemScrollViewTappedNotification
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:LvPhotoItemScrollViewTappedNotification
+                                                  object:nil];
 }
 
 - (void)setPrismInfo:(NANewsResp *)prismInfo
@@ -258,8 +275,77 @@ referenceSizeForHeaderInSection:(NSInteger)section
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     if (cell.reuseIdentifier == PrismMoreImageCellIdentifier) {
-        // 添加按钮
+        // 更多按钮
         [[NSNotificationCenter defaultCenter]postNotificationName:PrismCellViewMoreCellSelectedNotification object:self];
+    } else {
+        [self.photoViewerModelWindow showWithAnimated:YES];
+        [self.photoViewer scrollToPage:indexPath.row animated:NO];
+    }
+}
+
+- (void)recvPhotoItemScrollViewTapNote:(NSNotification *)note
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)note.object;
+    
+    if (gesture.numberOfTapsRequired == 1) {
+        [_photoViewerModelWindow dismissWithAnimated:YES];
+    }
+}
+
+- (LvModelWindow *)photoViewerModelWindow
+{
+    if (!_photoViewerModelWindow) {
+        LvModelWindow *win = [[LvModelWindow alloc]initWithPreferStatusBarHidden:YES
+                                                    supportedOrientationPortrait:YES
+                                          supportedOrientationPortraitUpsideDown:NO
+                                               supportedOrientationLandscapeLeft:NO
+                                              supportedOrientationLandscapeRight:NO];
+        win.modelWindowDelegate = self;
+        _photoViewerModelWindow = win;
+        
+        if (!_photoViewer) {
+            LvPhotoViewerView *photoViewer = [[LvPhotoViewerView alloc]initWithFrame:win.windowRootView.bounds];
+            photoViewer.delegate = self;
+            photoViewer.backgroundColor = [UIColor blackColor];
+            photoViewer.frame = win.windowRootView.bounds;
+            photoViewer.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            [win.windowRootView addSubview:photoViewer];
+            _photoViewer = photoViewer;
+        }
+    }
+    return _photoViewerModelWindow;
+}
+
+#pragma mark - LvModelWindowDelegate
+
+- (void)modelWindowDidShow:(LvModelWindow *)modelWindow
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
+- (void)modelWindowDidDismiss:(LvModelWindow *)modelWindow
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+#pragma mark - LvPhotoViewerViewDelegate
+
+- (NSUInteger)numbersOfPhotoItem:(LvPhotoViewerView *)viewer
+{
+    return self.prismInfo.imageList.count;
+}
+
+- (void)        photoViewer:(LvPhotoViewerView *)viewer
+   willShowPhotoOnImageView:(UIImageView *)imageView
+                    atIndex:(NSUInteger)index
+{
+    NSArray *imageUrlList = self.prismInfo.imageList;
+    if (index < imageUrlList.count) {
+        NSString *imageUrl = imageUrlList[index];
+        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                                NAServerBaseUrl,
+                                                imageUrl]];
+        [imageView setImageWithURL:imageURL];
     }
 }
 

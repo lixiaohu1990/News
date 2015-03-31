@@ -264,6 +264,9 @@
 		867E57F91ABB1BF700D29BDB /* MainModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867E57F81ABB1BF700D29BDB /* MainModule.storyboard */; };
 		867E57FB1AC19BF600D29BDB /* MainModule.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867E57FA1AC19BF600D29BDB /* MainModule.xcassets */; };
 		867E57FE1AC6F8FD00D29BDB /* PrismFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E57FD1AC6F8FD00D29BDB /* PrismFooter.m */; };
+		867E58041ACAE5BB00D29BDB /* LvPhotoItemScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58011ACAE5BB00D29BDB /* LvPhotoItemScrollView.m */; };
+		867E58051ACAE5BB00D29BDB /* LvPhotoViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58031ACAE5BB00D29BDB /* LvPhotoViewerView.m */; };
+		867E58091ACAE60E00D29BDB /* LvModelWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58081ACAE60E00D29BDB /* LvModelWindow.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -703,6 +706,12 @@
 		867E57FA1AC19BF600D29BDB /* MainModule.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MainModule.xcassets; sourceTree = "<group>"; };
 		867E57FC1AC6F8FD00D29BDB /* PrismFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismFooter.h; sourceTree = "<group>"; };
 		867E57FD1AC6F8FD00D29BDB /* PrismFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrismFooter.m; sourceTree = "<group>"; };
+		867E58001ACAE5BB00D29BDB /* LvPhotoItemScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvPhotoItemScrollView.h; sourceTree = "<group>"; };
+		867E58011ACAE5BB00D29BDB /* LvPhotoItemScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LvPhotoItemScrollView.m; sourceTree = "<group>"; };
+		867E58021ACAE5BB00D29BDB /* LvPhotoViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvPhotoViewerView.h; sourceTree = "<group>"; };
+		867E58031ACAE5BB00D29BDB /* LvPhotoViewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LvPhotoViewerView.m; sourceTree = "<group>"; };
+		867E58071ACAE60E00D29BDB /* LvModelWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvModelWindow.h; sourceTree = "<group>"; };
+		867E58081ACAE60E00D29BDB /* LvModelWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LvModelWindow.m; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1694,9 +1703,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		867E57FF1ACAE5BB00D29BDB /* LvPhotoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				867E58001ACAE5BB00D29BDB /* LvPhotoItemScrollView.h */,
+				867E58011ACAE5BB00D29BDB /* LvPhotoItemScrollView.m */,
+				867E58021ACAE5BB00D29BDB /* LvPhotoViewerView.h */,
+				867E58031ACAE5BB00D29BDB /* LvPhotoViewerView.m */,
+			);
+			path = LvPhotoViewer;
+			sourceTree = "<group>";
+		};
+		867E58061ACAE60E00D29BDB /* LvModelWindow */ = {
+			isa = PBXGroup;
+			children = (
+				867E58071ACAE60E00D29BDB /* LvModelWindow.h */,
+				867E58081ACAE60E00D29BDB /* LvModelWindow.m */,
+			);
+			path = LvModelWindow;
+			sourceTree = "<group>";
+		};
 		8698426A1AB49FC8005EB63C /* 3part */ = {
 			isa = PBXGroup;
 			children = (
+				867E58061ACAE60E00D29BDB /* LvModelWindow */,
+				867E57FF1ACAE5BB00D29BDB /* LvPhotoViewer */,
 				8698426B1AB49FC8005EB63C /* AllAroundPullView */,
 			);
 			path = 3part;
@@ -1975,6 +2006,7 @@
 				2FCE08C41AAA932C007795C4 /* SVProgressHUD.m in Sources */,
 				2F39B1E61AA43B2C00575A76 /* SDWebImageManager.m in Sources */,
 				2FCE08991AAA8BD9007795C4 /* DDCityViewController.m in Sources */,
+				867E58051ACAE5BB00D29BDB /* LvPhotoViewerView.m in Sources */,
 				2F39B1C21AA43B2C00575A76 /* AFURLConnectionOperation.m in Sources */,
 				2F39B1CB1AA43B2C00575A76 /* MJMember.m in Sources */,
 				2F963D341AA95A4000E7D754 /* NewsFilmDetailTableViewCell.m in Sources */,
@@ -1983,6 +2015,7 @@
 				2F39B1DF1AA43B2C00575A76 /* MKAnnotationView+WebCache.m in Sources */,
 				2F39B1E01AA43B2C00575A76 /* NSData+ImageContentType.m in Sources */,
 				2F559ECE1AB482F70060AC56 /* SearchResaultTableViewController.m in Sources */,
+				867E58091ACAE60E00D29BDB /* LvModelWindow.m in Sources */,
 				2FCE0A801AAAFA5C007795C4 /* UIAlertView+lv.m in Sources */,
 				2F39B1C81AA43B2C00575A76 /* MBProgressHUD.m in Sources */,
 				2FCE0A5D1AAAF539007795C4 /* LvHTTPURLRequest.m in Sources */,
@@ -2056,6 +2089,7 @@
 				2F46E0AA1AAE9E190010C70A /* MJRefreshFooterView.m in Sources */,
 				2F39B1ED1AA43B2C00575A76 /* HttpTool.m in Sources */,
 				5983D3741AAD7A00005B8FAD /* NAApiGetNews.m in Sources */,
+				867E58041ACAE5BB00D29BDB /* LvPhotoItemScrollView.m in Sources */,
 				2FEC0A561AABC98700CFE389 /* DetailContentTableViewCell.m in Sources */,
 				2F39B1E91AA43B2C00575A76 /* UIImage+GIF.m in Sources */,
 				59780D031AB2901600FE3A43 /* NSString+lv.m in Sources */,
