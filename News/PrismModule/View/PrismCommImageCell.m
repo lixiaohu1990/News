@@ -30,6 +30,13 @@
     UIActivityIndicatorView *actyIndicatorV = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     actyIndicatorV.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
     actyIndicatorV.hidesWhenStopped = YES;
+    CGFloat indicatorW = CGRectGetWidth(actyIndicatorV.frame);
+    CGFloat indicatorH = CGRectGetHeight(actyIndicatorV.frame);
+    CGSize contentVSize = self.contentView.frame.size;
+    actyIndicatorV.frame = CGRectMake((contentVSize.width - indicatorW)/2,
+                                      (contentVSize.height - indicatorH)/2,
+                                      indicatorW,
+                                      indicatorH);
     [self.contentView addSubview:actyIndicatorV];
     _pActyIndicatorView = actyIndicatorV;
     
