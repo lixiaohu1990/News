@@ -23,6 +23,7 @@
         NSArray *cellList = [[NSBundle mainBundle] loadNibNamed:@"NewsFilmTableViewCell" owner:nil options:nil];
         
         cell = (NewsFilmTableViewCell *)cellList[0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     }
     return cell;

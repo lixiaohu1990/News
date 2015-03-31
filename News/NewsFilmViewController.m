@@ -6,10 +6,8 @@
 //
 
 #import "NewsFilmViewController.h"
-#import "NewsDetailTableViewController.h"
 #import "NewsFilmTableViewCell.h"
-#import "NewFileDispalyViewController.h"
-#import "CBViewController.h"
+
 #import "NAApiGetNewsList.h"
 #import "NewsList.h"
 #import "NANewsResp.h"

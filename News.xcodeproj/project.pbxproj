@@ -14,7 +14,6 @@
 		2F3398291AA56853001DA4C5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3398281AA56853001DA4C5 /* MainViewController.m */; };
 		2F3432DD1AA68CB20096949C /* NewsFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432DB1AA68CB20096949C /* NewsFilmTableViewCell.m */; };
 		2F3432DE1AA68CB20096949C /* NewsFilmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3432DC1AA68CB20096949C /* NewsFilmTableViewCell.xib */; };
-		2F3432E91AA6A7370096949C /* NewsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432E81AA6A7370096949C /* NewsDetailTableViewController.m */; };
 		2F3432FA1AA7045A0096949C /* 8b13632762d0f703f90662ca0bfa513d2697c574.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F3432F91AA7045A0096949C /* 8b13632762d0f703f90662ca0bfa513d2697c574.jpg */; };
 		2F39B0671AA4298700575A76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B0661AA4298700575A76 /* main.m */; };
 		2F39B06A1AA4298700575A76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B0691AA4298700575A76 /* AppDelegate.m */; };
@@ -165,6 +164,8 @@
 		2F963D301AA94EBB00E7D754 /* BigEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F963D2E1AA94EBB00E7D754 /* BigEventTableViewCell.xib */; };
 		2F963D341AA95A4000E7D754 /* NewsFilmDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F963D321AA95A4000E7D754 /* NewsFilmDetailTableViewCell.m */; };
 		2F963D351AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F963D331AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib */; };
+		2FBA68171AC9912D0043A18E /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FBA68161AC9912D0043A18E /* DroidSansFallback.ttf */; };
+		2FBA681B1AC999450043A18E /* VideoSubtitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA681A1AC999450043A18E /* VideoSubtitles.m */; };
 		2FCE08981AAA8BD9007795C4 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE08951AAA8BD9007795C4 /* city.plist */; };
 		2FCE08991AAA8BD9007795C4 /* DDCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE08971AAA8BD9007795C4 /* DDCityViewController.m */; };
 		2FCE089E1AAA8BFF007795C4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE089B1AAA8BFF007795C4 /* LoginViewController.m */; };
@@ -231,10 +232,6 @@
 		2FEC0A801AABFE3200CFE389 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A7F1AABFE3200CFE389 /* MobileCoreServices.framework */; };
 		2FEC0A821AABFE3C00CFE389 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A811AABFE3C00CFE389 /* CFNetwork.framework */; };
 		2FEC0A841AABFE4C00CFE389 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEC0A831AABFE4B00CFE389 /* SystemConfiguration.framework */; };
-		2FEC0A961AAC045800CFE389 /* NewFileDispalyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC0A951AAC045800CFE389 /* NewFileDispalyViewController.m */; };
-		2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC0A981AAC064100CFE389 /* CBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2FEC0A9B1AAC064100CFE389 /* CBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A991AAC064100CFE389 /* CBViewController.xib */; };
-		2FEC0A9D1AAC15F100CFE389 /* CBViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */; };
 		59780CFA1AB28FD100FE3A43 /* Prism.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59780CF21AB28FD100FE3A43 /* Prism.xcassets */; };
 		59780CFB1AB28FD100FE3A43 /* Prism.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59780CF41AB28FD100FE3A43 /* Prism.storyboard */; };
 		59780CFD1AB28FD100FE3A43 /* PrismViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59780CF91AB28FD100FE3A43 /* PrismViewController.m */; };
@@ -300,8 +297,6 @@
 		2F3432DA1AA68CB20096949C /* NewsFilmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmTableViewCell.h; sourceTree = "<group>"; };
 		2F3432DB1AA68CB20096949C /* NewsFilmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmTableViewCell.m; sourceTree = "<group>"; };
 		2F3432DC1AA68CB20096949C /* NewsFilmTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFilmTableViewCell.xib; sourceTree = "<group>"; };
-		2F3432E71AA6A7370096949C /* NewsDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailTableViewController.h; sourceTree = "<group>"; };
-		2F3432E81AA6A7370096949C /* NewsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailTableViewController.m; sourceTree = "<group>"; };
 		2F3432F91AA7045A0096949C /* 8b13632762d0f703f90662ca0bfa513d2697c574.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8b13632762d0f703f90662ca0bfa513d2697c574.jpg; sourceTree = "<group>"; };
 		2F39B0611AA4298700575A76 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F39B0651AA4298700575A76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -540,6 +535,9 @@
 		2F963D311AA95A4000E7D754 /* NewsFilmDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmDetailTableViewCell.h; sourceTree = "<group>"; };
 		2F963D321AA95A4000E7D754 /* NewsFilmDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmDetailTableViewCell.m; sourceTree = "<group>"; };
 		2F963D331AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFilmDetailTableViewCell.xib; sourceTree = "<group>"; };
+		2FBA68161AC9912D0043A18E /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSansFallback.ttf; path = News/resource/DroidSansFallback.ttf; sourceTree = "<group>"; };
+		2FBA68191AC999450043A18E /* VideoSubtitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoSubtitles.h; path = ../Lib/VideoSubtitles.h; sourceTree = "<group>"; };
+		2FBA681A1AC999450043A18E /* VideoSubtitles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoSubtitles.m; path = ../Lib/VideoSubtitles.m; sourceTree = "<group>"; };
 		2FCE08951AAA8BD9007795C4 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		2FCE08961AAA8BD9007795C4 /* DDCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCityViewController.h; sourceTree = "<group>"; };
 		2FCE08971AAA8BD9007795C4 /* DDCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCityViewController.m; sourceTree = "<group>"; };
@@ -643,12 +641,6 @@
 		2FEC0A7F1AABFE3200CFE389 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2FEC0A811AABFE3C00CFE389 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2FEC0A831AABFE4B00CFE389 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		2FEC0A941AAC045800CFE389 /* NewFileDispalyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFileDispalyViewController.h; sourceTree = "<group>"; };
-		2FEC0A951AAC045800CFE389 /* NewFileDispalyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFileDispalyViewController.m; sourceTree = "<group>"; };
-		2FEC0A971AAC064100CFE389 /* CBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBViewController.h; sourceTree = "<group>"; };
-		2FEC0A981AAC064100CFE389 /* CBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBViewController.m; sourceTree = "<group>"; };
-		2FEC0A991AAC064100CFE389 /* CBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBViewController.xib; sourceTree = "<group>"; };
-		2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBViewController1.xib; sourceTree = "<group>"; };
 		59780CF21AB28FD100FE3A43 /* Prism.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Prism.xcassets; sourceTree = "<group>"; };
 		59780CF41AB28FD100FE3A43 /* Prism.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Prism.storyboard; sourceTree = "<group>"; };
 		59780CF81AB28FD100FE3A43 /* PrismViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismViewController.h; sourceTree = "<group>"; };
@@ -823,14 +815,6 @@
 			children = (
 				2F39B0991AA42DC100575A76 /* NewsFilmViewController.h */,
 				2F39B09A1AA42DC100575A76 /* NewsFilmViewController.m */,
-				2F3432E71AA6A7370096949C /* NewsDetailTableViewController.h */,
-				2F3432E81AA6A7370096949C /* NewsDetailTableViewController.m */,
-				2FEC0A941AAC045800CFE389 /* NewFileDispalyViewController.h */,
-				2FEC0A951AAC045800CFE389 /* NewFileDispalyViewController.m */,
-				2FEC0A971AAC064100CFE389 /* CBViewController.h */,
-				2FEC0A981AAC064100CFE389 /* CBViewController.m */,
-				2FEC0A9C1AAC15F100CFE389 /* CBViewController1.xib */,
-				2FEC0A991AAC064100CFE389 /* CBViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -847,6 +831,7 @@
 		2F39B0581AA4298700575A76 = {
 			isa = PBXGroup;
 			children = (
+				2FBA68181AC992060043A18E /* Resource */,
 				2F685AD01AB67C9F00A5881A /* UMShareTool.h */,
 				2F685AD11AB67C9F00A5881A /* UMShareTool.m */,
 				2F490BD41AB27BDB0057F039 /* video_icon@2x.png */,
@@ -874,6 +859,7 @@
 		2F39B0631AA4298700575A76 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				2FBA68151AC9912D0043A18E /* resource */,
 				2F39B08A1AA42A6500575A76 /* Classes */,
 				2F39B0711AA4298800575A76 /* Images.xcassets */,
 				2F39B0731AA4298800575A76 /* LaunchScreen.xib */,
@@ -949,6 +935,8 @@
 		2F39B0971AA42D3800575A76 /* BigEvent */ = {
 			isa = PBXGroup;
 			children = (
+				2FBA68191AC999450043A18E /* VideoSubtitles.h */,
+				2FBA681A1AC999450043A18E /* VideoSubtitles.m */,
 				2F963D2B1AA94E8F00E7D754 /* View */,
 				2F39B09C1AA42EA900575A76 /* BigEventViewController.h */,
 				2F39B09D1AA42EA900575A76 /* BigEventViewController.m */,
@@ -1320,6 +1308,21 @@
 				2F963D2E1AA94EBB00E7D754 /* BigEventTableViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		2FBA68151AC9912D0043A18E /* resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		2FBA68181AC992060043A18E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2FBA68161AC9912D0043A18E /* DroidSansFallback.ttf */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		2FCE08A01AAA90C7007795C4 /* login */ = {
@@ -1880,6 +1883,7 @@
 				2FCE08B21AAA90DA007795C4 /* register_btn@2x.png in Resources */,
 				2FCE08D11AAAC5C2007795C4 /* MainTitleView.xib in Resources */,
 				2F963CFE1AA946B400E7D754 /* Multi Ling mirror@2x.png in Resources */,
+				2FBA68171AC9912D0043A18E /* DroidSansFallback.ttf in Resources */,
 				2F685AFD1AB67CF200A5881A /* UMSShareListController.xib in Resources */,
 				2F963CD01AA944C200E7D754 /* default@3x .png in Resources */,
 				2F963D231AA94ABB00E7D754 /* bg@2x.png in Resources */,
@@ -1904,7 +1908,6 @@
 				2F963D261AA94ABB00E7D754 /* icon_Download@2x.png in Resources */,
 				2FCE08B01AAA90DA007795C4 /* mobilePhone@2x.png in Resources */,
 				2F963CF91AA946B400E7D754 /* icon_photo@2x.png in Resources */,
-				2FEC0A9B1AAC064100CFE389 /* CBViewController.xib in Resources */,
 				2F4BC6B21AA4ACD700BA8AB6 /* MoreView.xib in Resources */,
 				869842761AB49FC8005EB63C /* arrow@2x.png in Resources */,
 				2F963CDA1AA944C200E7D754 /* list Selected@3x .png in Resources */,
@@ -1920,7 +1923,6 @@
 				2F963CD81AA944C200E7D754 /* icon_share@3x.png in Resources */,
 				867E57FB1AC19BF600D29BDB /* MainModule.xcassets in Resources */,
 				2FE791A61AAC74CE0001804D /* 36@2x.png in Resources */,
-				2FEC0A9D1AAC15F100CFE389 /* CBViewController1.xib in Resources */,
 				2FCE08AB1AAA90DA007795C4 /* registerandlogin_btn@2x.png in Resources */,
 				2F685AF61AB67CF200A5881A /* UMSCommentDetailController.xib in Resources */,
 				2F963CCF1AA944C200E7D754 /* Comment_icon@3x .png in Resources */,
@@ -1988,8 +1990,8 @@
 				2FEC0A591AABC9F800CFE389 /* DetailAnthologyTableViewCell.m in Sources */,
 				5983D3781AAD7A00005B8FAD /* NACommentResp.m in Sources */,
 				867E57F71ABB1B5900D29BDB /* SearchVC.m in Sources */,
+				2FBA681B1AC999450043A18E /* VideoSubtitles.m in Sources */,
 				2F47D3D21AAFD34E00A6E34B /* FeedBackViewController.m in Sources */,
-				2FEC0A9A1AAC064100CFE389 /* CBViewController.m in Sources */,
 				2FCE0A7D1AAAF559007795C4 /* NAUrlEncodeParamApi.m in Sources */,
 				2F47D3C31AAFCB7B00A6E34B /* SettingTableViewController.m in Sources */,
 				867E57F41ABB1B1E00D29BDB /* MoreVC.m in Sources */,
@@ -2023,7 +2025,6 @@
 				2F39B1E81AA43B2C00575A76 /* UIButton+WebCache.m in Sources */,
 				2F39B1CC1AA43B2C00575A76 /* MJMethod.m in Sources */,
 				2F39B1F61AA440A100575A76 /* BaseTableViewController.m in Sources */,
-				2F3432E91AA6A7370096949C /* NewsDetailTableViewController.m in Sources */,
 				2F39B1E71AA43B2C00575A76 /* SDWebImagePrefetcher.m in Sources */,
 				5983D37A1AAD7A00005B8FAD /* NANewsResp.m in Sources */,
 				2FEC0A5F1AABCA6400CFE389 /* DetailCommentTableViewCell.m in Sources */,
@@ -2071,7 +2072,6 @@
 				2FCE0A641AAAF539007795C4 /* LvPostMultiFormDataApiRequestObject.m in Sources */,
 				2F559EC81AB472930060AC56 /* NAAPIGetTagList.m in Sources */,
 				867E57F11ABB0B7800D29BDB /* MainTabsView.m in Sources */,
-				2FEC0A961AAC045800CFE389 /* NewFileDispalyViewController.m in Sources */,
 				2FCE0A611AAAF539007795C4 /* ReachableSingleton.m in Sources */,
 				869842831AB4A078005EB63C /* UIView+LoadData.m in Sources */,
 				2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */,

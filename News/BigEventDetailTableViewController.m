@@ -11,13 +11,14 @@
 #import "SendCommentView.h"
 #import "CyberPlayerController.h"
 #import "NewsFilmDetailTableViewCell.h"
-#import "NewFileDispalyViewController.h"
+//#import "NewFileDispalyViewController.h"
 #import "NAApiGetNews.h"
 #import "NANewsResp.h"
 #import "DetailContentTableViewCell.h"
 #import "NAApiGetCommentList.h"
 #import "DetailCommentTableViewCell.h"
 #import "LoginViewController.h"
+#import "VideoSubtitles.h"
 @interface BigEventDetailTableViewController ()<DetailDiscussTableViewCellDelegate, NABaseApiResultHandlerDelegate, SendCommentViewDelegate>
 {
     NSString *videoFullPath;
@@ -31,6 +32,11 @@
     int _currentPage;
     ListType _listType;
     BigEventDetailStyle _detailStyle;
+    
+    VideoSubtitles *rolling;
+    NSArray *ary;
+    int u;
+
     
 }
 @property (retain, nonatomic)UILabel *remainsProgress;
@@ -260,7 +266,7 @@
     if (!url) {
         url = [NSURL URLWithString:[videoFullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; }
     [cbPlayerController setContentURL: url];
-    
+    [cbPlayerController setExtSubtitleFile:@"http://bcs.duapp.com/123.srt"];
     //请添加您百度开发者中心应用对应的APIKey和SecretKey。
     NSString* msAK=@"TwthXSKCmkGbR9DbYUriGmT7";
     NSString* msSK=@"irre7k4rzRjGqPnM";
@@ -337,7 +343,66 @@
     cbPlayerController.shouldAutoplay = YES;
     //    [cbPlayerController pause];
     [cbPlayerController prepareToPlay];
+    
+//    [cbPlayerController openExtSubtitleFile:@"http://bcs.duapp.com/567.ass"];
     [self startTimer];
+    
+    
+    //初始化字幕类
+    rolling = [[VideoSubtitles alloc] init];
+    
+    //设置滚动速度
+    rolling.scrollSpeed = 0.05;
+    
+    //设置新文字出现的速度
+    rolling.textSpeed = 0.5;
+    
+    //设置是否循环
+    rolling.isScroll = NO;
+    
+    //设置字幕的行数
+    rolling.scrollHeightCount = 5;
+    
+    //设置内容
+    rolling.aryText = [[NSMutableArray alloc] initWithObjects:
+                       @"111111111！",
+                       @"222222333122",
+                       @"3333333333",
+                       @"44444444",
+                       @"5555555",
+                       @"6666666",
+                       @"7777777",
+                       @"88888888",
+                       @"9999999999",
+                       nil];
+    
+    //设置字体颜色
+    rolling.aryColor = [[NSArray alloc] initWithObjects:
+                        [UIColor brownColor],
+                        [UIColor purpleColor],
+                        [UIColor redColor],
+                        [UIColor blueColor],
+                        [UIColor greenColor],
+                        [UIColor orangeColor],
+                        [UIColor yellowColor],
+                        nil];
+    
+    //设置字体大小
+    rolling.aryFont = [[NSArray alloc] initWithObjects:
+                       @"15",
+                       @"16",
+                       @"17",
+                       @"18",
+                       @"19",
+                       @"15",
+                       @"16",
+                       nil];
+    
+    //设置添加字幕的视图
+    rolling.RootView = cell.contentView;
+    
+    //加添字幕
+    [rolling initAddRollingSubtitles];
     
 }
 

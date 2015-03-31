@@ -1,14 +1,14 @@
 //
-//  RollingSubtitles.h
-//  字幕组
+//  NewsFilmViewController.h
+//  News
 //
-//  Created by Allen_12138 on 15-3-3.
-//  Copyright (c) 2015年 mushroom_yan@foxmail.com-八爷. All rights reserved.
+//  Created by 李小虎 on 15/3/29.
+//  Copyright (c) 2015年 lee. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface RollingSubtitles : NSObject
+@interface VideoSubtitles : NSObject
 
 
 /**

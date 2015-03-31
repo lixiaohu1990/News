@@ -102,16 +102,19 @@
     if (item.videoUrl && ([item.videoUrl isKindOfClass:[NSString class]])) {
         BigEventTableViewCell *cell = [BigEventTableViewCell cellWithTableview:tableView];
         cell.item = item;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
     }else{
         if (item.imageUrl && ([item.imageUrl isKindOfClass:[NSString class]])) {
             BigEventTableViewCell *cell = [BigEventTableViewCell cellWithTableview:tableView];
             cell.item = item;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else{
             BigEventTableViewCell1 *cell = [BigEventTableViewCell1 cellWithTableView:tableView];
             cell.item = item;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
 
         }
