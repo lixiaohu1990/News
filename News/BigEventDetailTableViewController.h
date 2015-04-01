@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NANewsResp.h"
 
 @interface BigEventDetailTableViewController : UITableViewController
-@property(nonatomic, assign)NSInteger newsID;
-- (instancetype)initWithEventStyle:(BigEventDetailStyle)eventStyle newsId:(NSInteger)newsId videoPath:(NSString *)videoStr listType:(ListType)listType;
+@property(nonatomic, readonly) NANewsResp *news;
+- (instancetype)initWithEventStyle:(BigEventDetailStyle)eventStyle news:(NANewsResp *)news listType:(ListType)listType;
 @end

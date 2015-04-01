@@ -12,6 +12,8 @@
 #import "NewsList.h"
 #import "NANewsResp.h"
 #import "BigEventDetailTableViewController.h"
+#import "VideoPlayVC.h"
+
 //#import "XCTAssert.h"
 @interface NewsFilmViewController ()<NABaseApiResultHandlerDelegate, NewsFilmTableViewCellDelegate, UMSocialUIDelegate>{
     int _currentPage;
@@ -96,10 +98,20 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NANewsResp *item = self.ListArray[indexPath.row];
     DLOG(@"%@", item);
-//    NewsDetailTableViewController  *control = [[NewsDetailTableViewController alloc] initWithVideoPath:item.vedioUrl];
-//        [self.navigationController pushViewController:control animated:YES];
-    BigEventDetailTableViewController *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:BigeventdetailStyleVideo newsId:item.itemId videoPath:item.videoUrl listType:NewsFilmType];
-    [self presentModalViewController:control animated:YES];
+//    BigEventDetailTableViewController *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:BigeventdetailStyleVideo news:item listType:NewsFilmType];
+//    [self presentModalViewController:control animated:YES];
+    
+    if (item.videoList.count > 0) {
+        NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                                BASEVIDEOURL,
+                                                ((NAVideo *)item.videoList[0]).videoUrl]];
+        if (!videoURL)
+            return;
+        VideoPlayVC *videoPlayVC = [[VideoPlayVC alloc]init];
+        [self presentViewController:videoPlayVC animated:YES completion:^{
+            [videoPlayVC preparePlayURL:videoURL immediatelyPlay:YES];
+        }];
+    }
 }
 
 #pragma mark - NABaseApiResultHandlerDelegate methods

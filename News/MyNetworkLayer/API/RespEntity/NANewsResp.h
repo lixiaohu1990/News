@@ -22,4 +22,20 @@
 @property (nonatomic) NSString *tag;
 @property (nonatomic) NSString *author;
 
+/**
+ *  Item类型为NAVideo的NSArray
+ */
+@property (nonatomic) NSArray *videoList;
+
+@end
+
+@interface NAVideo : NSObject
+
+@property (nonatomic) NSString *vDescription;
+@property (nonatomic) NSString *videoUrl;
+@property (nonatomic) NSString *name;
+@property (nonatomic) int number;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 @end
