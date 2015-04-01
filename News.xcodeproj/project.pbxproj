@@ -279,6 +279,10 @@
 		867E58591ACC296600D29BDB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58581ACC296600D29BDB /* AVFoundation.framework */; };
 		867E585E1ACC2B6900D29BDB /* LvNormalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E585C1ACC2B6900D29BDB /* LvNormalSlider.m */; };
 		867E58611ACC4DFF00D29BDB /* BigEventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58601ACC4DFF00D29BDB /* BigEventDetailTableViewController.m */; };
+		867E58641ACC550E00D29BDB /* NewsFilmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58631ACC550E00D29BDB /* NewsFilmDetailVC.m */; };
+		867E58691ACC5D1400D29BDB /* NewsFilmDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */; };
+		867E586C1ACC5D3300D29BDB /* NewsFilmDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */; };
+		867E586F1ACC6FCB00D29BDB /* UIColor+lv.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E586E1ACC6FCB00D29BDB /* UIColor+lv.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -749,6 +753,13 @@
 		867E585D1ACC2B6900D29BDB /* LvNormalSliderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvNormalSliderConfigurations.h; sourceTree = "<group>"; };
 		867E585F1ACC4DFF00D29BDB /* BigEventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventDetailTableViewController.h; sourceTree = "<group>"; };
 		867E58601ACC4DFF00D29BDB /* BigEventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventDetailTableViewController.m; sourceTree = "<group>"; };
+		867E58621ACC550E00D29BDB /* NewsFilmDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmDetailVC.h; sourceTree = "<group>"; };
+		867E58631ACC550E00D29BDB /* NewsFilmDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmDetailVC.m; sourceTree = "<group>"; };
+		867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFilmDetailCell.xib; sourceTree = "<group>"; };
+		867E586A1ACC5D3300D29BDB /* NewsFilmDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmDetailCell.h; sourceTree = "<group>"; };
+		867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmDetailCell.m; sourceTree = "<group>"; };
+		867E586D1ACC6FCB00D29BDB /* UIColor+lv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+lv.h"; sourceTree = "<group>"; };
+		867E586E1ACC6FCB00D29BDB /* UIColor+lv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+lv.m"; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -875,6 +886,8 @@
 			children = (
 				2F39B0991AA42DC100575A76 /* NewsFilmViewController.h */,
 				2F39B09A1AA42DC100575A76 /* NewsFilmViewController.m */,
+				867E58621ACC550E00D29BDB /* NewsFilmDetailVC.h */,
+				867E58631ACC550E00D29BDB /* NewsFilmDetailVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -964,6 +977,7 @@
 		2F39B08A1AA42A6500575A76 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				867E58651ACC5C6300D29BDB /* NewsFilmModule */,
 				867E580A1ACC26E400D29BDB /* VitamioPlayer */,
 				867E57E51ABAFE3800D29BDB /* MainModule */,
 				59780CF01AB28FD100FE3A43 /* PrismModule */,
@@ -1479,6 +1493,8 @@
 		2FCE0A321AAAF539007795C4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				867E586D1ACC6FCB00D29BDB /* UIColor+lv.h */,
+				867E586E1ACC6FCB00D29BDB /* UIColor+lv.m */,
 				867E57E91ABB012B00D29BDB /* UIBarButtonItem+lv.h */,
 				867E57EA1ABB012B00D29BDB /* UIBarButtonItem+lv.m */,
 				869842781AB4A078005EB63C /* UIView+LoadData */,
@@ -1869,6 +1885,32 @@
 			path = ../../../../../svn/workcopies/1024Love/DEMO/LvDemos/Public/3part/LvNormalSlider;
 			sourceTree = "<group>";
 		};
+		867E58651ACC5C6300D29BDB /* NewsFilmModule */ = {
+			isa = PBXGroup;
+			children = (
+				867E58661ACC5CA800D29BDB /* View */,
+				867E58671ACC5CA800D29BDB /* ViewController */,
+			);
+			path = NewsFilmModule;
+			sourceTree = "<group>";
+		};
+		867E58661ACC5CA800D29BDB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				867E586A1ACC5D3300D29BDB /* NewsFilmDetailCell.h */,
+				867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */,
+				867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		867E58671ACC5CA800D29BDB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		8698426A1AB49FC8005EB63C /* 3part */ = {
 			isa = PBXGroup;
 			children = (
@@ -2082,6 +2124,7 @@
 				2FCE08C61AAA9885007795C4 /* back_icon01@2x.png in Resources */,
 				867E58471ACC27B900D29BDB /* VPPlayControlView.xib in Resources */,
 				2F963CD51AA944C200E7D754 /* icon_Other@3x .png in Resources */,
+				867E58691ACC5D1400D29BDB /* NewsFilmDetailCell.xib in Resources */,
 				2F47D3D81AAFD36700A6E34B /* AboutUSViewController.xib in Resources */,
 				2FE791A21AAC73680001804D /* 24@2x.png in Resources */,
 				2F39B0721AA4298800575A76 /* Images.xcassets in Resources */,
@@ -2169,6 +2212,7 @@
 				2F559ECE1AB482F70060AC56 /* SearchResaultTableViewController.m in Sources */,
 				867E58091ACAE60E00D29BDB /* LvModelWindow.m in Sources */,
 				2FCE0A801AAAFA5C007795C4 /* UIAlertView+lv.m in Sources */,
+				867E58641ACC550E00D29BDB /* NewsFilmDetailVC.m in Sources */,
 				2F39B1C81AA43B2C00575A76 /* MBProgressHUD.m in Sources */,
 				2FCE0A5D1AAAF539007795C4 /* LvHTTPURLRequest.m in Sources */,
 				867E58611ACC4DFF00D29BDB /* BigEventDetailTableViewController.m in Sources */,
@@ -2197,6 +2241,7 @@
 				5983D3751AAD7A00005B8FAD /* NAApiGetNewsList.m in Sources */,
 				2F39B1EB1AA43B2C00575A76 /* UIImage+WebP.m in Sources */,
 				2F39B1E41AA43B2C00575A76 /* SDWebImageDownloader.m in Sources */,
+				867E586C1ACC5D3300D29BDB /* NewsFilmDetailCell.m in Sources */,
 				5983D3761AAD7A00005B8FAD /* NAApiSaveComment.m in Sources */,
 				2FEC0A5C1AABCA4C00CFE389 /* DetailDiscussTableViewCell.m in Sources */,
 				867E583F1ACC27B900D29BDB /* LvDirectionPanControl.m in Sources */,
@@ -2262,6 +2307,7 @@
 				2F39B1BD1AA43B2C00575A76 /* AFHTTPRequestOperation.m in Sources */,
 				2FCE0A601AAAF539007795C4 /* Reachability.m in Sources */,
 				2FCE08BE1AAA9263007795C4 /* DDBaseTableViewController.m in Sources */,
+				867E586F1ACC6FCB00D29BDB /* UIColor+lv.m in Sources */,
 				2F39B1E21AA43B2C00575A76 /* SDWebImageCompat.m in Sources */,
 				2F39B1E11AA43B2C00575A76 /* SDImageCache.m in Sources */,
 				2FCE0A641AAAF539007795C4 /* LvPostMultiFormDataApiRequestObject.m in Sources */,
