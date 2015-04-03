@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>36c29bff-4f9d-4f63-be1b-868ec5aa51fd++124</key>
-		<string>../../../../svn/workcopies/1024Love/DEMO/LvDemos</string>
+		<string>../../../svn/workcopies/1024Love/DEMO/LvDemos</string>
 		<key>43F4902F05BB0561569F30322232CB9640B2C7B0</key>
 		<string>../..</string>
 	</dict>

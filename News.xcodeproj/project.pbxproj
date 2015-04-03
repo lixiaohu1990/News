@@ -279,10 +279,14 @@
 		867E58591ACC296600D29BDB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58581ACC296600D29BDB /* AVFoundation.framework */; };
 		867E585E1ACC2B6900D29BDB /* LvNormalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E585C1ACC2B6900D29BDB /* LvNormalSlider.m */; };
 		867E58611ACC4DFF00D29BDB /* BigEventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58601ACC4DFF00D29BDB /* BigEventDetailTableViewController.m */; };
-		867E58641ACC550E00D29BDB /* NewsFilmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58631ACC550E00D29BDB /* NewsFilmDetailVC.m */; };
 		867E58691ACC5D1400D29BDB /* NewsFilmDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */; };
 		867E586C1ACC5D3300D29BDB /* NewsFilmDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */; };
 		867E586F1ACC6FCB00D29BDB /* UIColor+lv.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E586E1ACC6FCB00D29BDB /* UIColor+lv.m */; };
+		867E58721ACD7CBE00D29BDB /* NewsFilmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58711ACD7CBE00D29BDB /* NewsFilmDetailVC.m */; };
+		867E58751ACD7EBA00D29BDB /* NewsCommentToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58741ACD7EBA00D29BDB /* NewsCommentToolBarCell.m */; };
+		867E58771ACD80FD00D29BDB /* NewsCommentToolBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58761ACD80FD00D29BDB /* NewsCommentToolBarCell.xib */; };
+		867E58791ACD86CE00D29BDB /* NewsCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58781ACD86CE00D29BDB /* NewsCommentCell.xib */; };
+		867E587C1ACD86DF00D29BDB /* NewsCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -753,13 +757,19 @@
 		867E585D1ACC2B6900D29BDB /* LvNormalSliderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvNormalSliderConfigurations.h; sourceTree = "<group>"; };
 		867E585F1ACC4DFF00D29BDB /* BigEventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventDetailTableViewController.h; sourceTree = "<group>"; };
 		867E58601ACC4DFF00D29BDB /* BigEventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventDetailTableViewController.m; sourceTree = "<group>"; };
-		867E58621ACC550E00D29BDB /* NewsFilmDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmDetailVC.h; sourceTree = "<group>"; };
-		867E58631ACC550E00D29BDB /* NewsFilmDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmDetailVC.m; sourceTree = "<group>"; };
 		867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFilmDetailCell.xib; sourceTree = "<group>"; };
 		867E586A1ACC5D3300D29BDB /* NewsFilmDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmDetailCell.h; sourceTree = "<group>"; };
 		867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmDetailCell.m; sourceTree = "<group>"; };
 		867E586D1ACC6FCB00D29BDB /* UIColor+lv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+lv.h"; sourceTree = "<group>"; };
 		867E586E1ACC6FCB00D29BDB /* UIColor+lv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+lv.m"; sourceTree = "<group>"; };
+		867E58701ACD7CBE00D29BDB /* NewsFilmDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFilmDetailVC.h; sourceTree = "<group>"; };
+		867E58711ACD7CBE00D29BDB /* NewsFilmDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFilmDetailVC.m; sourceTree = "<group>"; };
+		867E58731ACD7EBA00D29BDB /* NewsCommentToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentToolBarCell.h; sourceTree = "<group>"; };
+		867E58741ACD7EBA00D29BDB /* NewsCommentToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentToolBarCell.m; sourceTree = "<group>"; };
+		867E58761ACD80FD00D29BDB /* NewsCommentToolBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCommentToolBarCell.xib; sourceTree = "<group>"; };
+		867E58781ACD86CE00D29BDB /* NewsCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCommentCell.xib; sourceTree = "<group>"; };
+		867E587A1ACD86DF00D29BDB /* NewsCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentCell.h; sourceTree = "<group>"; };
+		867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentCell.m; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -886,8 +896,6 @@
 			children = (
 				2F39B0991AA42DC100575A76 /* NewsFilmViewController.h */,
 				2F39B09A1AA42DC100575A76 /* NewsFilmViewController.m */,
-				867E58621ACC550E00D29BDB /* NewsFilmDetailVC.h */,
-				867E58631ACC550E00D29BDB /* NewsFilmDetailVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1900,6 +1908,12 @@
 				867E586A1ACC5D3300D29BDB /* NewsFilmDetailCell.h */,
 				867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */,
 				867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */,
+				867E58731ACD7EBA00D29BDB /* NewsCommentToolBarCell.h */,
+				867E58741ACD7EBA00D29BDB /* NewsCommentToolBarCell.m */,
+				867E58761ACD80FD00D29BDB /* NewsCommentToolBarCell.xib */,
+				867E587A1ACD86DF00D29BDB /* NewsCommentCell.h */,
+				867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */,
+				867E58781ACD86CE00D29BDB /* NewsCommentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1907,6 +1921,8 @@
 		867E58671ACC5CA800D29BDB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				867E58701ACD7CBE00D29BDB /* NewsFilmDetailVC.h */,
+				867E58711ACD7CBE00D29BDB /* NewsFilmDetailVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2047,6 +2063,7 @@
 				2F963D081AA9480700E7D754 /* 2@3x.png in Resources */,
 				2F685AFC1AB67CF200A5881A /* UMSnsAccountViewController.xib in Resources */,
 				2F46E0A71AAE9E190010C70A /* MJRefresh.bundle in Resources */,
+				867E58791ACD86CE00D29BDB /* NewsCommentCell.xib in Resources */,
 				2F963D1D1AA94ABB00E7D754 /* bg_words@2x.png in Resources */,
 				2F963CFC1AA946B400E7D754 /* icon_Sunny@2x.png in Resources */,
 				869842751AB49FC8005EB63C /* arrow.png in Resources */,
@@ -2064,6 +2081,7 @@
 				2F963D281AA94ABB00E7D754 /* icon_photo_black@2x.png in Resources */,
 				2F963CF21AA946B400E7D754 /* Comment_icon@2x.png in Resources */,
 				2FCE08AF1AAA90DA007795C4 /* setPassWorld@2x.png in Resources */,
+				867E58771ACD80FD00D29BDB /* NewsCommentToolBarCell.xib in Resources */,
 				867E57F91ABB1BF700D29BDB /* MainModule.storyboard in Resources */,
 				2FCE08B11AAA90DA007795C4 /* passwordLabel@2x.png in Resources */,
 				2FEC0A6A1AABCF5100CFE389 /* SendCommentView.xib in Resources */,
@@ -2210,9 +2228,9 @@
 				2F39B1DF1AA43B2C00575A76 /* MKAnnotationView+WebCache.m in Sources */,
 				2F39B1E01AA43B2C00575A76 /* NSData+ImageContentType.m in Sources */,
 				2F559ECE1AB482F70060AC56 /* SearchResaultTableViewController.m in Sources */,
+				867E58751ACD7EBA00D29BDB /* NewsCommentToolBarCell.m in Sources */,
 				867E58091ACAE60E00D29BDB /* LvModelWindow.m in Sources */,
 				2FCE0A801AAAFA5C007795C4 /* UIAlertView+lv.m in Sources */,
-				867E58641ACC550E00D29BDB /* NewsFilmDetailVC.m in Sources */,
 				2F39B1C81AA43B2C00575A76 /* MBProgressHUD.m in Sources */,
 				2FCE0A5D1AAAF539007795C4 /* LvHTTPURLRequest.m in Sources */,
 				867E58611ACC4DFF00D29BDB /* BigEventDetailTableViewController.m in Sources */,
@@ -2272,6 +2290,7 @@
 				867E583E1ACC27B900D29BDB /* DurationFormat.m in Sources */,
 				5983D3851AAD7A41005B8FAD /* NABaseModel.m in Sources */,
 				2F3398231AA5631B001DA4C5 /* UIImage+L.m in Sources */,
+				867E58721ACD7CBE00D29BDB /* NewsFilmDetailVC.m in Sources */,
 				2F559EC51AB466870060AC56 /* NATagResp.m in Sources */,
 				2F46E0AD1AAE9E190010C70A /* UIScrollView+MJRefresh.m in Sources */,
 				869842771AB49FC8005EB63C /* LvLoadingView.m in Sources */,
@@ -2305,6 +2324,7 @@
 				2FCE0A621AAAF539007795C4 /* LvBaseApiRequestObject.m in Sources */,
 				2FCE0A5C1AAAF539007795C4 /* UIAlertView+lv.m in Sources */,
 				2F39B1BD1AA43B2C00575A76 /* AFHTTPRequestOperation.m in Sources */,
+				867E587C1ACD86DF00D29BDB /* NewsCommentCell.m in Sources */,
 				2FCE0A601AAAF539007795C4 /* Reachability.m in Sources */,
 				2FCE08BE1AAA9263007795C4 /* DDBaseTableViewController.m in Sources */,
 				867E586F1ACC6FCB00D29BDB /* UIColor+lv.m in Sources */,
