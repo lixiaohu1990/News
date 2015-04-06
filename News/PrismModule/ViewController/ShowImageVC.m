@@ -10,6 +10,8 @@
 #import "PrismCommImageCell.h"
 #import "UIImageView+WebCache.h"
 #import "NAApiConstants.h"
+#import "LvModelWindow.h"
+#import "LvPhotoViewerView.h"
 
 static const NSUInteger PrismSizePerRow = 3;
 static const CGFloat PrismCollectionViewSectionHorizonPadding = 22.f;
@@ -18,7 +20,10 @@ static const CGFloat PrismCollectionViewCellHorizonSpacing = 10.f;
 
 static NSString * const ShowedImageCellReuseIdentifier = @"ShowedImageCell";
 
-@interface ShowImageVC ()
+@interface ShowImageVC () <LvModelWindowDelegate, LvPhotoViewerViewDelegate>
+
+@property (nonatomic) LvModelWindow *photoViewerModelWindow;
+@property (nonatomic) LvPhotoViewerView *photoViewer;
 
 @end
 
@@ -49,6 +54,23 @@ static NSString * const ShowedImageCellReuseIdentifier = @"ShowedImageCell";
     self.collectionView.alwaysBounceVertical = YES;
     [self.collectionView registerClass:[PrismCommImageCell class]
             forCellWithReuseIdentifier:ShowedImageCellReuseIdentifier];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recvPhotoItemScrollViewTapNote:)
+                                                 name:LvPhotoItemScrollViewTappedNotification
+                                               object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:LvPhotoItemScrollViewTappedNotification
+                                                  object:nil];
 }
 
 - (void)reloadData
@@ -118,6 +140,80 @@ static NSString * const ShowedImageCellReuseIdentifier = @"ShowedImageCell";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return PrismCollectionViewCellHorizonSpacing;
+}
+
+#pragma mark - Collection view delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [self.photoViewerModelWindow showWithAnimated:YES];
+    [self.photoViewer scrollToPage:indexPath.row animated:NO];
+}
+
+- (void)recvPhotoItemScrollViewTapNote:(NSNotification *)note
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)note.object;
+    
+    if (gesture.numberOfTapsRequired == 1) {
+        [_photoViewerModelWindow dismissWithAnimated:YES];
+    }
+}
+
+- (LvModelWindow *)photoViewerModelWindow
+{
+    if (!_photoViewerModelWindow) {
+        LvModelWindow *win = [[LvModelWindow alloc]initWithPreferStatusBarHidden:YES
+                                                    supportedOrientationPortrait:YES
+                                          supportedOrientationPortraitUpsideDown:NO
+                                               supportedOrientationLandscapeLeft:NO
+                                              supportedOrientationLandscapeRight:NO];
+        win.modelWindowDelegate = self;
+        _photoViewerModelWindow = win;
+        
+        if (!_photoViewer) {
+            LvPhotoViewerView *photoViewer = [[LvPhotoViewerView alloc]initWithFrame:win.windowRootView.bounds];
+            photoViewer.delegate = self;
+            photoViewer.backgroundColor = [UIColor blackColor];
+            photoViewer.frame = win.windowRootView.bounds;
+            photoViewer.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            [win.windowRootView addSubview:photoViewer];
+            _photoViewer = photoViewer;
+        }
+    }
+    return _photoViewerModelWindow;
+}
+
+#pragma mark - LvModelWindowDelegate
+
+- (void)modelWindowDidShow:(LvModelWindow *)modelWindow
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
+- (void)modelWindowDidDismiss:(LvModelWindow *)modelWindow
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+#pragma mark - LvPhotoViewerViewDelegate
+
+- (NSUInteger)numbersOfPhotoItem:(LvPhotoViewerView *)viewer
+{
+    return self.imageUrlList.count;
+}
+
+- (void)        photoViewer:(LvPhotoViewerView *)viewer
+   willShowPhotoOnImageView:(UIImageView *)imageView
+                    atIndex:(NSUInteger)index
+{
+    if (index < self.imageUrlList.count) {
+        NSString *imageUrl = self.imageUrlList[index];
+        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                                NAServerBaseUrl,
+                                                imageUrl]];
+        [imageView setImageWithURL:imageURL];
+    }
 }
 
 @end

@@ -13,6 +13,9 @@
 
 #import "PrismCommImageCell.h"
 #import "NAApiConstants.h"
+#import "PrismFooter.h"
+#import "LvModelWindow.h"
+#import "LvPhotoViewerView.h"
 
 NSString *const PrismCellViewMoreCellSelectedNotification = @"PrismCellViewMoreCellSelectedNotification";
 NSString *const PrismCellViewCacheButnClickNotification = @"PrismCellViewCacheButnClickNotification";
@@ -30,18 +33,18 @@ static NSString *const PrismCommonImageCellIdentifier = @"PrismImageCell";
 // more图片的复用标示
 static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
 
-@interface PrismCellView () <UICollectionViewDataSource, UICollectionViewDelegate>
+static NSString *const PrismFooteridentifier = @"PrismFooter";
+
+@interface PrismCellView () <UICollectionViewDataSource, UICollectionViewDelegate, LvModelWindowDelegate, LvPhotoViewerViewDelegate>
 
 // 用于展示图片的collection视图
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-// 底部容器视图
-@property (nonatomic, weak) IBOutlet UIView *bottomContainnerView;
-@property (nonatomic, weak) IBOutlet UILabel *prismTitleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *prismContentLabel;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *prismContentLabelHeightConst;
 
 @property (nonatomic, weak) IBOutlet UIButton *cacheButn;
 @property (nonatomic, weak) IBOutlet UIButton *shareButn;
+
+@property (nonatomic) LvModelWindow *photoViewerModelWindow;
+@property (nonatomic) LvPhotoViewerView *photoViewer;
 
 @end
 
@@ -67,6 +70,7 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
         forCellWithReuseIdentifier:PrismCommonImageCellIdentifier];
     [_collectionView registerClass:[PrismCommImageCell class]
         forCellWithReuseIdentifier:PrismMoreImageCellIdentifier];
+    [_collectionView registerClass:[PrismFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:PrismFooteridentifier];
     
     [_cacheButn addTarget:self
                    action:@selector(cacheButnClick:)
@@ -74,6 +78,18 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
     [_shareButn addTarget:self
                    action:@selector(shareButnClick:)
          forControlEvents:UIControlEventTouchUpInside];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recvPhotoItemScrollViewTapNote:)
+                                                 name:LvPhotoItemScrollViewTappedNotification
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:LvPhotoItemScrollViewTappedNotification
+                                                  object:nil];
 }
 
 - (void)setPrismInfo:(NANewsResp *)prismInfo
@@ -83,20 +99,6 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
     // 改变页面
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadData];
-        
-        self.prismTitleLabel.text = prismInfo.name;
-        self.prismContentLabel.text = prismInfo.nsDescription;
-        
-        // 改变内容高度
-        CGSize despSize = [prismInfo.nsDescription sizeWithConstraintWidth:CGRectGetWidth(self.prismContentLabel.frame) font:self.prismContentLabel.font];
-        
-        CGFloat finalHeight = despSize.height;
-        CGFloat lineHeight = self.prismContentLabel.font.lineHeight;
-        NSInteger row = ceilf(despSize.height/lineHeight);
-        if (row > 2) {
-            finalHeight = 2*lineHeight;
-        }
-        self.prismContentLabelHeightConst.constant = finalHeight;
     });
 }
 
@@ -160,6 +162,7 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
                                              imageUrl]];
         }
         commCell.backgroundColor = [UIColor blackColor];
+        commCell.pActyIndicatorView.color = [UIColor whiteColor];
         [commCell.pActyIndicatorView startAnimating];
         [commCell.pImageView setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -192,7 +195,7 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
             PrismCommImageCell *coverHeader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:PrismCoverImageHeaderIdentifier forIndexPath:indexPath];
             
             coverHeader.backgroundColor = [UIColor blackColor];
-            
+            coverHeader.pActyIndicatorView.color = [UIColor whiteColor];
             [coverHeader.pActyIndicatorView startAnimating];
             [coverHeader.pImageView setImageWithURL:coverURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -203,6 +206,11 @@ static NSString *const PrismMoreImageCellIdentifier = @"PrismMoreImageCell";
         } else {
             reusableView = [[UICollectionReusableView alloc]initWithFrame:CGRectZero];
         }
+    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        PrismFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:PrismFooteridentifier forIndexPath:indexPath];
+        footer.title = self.prismInfo.name;
+        footer.content = self.prismInfo.nsDescription;
+        reusableView = footer;
     }
     return reusableView;
 }
@@ -231,6 +239,16 @@ referenceSizeForHeaderInSection:(NSInteger)section
     return CGSizeMake(headerWidth, headerHeight);
 }
 
+- (CGSize)          collectionView:(UICollectionView *)collectionView
+                            layout:(UICollectionViewLayout*)collectionViewLayout
+   referenceSizeForFooterInSection:(NSInteger)section
+{
+    CGFloat width = CGRectGetWidth(collectionView.frame);
+    CGFloat height = [PrismFooter footerHeightForContent:self.prismInfo.nsDescription
+                                         constraintWidth:width];
+    return CGSizeMake(width, height);
+}
+
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                         layout:(UICollectionViewLayout *)collectionViewLayout
@@ -257,8 +275,77 @@ referenceSizeForHeaderInSection:(NSInteger)section
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     if (cell.reuseIdentifier == PrismMoreImageCellIdentifier) {
-        // 添加按钮
+        // 更多按钮
         [[NSNotificationCenter defaultCenter]postNotificationName:PrismCellViewMoreCellSelectedNotification object:self];
+    } else {
+        [self.photoViewerModelWindow showWithAnimated:YES];
+        [self.photoViewer scrollToPage:indexPath.row animated:NO];
+    }
+}
+
+- (void)recvPhotoItemScrollViewTapNote:(NSNotification *)note
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)note.object;
+    
+    if (gesture.numberOfTapsRequired == 1) {
+        [_photoViewerModelWindow dismissWithAnimated:YES];
+    }
+}
+
+- (LvModelWindow *)photoViewerModelWindow
+{
+    if (!_photoViewerModelWindow) {
+        LvModelWindow *win = [[LvModelWindow alloc]initWithPreferStatusBarHidden:YES
+                                                    supportedOrientationPortrait:YES
+                                          supportedOrientationPortraitUpsideDown:NO
+                                               supportedOrientationLandscapeLeft:NO
+                                              supportedOrientationLandscapeRight:NO];
+        win.modelWindowDelegate = self;
+        _photoViewerModelWindow = win;
+        
+        if (!_photoViewer) {
+            LvPhotoViewerView *photoViewer = [[LvPhotoViewerView alloc]initWithFrame:win.windowRootView.bounds];
+            photoViewer.delegate = self;
+            photoViewer.backgroundColor = [UIColor blackColor];
+            photoViewer.frame = win.windowRootView.bounds;
+            photoViewer.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            [win.windowRootView addSubview:photoViewer];
+            _photoViewer = photoViewer;
+        }
+    }
+    return _photoViewerModelWindow;
+}
+
+#pragma mark - LvModelWindowDelegate
+
+- (void)modelWindowDidShow:(LvModelWindow *)modelWindow
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
+- (void)modelWindowDidDismiss:(LvModelWindow *)modelWindow
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+#pragma mark - LvPhotoViewerViewDelegate
+
+- (NSUInteger)numbersOfPhotoItem:(LvPhotoViewerView *)viewer
+{
+    return self.prismInfo.imageList.count;
+}
+
+- (void)        photoViewer:(LvPhotoViewerView *)viewer
+   willShowPhotoOnImageView:(UIImageView *)imageView
+                    atIndex:(NSUInteger)index
+{
+    NSArray *imageUrlList = self.prismInfo.imageList;
+    if (index < imageUrlList.count) {
+        NSString *imageUrl = imageUrlList[index];
+        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                                NAServerBaseUrl,
+                                                imageUrl]];
+        [imageView setImageWithURL:imageURL];
     }
 }
 
