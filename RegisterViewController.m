@@ -15,6 +15,8 @@
 #import "BigEventViewController.h"
 #import "BaseNavigationViewController.h"
 #import "MainViewController.h"
+#import "MBProgressHUD+MJ.h"
+#import "MainVC.h"
 #define SECONDS 300
 @interface RegisterViewController ()
 <UITextFieldDelegate, CityVcDelegate, LvHTTPURLRequestDelegate>
@@ -229,13 +231,14 @@
     NSString *mobile = iUsernameField.text;
     NSString *pwd = iPasswordField.text;
     NSString *validateCode =iCodeField.text;
+    NSString *city =iCityField.text;
     
     // 获取到验证码后显示到验证码输入框中
     self.registerReq = [[NAApiRegister alloc]initWithValidateCode:validateCode
                                                            mobile:mobile
                                                          username:mobile
                                                          password:pwd
-                                                             city:@"北京"];
+                                                             city:city];
     self.registerReq.APIRequestResultHandlerDelegate = self;
     [self.registerReq asyncRequest];
 
@@ -360,7 +363,7 @@
 
 - (void)failCauseServerError:(id)request
 {
-    DLOG(@"failCauseServerError");
+    DLOG(@"request：%@", request);
 }
 
 - (void)failCauseBissnessError:(id)apiRequest
@@ -390,25 +393,36 @@
     
     if ([request isEqual:_registerReq]) {
         
+        if ([requestResult[@"status"] isEqualToString:@"111"]) {
+            [MBProgressHUD showError:requestResult[@"memo"]];
+            
+            [MBProgressHUD hideHUD];
+            return;
+        }
+        
         [UIAlertView commonAlert:@"注册成功"];
         [DDUser sharedUser].mobile = iUsernameField.text;
         [[DDUser sharedUser] saveToDisk];
         
         NSLog(@"%@", requestResult);
+        
+       
 //        [self dismissModalViewControllerAnimated:YES];
         
-        NewsFilmViewController *newsVc = [[NewsFilmViewController alloc] init];
-        //    newsVc.title = @"新闻片";
+//        NewsFilmViewController *newsVc = [[NewsFilmViewController alloc] init];
+//        //    newsVc.title = @"新闻片";
+//        
+//        BigEventViewController *bigVc = [[BigEventViewController alloc] init];
+//        //    bigVc.title = @"大事件";
+//        
+//        PrismViewController *prismVc = [[PrismViewController alloc] init];
+//        //    prismVc.title = @"多棱镜";
+//        
+//        MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
+//        BaseNavigationViewController *navi = [[BaseNavigationViewController alloc] initWithRootViewController:main];
         
-        BigEventViewController *bigVc = [[BigEventViewController alloc] init];
-        //    bigVc.title = @"大事件";
-        
-        PrismViewController *prismVc = [[PrismViewController alloc] init];
-        //    prismVc.title = @"多棱镜";
-        
-        MainViewController *main = [[MainViewController alloc] initWithViewControllers:@[newsVc, bigVc, prismVc]];
-        BaseNavigationViewController *navi = [[BaseNavigationViewController alloc] initWithRootViewController:main];
-        self.view.window.rootViewController = navi;
+        UINavigationController *mainNav = [[UINavigationController alloc]initWithRootViewController:[[MainVC alloc]init]];
+        self.view.window.rootViewController = mainNav;
 
         return;
     }

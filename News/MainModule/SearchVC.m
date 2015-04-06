@@ -11,7 +11,7 @@
 #import "NAAPIGetTagList.h"
 #import "NAAPIGetTag.h"
 #import "SVProgressHUD.h"
-
+#import "SearchResaultTableViewController.h"
 @interface TagCell : UICollectionViewCell
 @property (nonatomic, readonly) UILabel *tagLabel;
 
@@ -116,6 +116,8 @@ static NSString *const TagCellIdentifier = @"TagCell";
     DLOG(@"searchTag: %@", searchTag);
     
     // TODO: goto search view controller
+    SearchResaultTableViewController *control = [[SearchResaultTableViewController alloc] initWithSearchStr:searchTag];
+    [self.navigationController pushViewController:control animated:YES];
     
 }
 
@@ -232,6 +234,9 @@ static NSString *const TagCellIdentifier = @"TagCell";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     NSString *tag = _tagArray[indexPath.row];
     DLOG(@"select tag: %@", tag);
+    
+    SearchResaultTableViewController *control = [[SearchResaultTableViewController alloc] initWithSearchStr:tag];
+    [self.navigationController pushViewController:control animated:YES];
 }
 
 @end

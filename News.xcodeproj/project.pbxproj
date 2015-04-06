@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F07EAAD1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F07EAAC1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg */; };
+		2F2EBF0C1ACC485B00129D3C /* SearchResaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2EBF0B1ACC485B00129D3C /* SearchResaultCell.xib */; };
 		2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2FE9BA1AA5E39800AC6E44 /* MoreView.m */; };
 		2F33981A1AA54522001DA4C5 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3398191AA54522001DA4C5 /* BaseNavigationViewController.m */; };
 		2F3398231AA5631B001DA4C5 /* UIImage+L.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3398221AA5631B001DA4C5 /* UIImage+L.m */; };
@@ -60,6 +61,7 @@
 		2F39B1EC1AA43B2C00575A76 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1B91AA43B2C00575A76 /* UIImageView+WebCache.m */; };
 		2F39B1ED1AA43B2C00575A76 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1BC1AA43B2C00575A76 /* HttpTool.m */; };
 		2F39B1F61AA440A100575A76 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39B1F51AA440A100575A76 /* BaseTableViewController.m */; };
+		2F4671101ACCCC3400B5D267 /* SearchResaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46710F1ACCCC3400B5D267 /* SearchResaultCell.m */; };
 		2F46E07C1AAE87FC0010C70A /* BigEventTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E07B1AAE87FC0010C70A /* BigEventTableViewCell1.m */; };
 		2F46E0A71AAE9E190010C70A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F46E0971AAE9E190010C70A /* MJRefresh.bundle */; };
 		2F46E0A81AAE9E190010C70A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E09A1AAE9E190010C70A /* MJRefreshBaseView.m */; };
@@ -166,6 +168,11 @@
 		2F963D351AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F963D331AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib */; };
 		2FBA68171AC9912D0043A18E /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FBA68161AC9912D0043A18E /* DroidSansFallback.ttf */; };
 		2FBA681B1AC999450043A18E /* VideoSubtitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA681A1AC999450043A18E /* VideoSubtitles.m */; };
+		2FCAE63B1AD2A74100B6507B /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAE63A1AD2A74100B6507B /* ImageScrollView.m */; };
+		2FCAE63E1AD2A75B00B6507B /* NewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAE63D1AD2A75B00B6507B /* NewFeatureViewController.m */; };
+		2FCAE6421AD2AA8100B6507B /* main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE63F1AD2AA8100B6507B /* main.jpg */; };
+		2FCAE6431AD2AA8100B6507B /* main2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE6401AD2AA8100B6507B /* main2.jpg */; };
+		2FCAE6441AD2AA8100B6507B /* main3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE6411AD2AA8100B6507B /* main3.jpg */; };
 		2FCE08981AAA8BD9007795C4 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE08951AAA8BD9007795C4 /* city.plist */; };
 		2FCE08991AAA8BD9007795C4 /* DDCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE08971AAA8BD9007795C4 /* DDCityViewController.m */; };
 		2FCE089E1AAA8BFF007795C4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE089B1AAA8BFF007795C4 /* LoginViewController.m */; };
@@ -284,6 +291,7 @@
 
 /* Begin PBXFileReference section */
 		2F07EAAC1AAA116B004B2A91 /* ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg; path = ../../ae51f3deb48f8c5471a15c2e38292df5e0fe7f45.jpg; sourceTree = "<group>"; };
+		2F2EBF0B1ACC485B00129D3C /* SearchResaultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResaultCell.xib; sourceTree = "<group>"; };
 		2F2FE9B91AA5E39800AC6E44 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		2F2FE9BA1AA5E39800AC6E44 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
 		2F3398181AA54522001DA4C5 /* BaseNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationViewController.h; sourceTree = "<group>"; };
@@ -391,6 +399,8 @@
 		2F39B1BC1AA43B2C00575A76 /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		2F39B1F41AA440A100575A76 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		2F39B1F51AA440A100575A76 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		2F46710E1ACCCC3400B5D267 /* SearchResaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResaultCell.h; sourceTree = "<group>"; };
+		2F46710F1ACCCC3400B5D267 /* SearchResaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResaultCell.m; sourceTree = "<group>"; };
 		2F46E07A1AAE87FC0010C70A /* BigEventTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventTableViewCell1.h; sourceTree = "<group>"; };
 		2F46E07B1AAE87FC0010C70A /* BigEventTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventTableViewCell1.m; sourceTree = "<group>"; };
 		2F46E0971AAE9E190010C70A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -538,6 +548,13 @@
 		2FBA68161AC9912D0043A18E /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSansFallback.ttf; path = News/resource/DroidSansFallback.ttf; sourceTree = "<group>"; };
 		2FBA68191AC999450043A18E /* VideoSubtitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoSubtitles.h; path = ../Lib/VideoSubtitles.h; sourceTree = "<group>"; };
 		2FBA681A1AC999450043A18E /* VideoSubtitles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoSubtitles.m; path = ../Lib/VideoSubtitles.m; sourceTree = "<group>"; };
+		2FCAE6391AD2A74100B6507B /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
+		2FCAE63A1AD2A74100B6507B /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
+		2FCAE63C1AD2A75B00B6507B /* NewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeatureViewController.h; sourceTree = "<group>"; };
+		2FCAE63D1AD2A75B00B6507B /* NewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeatureViewController.m; sourceTree = "<group>"; };
+		2FCAE63F1AD2AA8100B6507B /* main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main.jpg; sourceTree = "<group>"; };
+		2FCAE6401AD2AA8100B6507B /* main2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main2.jpg; sourceTree = "<group>"; };
+		2FCAE6411AD2AA8100B6507B /* main3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main3.jpg; sourceTree = "<group>"; };
 		2FCE08951AAA8BD9007795C4 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		2FCE08961AAA8BD9007795C4 /* DDCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCityViewController.h; sourceTree = "<group>"; };
 		2FCE08971AAA8BD9007795C4 /* DDCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCityViewController.m; sourceTree = "<group>"; };
@@ -1288,6 +1305,9 @@
 		2F963D2A1AA94AC300E7D754 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				2FCAE63F1AD2AA8100B6507B /* main.jpg */,
+				2FCAE6401AD2AA8100B6507B /* main2.jpg */,
+				2FCAE6411AD2AA8100B6507B /* main3.jpg */,
 				2FCE08A01AAA90C7007795C4 /* login */,
 				2F963D0B1AA94ABB00E7D754 /* SPTD_BigEvent2x */,
 				2F963D101AA94ABB00E7D754 /* SPTD_main2x */,
@@ -1397,6 +1417,9 @@
 				2FCE08C81AAABEAC007795C4 /* UISearchView.h */,
 				2FCE08C91AAABEAC007795C4 /* UISearchView.m */,
 				2FCE08CB1AAABECA007795C4 /* UISearchView.xib */,
+				2F2EBF0B1ACC485B00129D3C /* SearchResaultCell.xib */,
+				2F46710E1ACCCC3400B5D267 /* SearchResaultCell.h */,
+				2F46710F1ACCCC3400B5D267 /* SearchResaultCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1676,6 +1699,8 @@
 				867E57F31ABB1B1E00D29BDB /* MoreVC.m */,
 				867E57F51ABB1B5900D29BDB /* SearchVC.h */,
 				867E57F61ABB1B5900D29BDB /* SearchVC.m */,
+				2FCAE63C1AD2A75B00B6507B /* NewFeatureViewController.h */,
+				2FCAE63D1AD2A75B00B6507B /* NewFeatureViewController.m */,
 				867E57F81ABB1BF700D29BDB /* MainModule.storyboard */,
 				867E57FA1AC19BF600D29BDB /* MainModule.xcassets */,
 			);
@@ -1685,6 +1710,8 @@
 		867E57EC1ABB080200D29BDB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2FCAE6391AD2A74100B6507B /* ImageScrollView.h */,
+				2FCAE63A1AD2A74100B6507B /* ImageScrollView.m */,
 				867E57ED1ABB083300D29BDB /* MainTabsView.xib */,
 				867E57EF1ABB0B7800D29BDB /* MainTabsView.h */,
 				867E57F01ABB0B7800D29BDB /* MainTabsView.m */,
@@ -1850,6 +1877,7 @@
 				2F963CF81AA946B400E7D754 /* icon_Other@2x.png in Resources */,
 				869842811AB4A078005EB63C /* UIView+LoadData.strings in Resources */,
 				2FCE08C31AAA932C007795C4 /* SVProgressHUD.bundle in Resources */,
+				2FCAE6431AD2AA8100B6507B /* main2.jpg in Resources */,
 				59780CFA1AB28FD100FE3A43 /* Prism.xcassets in Resources */,
 				2F963D201AA94ABB00E7D754 /* bg_title2@2x.png in Resources */,
 				2F963D1F1AA94ABB00E7D754 /* icon_Comment@2x.png in Resources */,
@@ -1885,6 +1913,7 @@
 				2F963CFE1AA946B400E7D754 /* Multi Ling mirror@2x.png in Resources */,
 				2FBA68171AC9912D0043A18E /* DroidSansFallback.ttf in Resources */,
 				2F685AFD1AB67CF200A5881A /* UMSShareListController.xib in Resources */,
+				2F2EBF0C1ACC485B00129D3C /* SearchResaultCell.xib in Resources */,
 				2F963CD01AA944C200E7D754 /* default@3x .png in Resources */,
 				2F963D231AA94ABB00E7D754 /* bg@2x.png in Resources */,
 				2F963CD11AA944C200E7D754 /* icon_event@3x.png in Resources */,
@@ -1903,6 +1932,7 @@
 				2F47D3D81AAFD36700A6E34B /* AboutUSViewController.xib in Resources */,
 				2FE791A21AAC73680001804D /* 24@2x.png in Resources */,
 				2F39B0721AA4298800575A76 /* Images.xcassets in Resources */,
+				2FCAE6441AD2AA8100B6507B /* main3.jpg in Resources */,
 				2F963CDB1AA944C200E7D754 /* Multi Ling mirror@3x.png in Resources */,
 				2FCE08AE1AAA90DA007795C4 /* code@2x.png in Resources */,
 				2F963D261AA94ABB00E7D754 /* icon_Download@2x.png in Resources */,
@@ -1918,6 +1948,7 @@
 				867E57EE1ABB083300D29BDB /* MainTabsView.xib in Resources */,
 				2F490BD61AB27BDB0057F039 /* video_icon@2x.png in Resources */,
 				2F963D351AA95A4000E7D754 /* NewsFilmDetailTableViewCell.xib in Resources */,
+				2FCAE6421AD2AA8100B6507B /* main.jpg in Resources */,
 				2F963CF71AA946B400E7D754 /* icon_News film@2x.png in Resources */,
 				2F963CCB1AA944C200E7D754 /* Anthology_bg@3x.png in Resources */,
 				2F963CD81AA944C200E7D754 /* icon_share@3x.png in Resources */,
@@ -1988,12 +2019,14 @@
 				2F39B1BF1AA43B2C00575A76 /* AFHTTPSessionManager.m in Sources */,
 				2F39B1D11AA43B2C00575A76 /* NSObject+MJMember.m in Sources */,
 				2FEC0A591AABC9F800CFE389 /* DetailAnthologyTableViewCell.m in Sources */,
+				2FCAE63E1AD2A75B00B6507B /* NewFeatureViewController.m in Sources */,
 				5983D3781AAD7A00005B8FAD /* NACommentResp.m in Sources */,
 				867E57F71ABB1B5900D29BDB /* SearchVC.m in Sources */,
 				2FBA681B1AC999450043A18E /* VideoSubtitles.m in Sources */,
 				2F47D3D21AAFD34E00A6E34B /* FeedBackViewController.m in Sources */,
 				2FCE0A7D1AAAF559007795C4 /* NAUrlEncodeParamApi.m in Sources */,
 				2F47D3C31AAFCB7B00A6E34B /* SettingTableViewController.m in Sources */,
+				2FCAE63B1AD2A74100B6507B /* ImageScrollView.m in Sources */,
 				867E57F41ABB1B1E00D29BDB /* MoreVC.m in Sources */,
 				2F46E0AB1AAE9E190010C70A /* MJRefreshHeaderView.m in Sources */,
 				2FCE08B81AAA91C5007795C4 /* DDBarButton.m in Sources */,
@@ -2073,6 +2106,7 @@
 				2F559EC81AB472930060AC56 /* NAAPIGetTagList.m in Sources */,
 				867E57F11ABB0B7800D29BDB /* MainTabsView.m in Sources */,
 				2FCE0A611AAAF539007795C4 /* ReachableSingleton.m in Sources */,
+				2F4671101ACCCC3400B5D267 /* SearchResaultCell.m in Sources */,
 				869842831AB4A078005EB63C /* UIView+LoadData.m in Sources */,
 				2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */,
 				2F559ECB1AB474CE0060AC56 /* SearchTagTableViewController.m in Sources */,

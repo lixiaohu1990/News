@@ -14,7 +14,7 @@
 #import "MainViewController.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
-
+#import "NewFeatureViewController.h"
 #import "MainVC.h"
 
 @interface AppDelegate ()
@@ -22,7 +22,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -40,10 +39,24 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    UINavigationController *mainNav = [[UINavigationController alloc]initWithRootViewController:[[MainVC alloc]init]];
+    NSString *key = @"CFBundleVersion";
     
+    // 取出沙盒中存储的上次使用软件的版本号
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastVersion = [defaults stringForKey:key];
     
-    self.window.rootViewController = mainNav;
+    // 获得当前软件的版本号
+    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
+    if ([currentVersion isEqualToString:lastVersion]) {
+        // 显示状态栏
+        [UIApplication sharedApplication].statusBarHidden = NO;
+        self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[[MainVC alloc]init]];
+    } else { // 新版本
+        self.window.rootViewController = [[ NewFeatureViewController alloc] init];
+        // 存储新版本
+        [defaults setObject:currentVersion forKey:key];
+        [defaults synchronize];
+    }
     
     [DDUser sharedUser].mobile = @"";
     [[DDUser sharedUser] saveToDisk];

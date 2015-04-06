@@ -9,13 +9,13 @@
 #import "MainVC.h"
 #import "MainTitleView.h"
 #import "UIBarButtonItem+lv.h"
-
+#import "LoginViewController.h"
 #import "NewsFilmViewController.h"
 #import "BigEventViewController.h"
 #import "PrismViewController.h"
 #import "MoreVC.h"
 #import "SearchVC.h"
-
+#import "SettingTableViewController.h"
 #import "MainTabsView.h"
 
 
@@ -371,11 +371,16 @@
 - (void)menuLoginButnClick:(MoreVC *)moreVC
 {
     // TODO: 到登录页面
+    LoginViewController *control = [[LoginViewController alloc] init];
+    [self presentViewController:control animated:YES completion:nil];
 }
 
 - (void)menuSettingButnClick:(MoreVC *)moreVC
 {
     // TODO: 到设置页面
+    SettingTableViewController *control =  [[SettingTableViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:control];
+    [self.navigationController pushViewController:control animated:YES];
 }
 
 - (void)menuFavorButnClick:(MoreVC *)moreVC
