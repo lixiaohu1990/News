@@ -269,7 +269,6 @@
 		867E58451ACC27B900D29BDB /* VPNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E582C1ACC27B900D29BDB /* VPNavigationBar.xib */; };
 		867E58461ACC27B900D29BDB /* VPPlayControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E582E1ACC27B900D29BDB /* VPPlayControlView.m */; };
 		867E58471ACC27B900D29BDB /* VPPlayControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E582F1ACC27B900D29BDB /* VPPlayControlView.xib */; };
-		867E584B1ACC27B900D29BDB /* VideoPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58371ACC27B900D29BDB /* VideoPlayVC.m */; };
 		867E584D1ACC28D900D29BDB /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E584C1ACC28D900D29BDB /* libiconv.dylib */; };
 		867E584F1ACC28EB00D29BDB /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E584E1ACC28EB00D29BDB /* libstdc++.dylib */; };
 		867E58511ACC28F300D29BDB /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58501ACC28F300D29BDB /* libbz2.dylib */; };
@@ -288,6 +287,7 @@
 		867E58791ACD86CE00D29BDB /* NewsCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58781ACD86CE00D29BDB /* NewsCommentCell.xib */; };
 		867E587C1ACD86DF00D29BDB /* NewsCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */; };
 		867E58831AD2F3E300D29BDB /* VitamioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */; };
+		867E58861AD41D9200D29BDB /* VPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58851AD41D9200D29BDB /* VPVC.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -744,8 +744,6 @@
 		867E582D1ACC27B900D29BDB /* VPPlayControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPPlayControlView.h; sourceTree = "<group>"; };
 		867E582E1ACC27B900D29BDB /* VPPlayControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPPlayControlView.m; sourceTree = "<group>"; };
 		867E582F1ACC27B900D29BDB /* VPPlayControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPPlayControlView.xib; sourceTree = "<group>"; };
-		867E58361ACC27B900D29BDB /* VideoPlayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayVC.h; sourceTree = "<group>"; };
-		867E58371ACC27B900D29BDB /* VideoPlayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayVC.m; sourceTree = "<group>"; };
 		867E584C1ACC28D900D29BDB /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		867E584E1ACC28EB00D29BDB /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		867E58501ACC28F300D29BDB /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
@@ -773,6 +771,8 @@
 		867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentCell.m; sourceTree = "<group>"; };
 		867E58811AD2F3E300D29BDB /* VitamioPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VitamioPlayerView.h; sourceTree = "<group>"; };
 		867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VitamioPlayerView.m; sourceTree = "<group>"; };
+		867E58841AD41D9200D29BDB /* VPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPVC.h; sourceTree = "<group>"; };
+		867E58851AD41D9200D29BDB /* VPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPVC.m; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1879,10 +1879,10 @@
 		867E58351ACC27B900D29BDB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				867E58361ACC27B900D29BDB /* VideoPlayVC.h */,
-				867E58371ACC27B900D29BDB /* VideoPlayVC.m */,
 				867E58811AD2F3E300D29BDB /* VitamioPlayerView.h */,
 				867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */,
+				867E58841AD41D9200D29BDB /* VPVC.h */,
+				867E58851AD41D9200D29BDB /* VPVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2213,7 +2213,6 @@
 				2F46E0AE1AAE9E190010C70A /* UIView+MJExtension.m in Sources */,
 				2F39B1CA1AA43B2C00575A76 /* MJIvar.m in Sources */,
 				867E585E1ACC2B6900D29BDB /* LvNormalSlider.m in Sources */,
-				867E584B1ACC27B900D29BDB /* VideoPlayVC.m in Sources */,
 				2F39B1C61AA43B2C00575A76 /* MBProgressHUD+MJ.m in Sources */,
 				2F3432DD1AA68CB20096949C /* NewsFilmTableViewCell.m in Sources */,
 				2FCE0A781AAAF559007795C4 /* NAApiLogin.m in Sources */,
@@ -2308,6 +2307,7 @@
 				2FCE0A791AAAF559007795C4 /* NAApiLogout.m in Sources */,
 				2FCE089F1AAA8BFF007795C4 /* RegisterViewController.m in Sources */,
 				867E57EB1ABB012B00D29BDB /* UIBarButtonItem+lv.m in Sources */,
+				867E58861AD41D9200D29BDB /* VPVC.m in Sources */,
 				869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */,
 				2FCE0A5F1AAAF539007795C4 /* LvJsonResultHTTPURLRequest.m in Sources */,
 				2F39B1C11AA43B2C00575A76 /* AFSecurityPolicy.m in Sources */,

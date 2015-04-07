@@ -1,26 +1,38 @@
 //
-//  VideoPlayVC.m
-//  LvDemos
+//  VPVC.m
+//  News
 //
-//  Created by guangbo on 15/3/27.
-//
+//  Created by 彭光波 on 15-4-7.
+//  Copyright (c) 2015年 lee. All rights reserved.
 //
 
-#import "VideoPlayVC.h"
-#import "Vitamio.h"
+#import "VPVC.h"
 #import "VPNavigationBar.h"
 #import "VPPlayControlView.h"
 #import "DurationFormat.h"
 #import "LvDirectionPanControl.h"
 #import "LvLogTool.h"
 #import "VPFastSeekIndicator.h"
+#import "VitamioPlayerView.h"
 
-NSString *const VPVCPlayPreviousVideoItemNotifiction = @"VPVCPlayPreviousVideoItemNotifiction";
+/**
+ *  VPVC播放上一个视频按钮click的通知
+ */
+NSString *const VPVCPreviousButtonClickNotifiction = @"VPVCPreviousButtonClickNotifiction";
 
-NSString *const VPVCPlayNextVideoItemNotification = @"VPVCPlayNextVideoItemNotification";
+/**
+ *  VPVC播放下一个视频按钮click的通知
+ */
+NSString *const VPVCNextButtonClickNotification = @"VPVCNextButtonClickNotification";
 
-NSString *const VPVCDismissNotification = @"VPVCDismissNotification";
+/**
+ *  VPVC页面后退按钮click的通知
+ */
+NSString *const VPVCNavgationBarBackButtonClickNotification = @"VPVCNavgationBarBackButtonClickNotification";
 
+/**
+ *  视频播放VC全屏切换按钮点击通知
+ */
 NSString *const VPVCFullScreenSwitchButtonClickNotification = @"VPVCFullScreenSwitchButtonClickNotification";
 
 // 每个像素快进货后退的秒数
@@ -29,16 +41,11 @@ static const CGFloat FastForwardSecondsPerPix = 0.5f;
 // 显示播放进度条的最小长度
 static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
-@interface VideoPlayVC () <VMediaPlayerDelegate>
+@interface VPVC ()
+
 {
     BOOL originalStatusBarHidden;
 }
-
-@property (nonatomic) VMediaPlayer *player;
-@property (nonatomic) NSTimeInterval currentVideoDuration;
-@property (nonatomic) UIView *playerCanvasView;
-@property (nonatomic) BOOL hasPreparedToPlay;
-@property (nonatomic) BOOL playAfterPrepared;
 
 @property (nonatomic) NSTimer *videoStatusPullTimer;
 
@@ -46,16 +53,12 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 @property (nonatomic) VPNavigationBar *vpNavBar;
 @property (nonatomic) VPPlayControlView *playControlV;
-// 临时画布设置值
-@property (nonatomic) NSString *tempCanvasSettingValue;
-// 临时按钮快进设置值
-@property (nonatomic) NSString *tempButnFFSettingValue;
 
 // 响应手势操作的view
 @property (nonatomic) LvDirectionPanControl *gestureOperateView;
 @property (nonatomic) VPFastSeekIndicator *seekIndicator;
-@property (nonatomic) NSTimeInterval touchDownVideoPlayTime;
-@property (nonatomic) NSTimeInterval waitingFastSeekToTime;
+@property (nonatomic) CGFloat touchDownVideoPlayTime;
+@property (nonatomic) CGFloat waitingFastSeekToTime;
 
 /**
  *  视频进度条是否在触碰
@@ -64,7 +67,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 @end
 
-@implementation VideoPlayVC
+@implementation VPVC
 
 - (instancetype)init
 {
@@ -77,8 +80,6 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setupPlayerAndCanvasView];
     
     [self setupGestureOperateView];
     
@@ -109,22 +110,11 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    [self becomeFirstResponder];
+
+    [self addObserverPlayerNotifications];
     
     [self resetPlayControlView];
     [self showPlayerNavAndControlPanelWithDismissDelay:-1.f];
-    
-    NSNotificationCenter *def = [NSNotificationCenter defaultCenter];
-    [def addObserver:self
-            selector:@selector(applicationDidEnterForeground:)
-                name:UIApplicationDidBecomeActiveNotification
-              object:nil];
-    [def addObserver:self
-            selector:@selector(applicationDidEnterBackground:)
-                name:UIApplicationWillResignActiveNotification
-              object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -141,22 +131,38 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 {
     [super viewDidDisappear:animated];
     
-    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
-    [self resignFirstResponder];
-    
-    NSNotificationCenter *def = [NSNotificationCenter defaultCenter];
-    
-    [def removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-    [def removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    
+    [self removeObserverPlayerNotifications];
     
     [self.videoStatusPullTimer invalidate];
-    self.playAfterPrepared = NO;
-    self.hasPreparedToPlay = NO;
-    
-    [self.player pause];
-    [self.player reset];
-    [self.player unSetupPlayer];
+}
+
+- (void)addObserverPlayerNotifications
+{
+    NSNotificationCenter *nf = [NSNotificationCenter defaultCenter];
+    [nf addObserver:self selector:@selector(recvPlayerCurrentVideoPlayEndedNote:) name:VitamioPlayerCurrentVideoDidPlayToEndTimeNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerDidPauseNote:) name:VitamioPlayerDidPauseNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerDidPlayNote:) name:VitamioPlayerDidPlayNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerFailToReadyToPlayNote:) name:VitamioPlayerFailToReadyToPlayNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerFailToSeekNote:) name:VitamioPlayerFailToSeekNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerPrepareToPlayNote:) name:VitamioPlayerPrepareToPlayNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerPrepareToSeekNote:) name:VitamioPlayerPrepareToSeekNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerSucceedToReadyToPlayNote:) name:VitamioPlayerSucceedToReadyToPlayNotification object:nil];
+    [nf addObserver:self selector:@selector(recvPlayerSucceedToSeekNote:) name:VitamioPlayerSucceedToSeekNotification object:nil];
+}
+
+
+- (void)removeObserverPlayerNotifications
+{
+    NSNotificationCenter *nf = [NSNotificationCenter defaultCenter];
+    [nf removeObserver:self name:VitamioPlayerCurrentVideoDidPlayToEndTimeNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerDidPauseNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerDidPlayNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerFailToReadyToPlayNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerFailToSeekNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerPrepareToPlayNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerPrepareToSeekNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerSucceedToReadyToPlayNotification object:nil];
+    [nf removeObserver:self name:VitamioPlayerSucceedToSeekNotification object:nil];
 }
 
 
@@ -183,40 +189,6 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 }
 #endif
 
-#pragma mark - Respond to the Remote Control Events
-
-- (BOOL)canBecomeFirstResponder
-{
-    return YES;
-}
-
-- (void)remoteControlReceivedWithEvent:(UIEvent *)event
-{
-    switch (event.subtype) {
-        case UIEventSubtypeRemoteControlTogglePlayPause:
-            if ([_player isPlaying]) {
-                [_player pause];
-            } else {
-                [_player start];
-            }
-            break;
-        case UIEventSubtypeRemoteControlPlay:
-            [_player start];
-            break;
-        case UIEventSubtypeRemoteControlPause:
-            [_player pause];
-            break;
-        case UIEventSubtypeRemoteControlPreviousTrack:
-            [self previousButnClick:self.playControlV.previousButn];
-            break;
-        case UIEventSubtypeRemoteControlNextTrack:
-            [self nextButnClick:self.playControlV.nextButn];
-            break;
-        default:
-            break;
-    }
-}
-
 #pragma mark - Override
 
 - (void)viewDidLayoutSubviews
@@ -235,209 +207,175 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 }
 
 
-- (void)applicationDidEnterForeground:(NSNotification *)notification
+#pragma mark = Notfications
+
+- (void)recvPlayerCurrentVideoPlayEndedNote:(NSNotification *)note
 {
-    [_player setVideoShown:YES];
-    if (![_player isPlaying]) {
-        [_player start];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.playControlV.playPauseButn setImage:[self videoPauseImage]
-                                             forState:UIControlStateNormal];
-        });
-    }
-}
-
-- (void)applicationDidEnterBackground:(NSNotification *)notification
-{
-    if ([_player isPlaying]) {
-        [_player pause];
-        [_player setVideoShown:NO];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.playControlV.playPauseButn setImage:[self videoPlayImage]
-                                             forState:UIControlStateNormal];
-        });
-    }
-}
-
-
-#pragma mark - VMediaPlayerDelegate Implement
-
-#pragma mark VMediaPlayerDelegate Implement / Required
-
-- (void)mediaPlayer:(VMediaPlayer *)player didPrepared:(id)arg
-{
-    DLOG(@"mediaPlayer:didPrepared");
-    self.hasPreparedToPlay = YES;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:VPVCPlayerItemReadyToPlayNotification
-                                                        object:self];
-    
-    self.currentVideoDuration = [player getDuration]/1000.f;
-    if (self.playAfterPrepared) {
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-        [self.player start];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.loadPlayIndicator stopAnimating];
-            [self dismissPlayerNavAndControlPanel];
-            [self.playControlV.playPauseButn setImage:[self videoPauseImage]
-                                             forState:UIControlStateNormal];
-            
-            self.playControlV.progressSlider.value = 0;
-            self.playControlV.playProgressLabel.text = [DurationFormat durationTextForDuration:0];
-            self.playControlV.remainTimeLabel.text = [DurationFormat durationTextForDuration:self.currentVideoDuration];
-            
-            [self.videoStatusPullTimer invalidate];
-            self.videoStatusPullTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/3
-                                                                         target:self
-                                                                       selector:@selector(pulledVideoStatus:)
-                                                                       userInfo:nil
-                                                                        repeats:YES];
-        });
-    }
-}
-
-- (void)pulledVideoStatus:(NSTimer *)timer
-{
-    if (self.videoProgressSliderOnTouched)
+    if (![_playerView isEqual:note.object]) {
         return;
-    
-    if (self.currentVideoDuration > 0) {
-        long currentPosition = [self.player getCurrentPosition]/1000.f;
-        self.playControlV.progressSlider.value = (CGFloat)currentPosition/(CGFloat)self.currentVideoDuration;
-        self.playControlV.playProgressLabel.text = [DurationFormat durationTextForDuration:currentPosition];
-        self.playControlV.remainTimeLabel.text = [DurationFormat durationTextForDuration:(self.currentVideoDuration - currentPosition)];
     }
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player playbackComplete:(id)arg
-{
-    DLOG(@"playbackComplete");
-    
-    self.hasPreparedToPlay = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.videoStatusPullTimer invalidate];
         [self resetPlayControlView];
         [self showPlayerNavAndControlPanelWithDismissDelay:5.f];
     });
-    
-    [self.player pause];
-    [self.player seekTo:0];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:VPVCPlayerItemDidPlayToEndTimeNotification
-                                                        object:self];
 }
 
-- (void)mediaPlayer:(VMediaPlayer *)player error:(id)arg
+- (void)recvPlayerDidPauseNote:(NSNotification *)note
 {
-    DLOG(@"play failed");
-    self.hasPreparedToPlay = NO;
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.videoStatusPullTimer invalidate];
+        [self.playControlV.playPauseButn setImage:[self videoPlayImage]
+                                         forState:UIControlStateNormal];
+    });
+}
+
+- (void)recvPlayerDidPlayNote:(NSNotification *)note
+{
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.playControlV.playPauseButn setImage:[self videoPauseImage]
+                                         forState:UIControlStateNormal];
+        
+        [self.videoStatusPullTimer invalidate];
+        self.videoStatusPullTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/3 target:self selector:@selector(pulledVideoStatus:) userInfo:nil repeats:YES];
+    });
+}
+
+- (void)recvPlayerFailToReadyToPlayNote:(NSNotification *)note
+{
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadPlayIndicator stopAnimating];
         [self showPlayerNavAndControlPanelWithDismissDelay:-1.f];
     });
 }
 
-#pragma mark VMediaPlayerDelegate Implement / Optional
-
-- (void)mediaPlayer:(VMediaPlayer *)player setupManagerPreference:(id)arg
+- (void)recvPlayerFailToSeekNote:(NSNotification *)note
 {
-    player.decodingSchemeHint = VMDecodingSchemeSoftware;
-    player.autoSwitchDecodingScheme = NO;
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player setupPlayerPreference:(id)arg
-{
-    // Set buffer size, default is 1024KB(1*1024*1024).
-    //	[player setBufferSize:256*1024];
-    [player setBufferSize:512*1024];
-    //	[player setAdaptiveStream:YES];
-    
-    [player setVideoQuality:VMVideoQualityMedium];
-    
-//    player.useCache = YES;
-//    [player setCacheDirectory:[self getCacheRootDirectory]];
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player seekComplete:(id)arg
-{
-    DLOG(@"seekComplete");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loadPlayIndicator stopAnimating];
-    });
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player notSeekable:(id)arg
-{
-    DLOG(@"notSeekable");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loadPlayIndicator stopAnimating];
-    });
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player bufferingStart:(id)arg
-{
-    DLOG(@"开始缓冲");
-    
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player bufferingUpdate:(id)arg
-{
-    DLOG(@"缓冲变化");
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player bufferingEnd:(id)arg
-{
-    DLOG(@"结束缓冲");
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player downloadRate:(id)arg
-{
-    
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player videoTrackLagging:(id)arg
-{
-    // TODO:提示暂停一下
-}
-
-#pragma mark VMediaPlayerDelegate Implement / Cache
-
-- (void)mediaPlayer:(VMediaPlayer *)player cacheNotAvailable:(id)arg
-{
-    DLOG(@"不能缓存");
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player cacheStart:(id)arg
-{
-    DLOG(@"开始缓存");
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player cacheUpdate:(id)arg
-{
-    DLOG(@"缓冲变化");
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player cacheSpeed:(id)arg
-{
-    //	NSLog(@"NAL .... media cacheSpeed: %dKB/s", [(NSNumber *)arg intValue]);
-}
-
-- (void)mediaPlayer:(VMediaPlayer *)player cacheComplete:(id)arg
-{
-    NSLog(@"NAL .... media cacheComplete");
-}
-
-- (void)setupPlayerAndCanvasView
-{
-    if (!_playerCanvasView) {
-        UIView *canvasV = [[UIView alloc]initWithFrame:self.view.bounds];
-        canvasV.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-        [self.view addSubview:canvasV];
-        _playerCanvasView = canvasV;
+    if (![_playerView isEqual:note.object]) {
+        return;
     }
-    if (!_player) {
-        _player = [VMediaPlayer sharedInstance];
-        [_player setupPlayerWithCarrierView:self.playerCanvasView withDelegate:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadPlayIndicator stopAnimating];
+    });
+}
+
+- (void)recvPlayerPrepareToPlayNote:(NSNotification *)note
+{
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadPlayIndicator startAnimating];
+    });
+}
+
+- (void)recvPlayerPrepareToSeekNote:(NSNotification *)note
+{
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadPlayIndicator startAnimating];
+    });
+}
+
+- (void)recvPlayerSucceedToReadyToPlayNote:(NSNotification *)note
+{
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadPlayIndicator stopAnimating];
+        [self dismissPlayerNavAndControlPanel];
+        [self.playControlV.playPauseButn setImage:[self videoPauseImage]
+                                         forState:UIControlStateNormal];
+        
+        self.playControlV.progressSlider.value = 0;
+        self.playControlV.playProgressLabel.text = [DurationFormat durationTextForDuration:0];
+        self.playControlV.remainTimeLabel.text = [DurationFormat durationTextForDuration:_playerView.videoDuration/1000.f];
+    });
+}
+
+- (void)recvPlayerSucceedToSeekNote:(NSNotification *)note
+{
+    if (![_playerView isEqual:note.object]) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadPlayIndicator stopAnimating];
+    });
+}
+
+#pragma mark - Private methods
+
+- (void)pulledVideoStatus:(NSTimer *)timer
+{
+    if (self.videoProgressSliderOnTouched)
+        return;
+    
+    if (_playerView.videoDuration > 0) {
+        self.playControlV.progressSlider.value = _playerView.videoCurrentPosition/_playerView.videoDuration;
+        self.playControlV.playProgressLabel.text = [DurationFormat durationTextForDuration:_playerView.videoCurrentPosition/1000.f];
+        self.playControlV.remainTimeLabel.text = [DurationFormat durationTextForDuration:(_playerView.videoDuration - _playerView.videoCurrentPosition)/1000.f];
+    }
+}
+
+#pragma mark - Setup methods
+
+- (void)setupVideoPlayerView:(VitamioPlayerView *)playerView
+{
+    if (!playerView)
+        return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (![[self.view subviews] containsObject:playerView]) {
+            [_playerView removeFromSuperview];
+            
+            _playerView = playerView;
+            
+            playerView.frame = self.view.bounds;
+            playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            
+            [self.view insertSubview:playerView atIndex:0];
+            
+            // 更新界面状态
+            if (playerView.isPlaying) {
+                [self.playControlV.playPauseButn setImage:[self videoPauseImage]
+                                                 forState:UIControlStateNormal];
+                
+                [self.videoStatusPullTimer invalidate];
+                self.videoStatusPullTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/3 target:self selector:@selector(pulledVideoStatus:) userInfo:nil repeats:YES];
+            } else {
+                [self.playControlV.playPauseButn setImage:[self videoPlayImage]
+                                                 forState:UIControlStateNormal];
+            }
+            
+            if (_playerView.videoDuration > 0) {
+                self.playControlV.progressSlider.value = _playerView.videoCurrentPosition/_playerView.videoDuration;
+                self.playControlV.playProgressLabel.text = [DurationFormat durationTextForDuration:_playerView.videoCurrentPosition/1000.f];
+                self.playControlV.remainTimeLabel.text = [DurationFormat durationTextForDuration:(_playerView.videoDuration - _playerView.videoCurrentPosition)/1000.f];
+            } else {
+                self.playControlV.progressSlider.value = 0;
+                self.playControlV.playProgressLabel.text = [DurationFormat durationTextForDuration:0];
+                self.playControlV.remainTimeLabel.text = [DurationFormat durationTextForDuration:0];
+            }
+        }
+    });
+}
+
+- (void)removeVideoPlayerView
+{
+    if (_playerView) {
+        [_playerView removeFromSuperview];
     }
 }
 
@@ -483,7 +421,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
         [self.view addSubview:_vpNavBar];
         
         [_vpNavBar.backButn addTarget:self
-                               action:@selector(dismissPlayer)
+                               action:@selector(clickNavBackButton:)
                      forControlEvents:UIControlEventTouchUpInside];
     }
 }
@@ -567,10 +505,10 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 #pragma mark - Button actions
 
-- (void)dismissPlayer
+- (void)clickNavBackButton:(UIButton *)butn
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VPVCDismissNotification
-                                                        object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:VPVCNavgationBarBackButtonClickNotification
+                                                        object:self];
 }
 
 
@@ -596,30 +534,23 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 - (void)playPauseButnClick:(UIButton *)butn
 {
-    if (!self.player.isPlaying) {
-        [self play];
+    if (_playerView.isPlaying) {
+        [_playerView pause];
     } else {
-        [self pause];
+        [_playerView play];
     }
 }
 
 // 上一个视频点击事件
 - (void)previousButnClick:(UIButton *)butn
 {
-    
-    [self.videoStatusPullTimer invalidate];
-    [self pause];
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:VPVCPlayPreviousVideoItemNotifiction object:self];
+    [[NSNotificationCenter defaultCenter]postNotificationName:VPVCPreviousButtonClickNotifiction object:self];
 }
 
 // 下一个视频按钮点击事件
 - (void)nextButnClick:(UIButton *)butn
 {
-    [self.videoStatusPullTimer invalidate];
-    [self pause];
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:VPVCPlayNextVideoItemNotification object:self];
+    [[NSNotificationCenter defaultCenter]postNotificationName:VPVCNextButtonClickNotification object:self];
 }
 
 // 视频进度变化事件
@@ -636,10 +567,6 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 - (void)videoProgressUpTouched:(LvNormalSlider *)progressSlider
 {
     self.videoProgressSliderOnTouched = NO;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loadPlayIndicator startAnimating];
-    });
-    [self.player seekTo:(long)(progressSlider.value * self.currentVideoDuration * 1000)];
 }
 
 
@@ -671,16 +598,17 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
     // 切换画布模式
     DLOG(@"double tap");
     
-    if ([self.player getVideoFillMode] == VMVideoFillModeFit) {
-        [self.player setVideoFillMode:VMVideoFillModeStretch];
+    emVMVideoFillMode fillMode = [_playerView videoFillMode];
+    if (fillMode == VMVideoFillModeFit) {
+        [_playerView setVideoFillMode:VMVideoFillModeStretch];
     } else {
-        [self.player setVideoFillMode:VMVideoFillModeFit];
+        [_playerView setVideoFillMode:VMVideoFillModeFit];
     }
 }
 
 - (void)directionPanTouchDown:(LvDirectionPanControl *)panControl
 {
-    self.touchDownVideoPlayTime = [self.player getCurrentPosition]/1000.f;
+    self.touchDownVideoPlayTime = [_playerView videoCurrentPosition];
 }
 
 - (void)directionPanTouchUp:(LvDirectionPanControl *)panControl
@@ -692,10 +620,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
     
     if (panControl.panDirection == LvPanDirectionHorizon) {
         if (self.waitingFastSeekToTime >= 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.loadPlayIndicator startAnimating];
-            });
-            [self.player seekTo:(long)(self.waitingFastSeekToTime * 1000)];
+            [_playerView videoSeekToPosition:self.waitingFastSeekToTime];
         }
     }
 }
@@ -714,96 +639,23 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
         CGFloat panDistance = panControl.currentTrackPoint.x - panControl.beiginTrackPoint.x;
         seekIndicator.fastForward = (panDistance >= 0);
         
-        long videoDuration = self.currentVideoDuration;
+        CGFloat videoDuration = _playerView.videoDuration;
         if (videoDuration > 0) {
-            NSTimeInterval seekTime = panDistance * FastForwardSecondsPerPix + self.touchDownVideoPlayTime;
+            CGFloat seekTime = panDistance * FastForwardSecondsPerPix * 1000.f + self.touchDownVideoPlayTime;
             if (seekTime > videoDuration) {
                 seekTime = videoDuration;
             } else if (seekTime < 0) {
                 seekTime = 0;
             }
             seekIndicator.seekTimeText = [NSString stringWithFormat:@"%@/%@",
-                                          [DurationFormat durationTextForDuration:seekTime],
-                                          [DurationFormat durationTextForDuration:videoDuration]];
-            self.waitingFastSeekToTime = seekTime;
+                                          [DurationFormat durationTextForDuration:seekTime/1000.f],
+                                          [DurationFormat durationTextForDuration:videoDuration/1000.f]];
+            self.waitingFastSeekToTime = seekTime/1000.f;
         } else {
             self.waitingFastSeekToTime = -1;
         }
         return;
     }
-}
-
-
-- (void)preparePlayURL:(NSURL *)videoURL immediatelyPlay:(BOOL)immediatelyPlay
-{
-    [self.player reset];
-    _videoURL = videoURL;
-    self.playAfterPrepared = immediatelyPlay;
-    if (self.player) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self resetPlayControlView];
-            [self.loadPlayIndicator startAnimating];
-        });
-        [self.player setDataSource:videoURL];
-        [self.player prepareAsync];
-    }
-}
-
-- (CGFloat)videoDuration
-{
-    return self.currentVideoDuration * 1000.f;
-}
-
-- (CGFloat)videoCurrentPosition
-{
-    return [self.player getCurrentPosition];
-}
-
-- (BOOL)isPlaying
-{
-    return self.player.isPlaying;
-}
-
-- (void)play
-{
-    self.playAfterPrepared = YES;
-    if (self.hasPreparedToPlay) {
-        if (!self.player.isPlaying) {
-            [UIApplication sharedApplication].idleTimerDisabled = YES;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.playControlV.playPauseButn setImage:[self videoPauseImage]
-                                                 forState:UIControlStateNormal];
-            });
-            [self.player start];
-        }
-    }
-}
-
-- (void)pause
-{
-    self.playAfterPrepared = NO;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.playControlV.playPauseButn setImage:[self videoPlayImage]
-                                         forState:UIControlStateNormal];
-    });
-    if (self.player.isPlaying) {
-        [self.player pause];
-    }
-}
-
-- (void)stop
-{
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [self pause];
-    [self.player reset];
-}
-
-- (void)videoSeekToPosition:(CGFloat)position
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loadPlayIndicator startAnimating];
-    });
-    [self.player seekTo:position];
 }
 
 - (void)updateFullScreenButtonImageForFullScreenState:(BOOL)fullScreenState
@@ -836,7 +688,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
         [NSObject cancelPreviousPerformRequestsWithTarget:self
                                                  selector:@selector(dismissPlayerNavAndControlPanel)
                                                    object:nil];
-        __weak VideoPlayVC *weakSelf = self;
+        __weak VPVC *weakSelf = self;
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             weakSelf.vpNavBar.alpha = 1;
@@ -855,7 +707,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 - (void)dismissPlayerNavAndControlPanel
 {
-    __weak VideoPlayVC *weakSelf = self;
+    __weak VPVC *weakSelf = self;
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         weakSelf.vpNavBar.alpha = 0;

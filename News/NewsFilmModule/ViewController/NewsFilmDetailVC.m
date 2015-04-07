@@ -11,9 +11,9 @@
 #import "NewsFilmDetailCell.h"
 #import "NewsCommentCell.h"
 #import "NewsCommentToolBarCell.h"
-#import "VideoPlayVC.h"
+#import "VPVC.h"
+#import "VitamioPlayerView.h"
 #import "SVProgressHUD.h"
-#import "LvModelWindow.h"
 
 static const NSUInteger RequestCommentsPageSize = 30;
 
@@ -21,7 +21,7 @@ static NSString *const NewsFilmDetailCellIdentifier = @"NewsFilmDetailCell";
 static NSString *const NewsCommentCellIdentifier = @"NewsCommentCell";
 static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCell";
 
-@interface NewsFilmDetailVC () <NABaseApiResultHandlerDelegate, LvModelWindowDelegate>
+@interface NewsFilmDetailVC () <NABaseApiResultHandlerDelegate>
 {
     BOOL originalStatusBarHidden;
 }
@@ -33,10 +33,15 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
 @property (nonatomic) NSInteger playingVideoIndex;
 
 // 镶嵌在页面里的播放VC，以child view controller 添加到界面中
-@property (nonatomic) VideoPlayVC *videoPlayerVC;
+@property (nonatomic) VPVC *innerVPVC;
+
+// 全屏页面播放器，弹出方式播放
+@property (nonatomic) VPVC *fullScreenVPVC;
 
 // 是否在全屏
 @property (nonatomic) BOOL isOnFullScreen;
+
+@property (nonatomic) VitamioPlayerView *playerView;
 
 @end
 
@@ -50,8 +55,6 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         DLOG(@"News, video count: %d", (int)news.videoList.count);
         
         _comments = [NSMutableArray array];
-        _videoPlayerVC = [[VideoPlayVC alloc]init];
-        _videoPlayerVC.view.backgroundColor = [UIColor blackColor];
     }
     return self;
 }
@@ -66,42 +69,37 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recvPlayerItemDidPlayToEndTimeNote:)
-                                                 name:VPVCPlayerItemDidPlayToEndTimeNotification
+                                                 name:VitamioPlayerCurrentVideoDidPlayToEndTimeNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recvPlayerPlayPreviousItemNote:)
-                                                 name:VPVCPlayPreviousVideoItemNotifiction
+                                                 name:VPVCPreviousButtonClickNotifiction
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recvPlayerPlayNextItemNote:)
-                                                 name:VPVCPlayNextVideoItemNotification
+                                                 name:VPVCNextButtonClickNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recvVideoReadyToPlayNote:)
-                                                 name:VPVCPlayerItemReadyToPlayNotification
+                                                 name:VitamioPlayerSucceedToReadyToPlayNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(recvPlayerDismissNote:)
-                                                 name:VPVCDismissNotification
+                                             selector:@selector(recvVPVCNavigationBarBackButtonClickNote:)
+                                                 name:VPVCNavgationBarBackButtonClickNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recvVideoTouchItemClickNote:)
                                                  name:NewsFilmDetailCellVideoItemSelectNotification
                                                object:nil];
-    
-    if (self.news.videoList.count > 0) {
-        self.playingVideoIndex = 0;
-    } else {
-        self.playingVideoIndex = -1;
-    }
-    
     [self setupNewsFilmDetailVC];
     
     [self requestNewsestComments];
+    
+    [self playVideoAtIndex:self.playingVideoIndex];
 }
 
 - (void)dealloc
@@ -123,6 +121,9 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -132,6 +133,48 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     if (!originalStatusBarHidden) {
         [[UIApplication sharedApplication] setStatusBarHidden:NO
                                                 withAnimation:animated?UIStatusBarAnimationFade:UIStatusBarAnimationNone];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+}
+
+#pragma mark - Respond to the Remote Control Events
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlTogglePlayPause:
+            if ([_playerView isPlaying]) {
+                [_playerView pause];
+            } else {
+                [_playerView play];
+            }
+            break;
+        case UIEventSubtypeRemoteControlPlay:
+            [_playerView play];
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            [_playerView pause];
+            break;
+        case UIEventSubtypeRemoteControlPreviousTrack:
+            [self playPreviousVideo];
+            break;
+        case UIEventSubtypeRemoteControlNextTrack:
+            [self playNextVideo];
+            break;
+        default:
+            break;
     }
 }
 
@@ -155,6 +198,42 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 #endif
+
+- (VitamioPlayerView *)playerView
+{
+    if (!_playerView) {
+        _playerView = [[VitamioPlayerView alloc]initWithFrame:self.view.bounds];
+        _playerView.backgroundColor = [UIColor blackColor];
+    }
+    return _playerView;
+}
+
+- (void)setupNewsFilmDetailVC
+{
+    if (self.news.videoList.count > 0) {
+        self.playingVideoIndex = 0;
+    } else {
+        self.playingVideoIndex = -1;
+    }
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewsFilmDetailCell"
+                                               bundle:nil]
+         forCellReuseIdentifier:NewsFilmDetailCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewsCommentCell"
+                                               bundle:nil]
+         forCellReuseIdentifier:NewsCommentCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewsCommentToolBarCell"
+                                               bundle:nil]
+         forCellReuseIdentifier:NewsCommentToolBarCellIdentifier];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(requestMoreComments)];
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在拼命加载中,请稍候...";
+}
+
 
 #pragma mark - Notifications
 
@@ -181,8 +260,15 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     [self playNextVideo];
 }
 
-- (void)recvPlayerDismissNote:(NSNotification *)note
+- (void)recvVPVCNavigationBarBackButtonClickNote:(NSNotification *)note
 {
+    if ([note.object isEqual:_fullScreenVPVC]) {
+        [_fullScreenVPVC dismissViewControllerAnimated:YES completion:nil];
+        [_innerVPVC setupVideoPlayerView:self.playerView];
+        return;
+    }
+    
+    [_playerView unsetPlayer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -252,7 +338,7 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         self.playingVideoIndex = index;
         
         NSString *videoUrl = [NSString stringWithFormat:@"%@%@", BASEVIDEOURL, [(NAVideo *)videourlList[index] videoUrl]];
-        [self.videoPlayerVC preparePlayURL:[NSURL URLWithString:videoUrl] immediatelyPlay:YES];
+        [self.playerView preparePlayURL:[NSURL URLWithString:videoUrl] immediatelyPlay:YES];
         return YES;
     }
     return NO;
@@ -263,15 +349,13 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     _isOnFullScreen = !_isOnFullScreen;
     
     if (_isOnFullScreen) {
-        [self presentViewController:_videoPlayerVC animated:YES completion:nil];
+        _fullScreenVPVC = [[VPVC alloc]init];
+        [_fullScreenVPVC setupVideoPlayerView:self.playerView];
+        [self presentViewController:_fullScreenVPVC animated:YES completion:nil];
     } else {
-        [_videoPlayerVC dismissViewControllerAnimated:YES completion:nil];
+        [_fullScreenVPVC dismissViewControllerAnimated:YES completion:nil];
+        [_innerVPVC setupVideoPlayerView:self.playerView];
     }
-    
-//    [self.tableView setScrollEnabled:!_isOnFullScreen];
-//
-//    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-//                          withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (NewsFilmDetailCell *)newsFilmDetailCell
@@ -287,7 +371,7 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     return nil;
 }
 
-- (void)addVPVC:(VideoPlayVC *)vpvc intoNewsFilmDetailCell:(NewsFilmDetailCell *)newsFilmDetailCell
+- (void)addVPVC:(VPVC *)vpvc intoNewsFilmDetailCell:(NewsFilmDetailCell *)newsFilmDetailCell
 {
     if (![vpvc.view.superview isEqual:newsFilmDetailCell.playerContaintView]) {
         vpvc.view.frame = newsFilmDetailCell.playerContaintView.bounds;
@@ -300,25 +384,6 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     }
 }
 
-- (void)setupNewsFilmDetailVC
-{
-    [self.tableView registerNib:[UINib nibWithNibName:@"NewsFilmDetailCell"
-                                               bundle:nil]
-         forCellReuseIdentifier:NewsFilmDetailCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"NewsCommentCell"
-                                               bundle:nil]
-         forCellReuseIdentifier:NewsCommentCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"NewsCommentToolBarCell"
-                                               bundle:nil]
-         forCellReuseIdentifier:NewsCommentToolBarCellIdentifier];
-    
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    [self.tableView addFooterWithTarget:self action:@selector(requestMoreComments)];
-    
-    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
-    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
-    self.tableView.footerRefreshingText = @"正在拼命加载中,请稍候...";
-}
 
 #pragma mark - Table view data source
 
@@ -337,7 +402,6 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     if (indexPath.row == 0) {
         CGFloat newsDetailCellHeight = 0;
         CGFloat cellWidth = CGRectGetWidth(tableView.frame);
-//        CGFloat playerContaintHeight = _isOnFullScreen?CGRectGetHeight([UIApplication sharedApplication].keyWindow.frame):[self calculateVideoPlayerHeightWithCellWidth:cellWidth];
         CGFloat playerContaintHeight = [self calculateVideoPlayerHeightWithCellWidth:cellWidth];
         newsDetailCellHeight = [NewsFilmDetailCell cellHeightWithVideoContaintViewHeight:playerContaintHeight
                                                                                     News:self.news
@@ -367,23 +431,20 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         detailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         CGFloat cellWidth = CGRectGetWidth(tableView.frame);
-//        CGFloat playerContaintHeight = _isOnFullScreen?CGRectGetHeight([UIApplication sharedApplication].keyWindow.frame):[self calculateVideoPlayerHeightWithCellWidth:cellWidth];
         CGFloat playerContaintHeight = [self calculateVideoPlayerHeightWithCellWidth:cellWidth];
         detailCell.playerContaintViewHeight = playerContaintHeight;
-        
-        detailCell.playerContaintView.backgroundColor = [UIColor redColor];
         
         detailCell.playingVideoIndex = self.playingVideoIndex;
         detailCell.news = self.news;
         detailCell.expandAllVideo = YES;
         
-        [self addVPVC:self.videoPlayerVC intoNewsFilmDetailCell:detailCell];
-    
-        if (!self.videoPlayerVC.isPlaying) {
-            if (!self.videoPlayerVC.videoURL) {
-                [self playVideoAtIndex:self.playingVideoIndex];
-            }
+        if (!_innerVPVC) {
+            _innerVPVC = [[VPVC alloc]init];
         }
+        if (!_isOnFullScreen) {
+            [_innerVPVC setupVideoPlayerView:self.playerView];
+        }
+        [self addVPVC:_innerVPVC intoNewsFilmDetailCell:detailCell];
         
         return detailCell;
     }
@@ -415,30 +476,6 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     return commentCell;
 }
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.row == 0) {
-//        NewsFilmDetailCell *detailCell = (NewsFilmDetailCell *)cell;
-//        CGRect playerContaintViewFrame = detailCell.playerContaintView.frame;
-//        DLOG(@"before rotate ,frame: (%d, %d, %d, %d)", (int)CGRectGetMinX(playerContaintViewFrame),(int) CGRectGetMinY(playerContaintViewFrame),(int) CGRectGetWidth(playerContaintViewFrame), (int)CGRectGetHeight(playerContaintViewFrame));
-//        if (_isOnFullScreen) {
-//            
-//            detailCell.playerContaintView.transform = CGAffineTransformMakeRotation(DegreesToRadians(90));
-//            
-//            //            CGSize playerContaintViewSize = detailCell.playerContaintView.frame.size;
-//            //            playerContaintViewSize = CGSizeMake(playerContaintViewSize.height, playerContaintViewSize.width);
-//            //            CGRect playerContaintViewFrame = detailCell.playerContaintView.frame;
-//            //            playerContaintViewFrame.size = playerContaintViewSize;
-//            //            playerContaintViewFrame.origin = CGPointMake(0, 0);
-//            //            detailCell.playerContaintView.frame = playerContaintViewFrame;
-//        } else {
-//            detailCell.playerContaintView.transform = CGAffineTransformIdentity;
-//        }
-//        
-//        playerContaintViewFrame = detailCell.playerContaintView.frame;
-//        DLOG(@"after rotate ,frame: (%d, %d, %d, %d)", (int)CGRectGetMinX(playerContaintViewFrame),(int) CGRectGetMinY(playerContaintViewFrame),(int) CGRectGetWidth(playerContaintViewFrame), (int)CGRectGetHeight(playerContaintViewFrame));
-//    }
-//}
 
 #pragma mark - Requests
 
