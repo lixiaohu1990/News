@@ -37,9 +37,9 @@
 @interface LvModelWindow : NSObject
 
 /**
- *  需要自定义的视图可以添加到windowRootView中
+ *  需要自定义的视图可以添加到rootViewController的view中
  */
-@property (nonatomic, readonly) UIView *windowRootView;
+@property (nonatomic, readonly) UIViewController *rootViewController;
 
 @property (nonatomic, readonly) BOOL preferStatusBarHidden;
 @property (nonatomic, readonly) BOOL supportedOrientationPortrait;

@@ -15,22 +15,19 @@
 #import "LvLogTool.h"
 #import "VPFastSeekIndicator.h"
 
-
-NSString *const VPVCPlayerItemDidPlayToEndTimeNotification = @"VPVCPlayerItemDidPlayToEndTimeNotification";
-
-NSString *const VPVCPlayerItemReadyToPlayNotification = @"VPVCPlayerItemReadyToPlayNotification";
-
 NSString *const VPVCPlayPreviousVideoItemNotifiction = @"VPVCPlayPreviousVideoItemNotifiction";
 
 NSString *const VPVCPlayNextVideoItemNotification = @"VPVCPlayNextVideoItemNotification";
 
 NSString *const VPVCDismissNotification = @"VPVCDismissNotification";
 
-NSString *const VPVCUpdateVibrationStrengthNotification = @"VPVCUpdateVibrationStrengthNotification";
-NSString *const VPVCVibrationStrengthKey = @"VPVCVibrationStrength";
+NSString *const VPVCFullScreenSwitchButtonClickNotification = @"VPVCFullScreenSwitchButtonClickNotification";
 
 // 每个像素快进货后退的秒数
-static CGFloat const FastForwardSecondsPerPix = 0.5f;
+static const CGFloat FastForwardSecondsPerPix = 0.5f;
+
+// 显示播放进度条的最小长度
+static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 
 @interface VideoPlayVC () <VMediaPlayerDelegate>
 {
@@ -59,7 +56,6 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
 @property (nonatomic) VPFastSeekIndicator *seekIndicator;
 @property (nonatomic) NSTimeInterval touchDownVideoPlayTime;
 @property (nonatomic) NSTimeInterval waitingFastSeekToTime;
-@property (nonatomic) CGFloat vibrationStrength;
 
 /**
  *  视频进度条是否在触碰
@@ -187,7 +183,6 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
 }
 #endif
 
-
 #pragma mark - Respond to the Remote Control Events
 
 - (BOOL)canBecomeFirstResponder
@@ -221,6 +216,24 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
             break;
     }
 }
+
+#pragma mark - Override
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    CGFloat progressSliderWidth = CGRectGetWidth(self.playControlV.progressSlider.frame);
+    [self setVideoPlayProgressSliderHidden:(progressSliderWidth < ShowVideoProgressSliderMinWidth)];
+}
+
+- (void)setVideoPlayProgressSliderHidden:(BOOL)hidden
+{
+    self.playControlV.progressSlider.hidden = hidden;
+    self.playControlV.playProgressLabel.hidden = hidden;
+    self.playControlV.remainTimeLabel.hidden = hidden;
+}
+
 
 - (void)applicationDidEnterForeground:(NSNotification *)notification
 {
@@ -515,6 +528,11 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
         [_playControlV.progressSlider addTarget:self
                                          action:@selector(videoProgressUpTouched:)
                                forControlEvents:UIControlEventTouchCancel];
+        
+        // 设置全屏切换按钮事件
+        [_playControlV.fullScreenSwithButn addTarget:self
+                                              action:@selector(fullScreenSwithButnClick:)
+                                    forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -551,10 +569,8 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
 
 - (void)dismissPlayer
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:VPVCDismissNotification
-                                                            object:nil];
-    }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:VPVCDismissNotification
+                                                        object:nil];
 }
 
 
@@ -627,6 +643,10 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
 }
 
 
+- (void)fullScreenSwithButnClick:(UIButton *)butn
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:VPVCFullScreenSwitchButtonClickNotification object:self];
+}
 
 
 #pragma mark - Gestures
@@ -729,6 +749,16 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
     }
 }
 
+- (CGFloat)videoDuration
+{
+    return self.currentVideoDuration * 1000.f;
+}
+
+- (CGFloat)videoCurrentPosition
+{
+    return [self.player getCurrentPosition];
+}
+
 - (BOOL)isPlaying
 {
     return self.player.isPlaying;
@@ -749,13 +779,6 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
     }
 }
 
-- (void)stop
-{
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [self pause];
-    [self.player reset];
-}
-
 - (void)pause
 {
     self.playAfterPrepared = NO;
@@ -766,6 +789,33 @@ static CGFloat const FastForwardSecondsPerPix = 0.5f;
     if (self.player.isPlaying) {
         [self.player pause];
     }
+}
+
+- (void)stop
+{
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [self pause];
+    [self.player reset];
+}
+
+- (void)videoSeekToPosition:(CGFloat)position
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadPlayIndicator startAnimating];
+    });
+    [self.player seekTo:position];
+}
+
+- (void)updateFullScreenButtonImageForFullScreenState:(BOOL)fullScreenState
+{
+    UIImage *img = nil;
+    if (fullScreenState) {
+        img = [UIImage imageNamed:@"vp_exit_fullscreen"];
+    } else {
+        img = [UIImage imageNamed:@"vp_turn_fullscreen"];
+    }
+    [self.playControlV.fullScreenSwithButn setImage:img forState:UIControlStateNormal];
+    [self.playControlV.fullScreenSwithButn setImage:img forState:UIControlStateHighlighted];
 }
 
 - (void)resetPlayControlView

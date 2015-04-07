@@ -31,6 +31,8 @@ NSString *const NewsFilmDetailCellSelectedVideoItemIndexKey = @"NewsFilmDetailCe
 {
     UILabel *textLabel = [[UILabel alloc]initWithFrame:self.bounds];
     textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    textLabel.textAlignment = NSTextAlignmentCenter;
+    textLabel.textColor = [UIColor whiteColor];
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.font = [UIFont systemFontOfSize:11.f];
     [self.contentView addSubview:textLabel];
@@ -44,11 +46,17 @@ NSString *const NewsFilmDetailCellSelectedVideoItemIndexKey = @"NewsFilmDetailCe
 static const CGFloat NewsFilmDetailCellExpandOtherVideoButnWidth = 70.f;
 static NSString *const NewsFilmDetailVideoItmCellIdentifier = @"NewsFilmDetailVideoItmCell";
 static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
+static const CGFloat VideoTouchItemMinimumLineSpacing = 8.f;
+static const CGFloat VideoTouchItemMinimumInteritemSpacing = 8.f;
 
 @interface NewsFilmDetailCell () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic, weak) NSLayoutConstraint *descLabelHeightConstaint;
-@property (nonatomic, weak) NSLayoutConstraint *videoCollectionViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *playerContaintViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *descLabel;
+@property (nonatomic, weak) IBOutlet UICollectionView *videoCollectionView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *descLabelHeightConstaint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *videoCollectionViewHeightConstraint;
 
 @end
 
@@ -62,19 +70,39 @@ static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
 {
     self.playerContaintView.backgroundColor = [UIColor clearColor];
     
+    self.descLabel.numberOfLines = 0;
+    
     self.videoCollectionView.delegate = self;
     self.videoCollectionView.dataSource = self;
     self.videoCollectionView.backgroundColor = [UIColor clearColor];
     [self.videoCollectionView registerClass:[NewsFilmDetailVideoItmCell class] forCellWithReuseIdentifier:NewsFilmDetailVideoItmCellIdentifier];
 }
 
+- (void)setPlayerContaintViewHeight:(CGFloat)playerContaintViewHeight
+{
+    _playerContaintViewHeight = playerContaintViewHeight;
+    self.playerContaintViewHeightConstraint.constant = playerContaintViewHeight;
+}
+
 - (void)setNews:(NANewsResp *)news
 {
     _news = news;
     
-    // TODO: 计算描述内容的高度
+    self.titleLabel.text = [NSString stringWithFormat:@"%@  共%d集",
+                            news.name,
+                            (int)news.videoList.count];
+    self.descLabel.text = news.nsDescription;
+    [self.videoCollectionView reloadData];
     
-    // TODO: 计算videoCollectionView的高度
+    CGFloat cellWidth = CGRectGetWidth(self.contentView.frame);
+    // 重新设置描述内容的高度
+    CGFloat descHeight = [NewsFilmDetailCell calculateDescriptionLabelHeightWithContent:news.nsDescription cellWidth:cellWidth];
+    self.descLabelHeightConstaint.constant = descHeight;
+    
+    // 重新设置videoCollectionView的高度
+    CGFloat collectionViewHeight = [NewsFilmDetailCell calculateVideoCollectionViewHeightWithVideoNum:news.videoList.count expandAllVideo:YES cellWidth:cellWidth];
+    self.videoCollectionViewHeightConstraint.constant = collectionViewHeight;
+    
 }
 
 - (void)setExpandAllVideo:(BOOL)expandAllVideo
@@ -91,12 +119,24 @@ static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
     [self.videoCollectionView reloadData];
 }
 
-+ (CGFloat)cellHeightWithNews:(NANewsResp *)news
-               expandAllVideo:(BOOL)expandAllVideo
-                    cellWidth:(CGFloat)cellWidth
++ (CGFloat)cellHeightWithVideoContaintViewHeight:(CGFloat)videoContaintViewHeight
+                                            News:(NANewsResp *)news
+                                  expandAllVideo:(BOOL)expandAllVideo
+                                       cellWidth:(CGFloat)cellWidth
 {
-    // TODO:计算高度
-    return 0;
+    // 计算高度
+    CGFloat videoPlayViewHeight = videoContaintViewHeight;
+    
+    CGFloat descHeight = [self calculateDescriptionLabelHeightWithContent:news.nsDescription cellWidth:cellWidth];
+    
+    CGFloat collectionViewHeight = [self calculateVideoCollectionViewHeightWithVideoNum:news.videoList.count expandAllVideo:expandAllVideo cellWidth:cellWidth];
+    
+    return videoPlayViewHeight/*播放器高度*/ + 8/*间隔*/ + [self titleLabelHeight]/*title高度*/ + 8/*间隔*/ + descHeight/*内容高度*/ + 8/*间隔*/ + collectionViewHeight/*视频每集touchItem高度*/ + 8/*间隔*/;
+}
+
++ (CGFloat)titleLabelHeight
+{
+    return 22.f;
 }
 
 + (CGFloat)calculateDescriptionLabelHeightWithContent:(NSString *)content
@@ -112,9 +152,23 @@ static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
 {
     // 计算高度
     // FIXME: 暂时忽略expandAllVideo的情况，全部展开
+    NSUInteger row = ceilf((CGFloat)videoNum/(CGFloat)NewsFilmDetailVideoItmCellNumPerRow);
     
+    CGSize videoTouchItemSize = [self videoTouchItemSizeWithCellWidth:cellWidth];
     
+    if (row > 0) {
+        return row*videoTouchItemSize.height + (row - 1) * VideoTouchItemMinimumLineSpacing;
+    }
     return 0;
+}
+
++ (CGSize)videoTouchItemSizeWithCellWidth:(CGFloat)cellWidth
+{
+    CGFloat collectionViewWidth = cellWidth - 2*8;
+    
+    CGFloat itemWidth = ((collectionViewWidth - 8*2) - (NewsFilmDetailVideoItmCellNumPerRow - 1)*8)/NewsFilmDetailVideoItmCellNumPerRow;
+    
+    return CGSizeMake(itemWidth, itemWidth);
 }
 
 #pragma mark - Video collection view data source and delegate
@@ -134,12 +188,13 @@ static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsFilmDetailVideoItmCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NewsFilmDetailVideoItmCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%02d", indexPath.row + 1];
+    cell.textLabel.text = [NSString stringWithFormat:@"%02d",
+                           indexPath.row + 1];
     cell.textLabel.backgroundColor = [UIColor whiteColor];
     if (self.playingVideoIndex == indexPath.row) {
-        cell.backgroundColor = [UIColor blackColor];
+        cell.textLabel.backgroundColor = [UIColor blackColor];
     } else {
-        cell.backgroundColor = [UIColor colorFromRGB:(0x058b80)];
+        cell.textLabel.backgroundColor = [UIColor colorFromRGB:(0x058b80)];
     }
     return cell;
 }
@@ -148,11 +203,7 @@ static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat collectionViewWidth = CGRectGetWidth(collectionView.frame);
-    
-    CGFloat cellWidth = ((collectionViewWidth - 8*2) - (NewsFilmDetailVideoItmCellNumPerRow - 1)*8)/NewsFilmDetailVideoItmCellNumPerRow;
-    
-    return CGSizeMake(cellWidth, cellWidth);
+    return [NewsFilmDetailCell videoTouchItemSizeWithCellWidth:CGRectGetWidth(self.frame)];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
@@ -165,12 +216,12 @@ static const NSUInteger NewsFilmDetailVideoItmCellNumPerRow = 10;
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 8.f;
+    return VideoTouchItemMinimumLineSpacing;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 8.f;
+    return VideoTouchItemMinimumInteritemSpacing;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

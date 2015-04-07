@@ -16,9 +16,8 @@ extern NSString *const NewsFilmDetailCellSelectedVideoItemIndexKey;
 @interface NewsFilmDetailCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIView *playerContaintView;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *descLabel;
-@property (nonatomic, weak) IBOutlet UICollectionView *videoCollectionView;
+
+@property (nonatomic) CGFloat playerContaintViewHeight;
 
 @property (nonatomic) NANewsResp *news;
 // 是否展开所有视频
@@ -26,8 +25,9 @@ extern NSString *const NewsFilmDetailCellSelectedVideoItemIndexKey;
 
 @property (nonatomic) NSUInteger playingVideoIndex;
 
-+ (CGFloat)cellHeightWithNews:(NANewsResp *)news
-               expandAllVideo:(BOOL)expandAllVideo
-                    cellWidth:(CGFloat)cellWidth;
++ (CGFloat)cellHeightWithVideoContaintViewHeight:(CGFloat)videoContaintViewHeight
+                                            News:(NANewsResp *)news
+                                  expandAllVideo:(BOOL)expandAllVideo
+                                       cellWidth:(CGFloat)cellWidth;
 
 @end

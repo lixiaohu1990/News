@@ -7,16 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-/**
- *  VPVC里播放的节目播放结束的通知
- */
-extern NSString *const VPVCPlayerItemDidPlayToEndTimeNotification;
-
-/**
- *  准备好播放的通知
- */
-extern NSString *const VPVCPlayerItemReadyToPlayNotification;
+#import "Vitamio.h"
 
 /**
  *  VPVC播放上一个视频的通知
@@ -34,14 +25,26 @@ extern NSString *const VPVCPlayNextVideoItemNotification;
 extern NSString *const VPVCDismissNotification;
 
 /**
- *  变化了震动强度的通知，在通知的userInfo中使用VPVCVibrationStrengthKey获取类型为NSNumber的强度值, 介于0-1之间
+ *  视频播放VC全屏切换按钮点击通知
  */
-extern NSString *const VPVCUpdateVibrationStrengthNotification;
-extern NSString *const VPVCVibrationStrengthKey;
+extern NSString *const VPVCFullScreenSwitchButtonClickNotification;
 
+/**
+ *  使用model方式弹出该播放器VC
+ */
 @interface VideoPlayVC : UIViewController
 
 @property (nonatomic, readonly) NSURL *videoURL;
+
+/**
+ *  当前播放视频的时长，单位：毫秒
+ */
+@property (nonatomic, readonly) CGFloat videoDuration;
+
+/**
+ *  当前播放视频的进度位置，单位：毫秒
+ */
+@property (nonatomic, readonly) CGFloat videoCurrentPosition;
 
 // 是否在播放
 @property (nonatomic, readonly, getter=isPlaying) BOOL playing;
@@ -50,5 +53,15 @@ extern NSString *const VPVCVibrationStrengthKey;
 - (void)play;
 - (void)pause;
 - (void)stop;
+
+/**
+ *  视频到某个位置，单位：毫秒
+ */
+- (void)videoSeekToPosition:(CGFloat)position;
+
+/**
+ *  更新全屏的图标
+ */
+- (void)updateFullScreenButtonImageForFullScreenState:(BOOL)fullScreenState;
 
 @end

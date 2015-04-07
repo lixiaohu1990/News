@@ -27,4 +27,7 @@
 // 进度调节器
 @property (nonatomic, weak) IBOutlet LvNormalSlider *progressSlider;
 
+// 全屏/非全屏切换按钮
+@property (nonatomic, weak) IBOutlet UIButton *fullScreenSwithButn;
+
 @end

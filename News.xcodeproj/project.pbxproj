@@ -287,6 +287,7 @@
 		867E58771ACD80FD00D29BDB /* NewsCommentToolBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58761ACD80FD00D29BDB /* NewsCommentToolBarCell.xib */; };
 		867E58791ACD86CE00D29BDB /* NewsCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58781ACD86CE00D29BDB /* NewsCommentCell.xib */; };
 		867E587C1ACD86DF00D29BDB /* NewsCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */; };
+		867E58831AD2F3E300D29BDB /* VitamioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -770,6 +771,8 @@
 		867E58781ACD86CE00D29BDB /* NewsCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCommentCell.xib; sourceTree = "<group>"; };
 		867E587A1ACD86DF00D29BDB /* NewsCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentCell.h; sourceTree = "<group>"; };
 		867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentCell.m; sourceTree = "<group>"; };
+		867E58811AD2F3E300D29BDB /* VitamioPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VitamioPlayerView.h; sourceTree = "<group>"; };
+		867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VitamioPlayerView.m; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1878,6 +1881,8 @@
 			children = (
 				867E58361ACC27B900D29BDB /* VideoPlayVC.h */,
 				867E58371ACC27B900D29BDB /* VideoPlayVC.m */,
+				867E58811AD2F3E300D29BDB /* VitamioPlayerView.h */,
+				867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2251,6 +2256,7 @@
 				2FCE0A7B1AAAF559007795C4 /* NAApiConstants.m in Sources */,
 				2F39B1E51AA43B2C00575A76 /* SDWebImageDownloaderOperation.m in Sources */,
 				2F39B1C31AA43B2C00575A76 /* AFURLRequestSerialization.m in Sources */,
+				867E58831AD2F3E300D29BDB /* VitamioPlayerView.m in Sources */,
 				2F39B1D01AA43B2C00575A76 /* NSObject+MJKeyValue.m in Sources */,
 				2F33981A1AA54522001DA4C5 /* BaseNavigationViewController.m in Sources */,
 				5983D3841AAD7A41005B8FAD /* NAAlbum.m in Sources */,
