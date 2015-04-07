@@ -352,9 +352,11 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         _fullScreenVPVC = [[VPVC alloc]init];
         [_fullScreenVPVC setupVideoPlayerView:self.playerView];
         [self presentViewController:_fullScreenVPVC animated:YES completion:nil];
+        [_fullScreenVPVC updateFullScreenButtonImageForFullScreenState:YES];
     } else {
         [_fullScreenVPVC dismissViewControllerAnimated:YES completion:nil];
         [_innerVPVC setupVideoPlayerView:self.playerView];
+        [_innerVPVC updateFullScreenButtonImageForFullScreenState:NO];
     }
 }
 
