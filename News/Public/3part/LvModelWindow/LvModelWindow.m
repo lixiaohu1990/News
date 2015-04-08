@@ -169,7 +169,7 @@
                                              supportedOrientationLandscapeLeft:_supportedOrientationLandscapeLeft
                                             supportedOrientationLandscapeRight:_supportedOrientationLandscapeRight];
     _window.rootViewController = _windowRootVC;
-    _windowRootView = _windowRootVC.view;
+    _rootViewController = _windowRootVC;
 }
 
 

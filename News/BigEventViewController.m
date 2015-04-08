@@ -135,7 +135,7 @@
             _eventStyle = BigeventdetailStyleText;
         }
     }
-    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:_eventStyle newsId:item.itemId videoPath:item.videoUrl listType:BigEventType];
+    BigEventDetailTableViewController  *control = [[BigEventDetailTableViewController alloc] initWithEventStyle:_eventStyle news:item listType:BigEventType];
     //        [self.navigationController pushViewController:control animated:YES];
     if (_eventStyle == BigeventdetailStyleVideo) {
         [self presentModalViewController:control animated:YES];

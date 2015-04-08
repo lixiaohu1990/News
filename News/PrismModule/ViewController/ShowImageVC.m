@@ -172,12 +172,11 @@ static NSString * const ShowedImageCellReuseIdentifier = @"ShowedImageCell";
         _photoViewerModelWindow = win;
         
         if (!_photoViewer) {
-            LvPhotoViewerView *photoViewer = [[LvPhotoViewerView alloc]initWithFrame:win.windowRootView.bounds];
+            LvPhotoViewerView *photoViewer = [[LvPhotoViewerView alloc]initWithFrame:win.rootViewController.view.bounds];
             photoViewer.delegate = self;
             photoViewer.backgroundColor = [UIColor blackColor];
-            photoViewer.frame = win.windowRootView.bounds;
             photoViewer.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-            [win.windowRootView addSubview:photoViewer];
+            [win.rootViewController.view addSubview:photoViewer];
             _photoViewer = photoViewer;
         }
     }

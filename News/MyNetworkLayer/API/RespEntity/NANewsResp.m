@@ -9,6 +9,7 @@
 #import "NANewsResp.h"
 #import "NSObject+ClassFilter.h"
 
+@class NAVideo;
 @implementation NANewsResp
 
 - (instancetype)initWithRespDictionay:(NSDictionary *)respDictionay
@@ -35,6 +36,16 @@
         
         self.tag = [respDictionay[@"tag"] objectIsKindOfClass:[NSString class]];
         self.author = [respDictionay[@"author"] objectIsKindOfClass:[NSString class]];
+        
+        NSArray *videoList = [respDictionay[@"videoList"] objectIsKindOfClass:[NSArray class]];
+        NSMutableArray *videos = [NSMutableArray array];
+        for (NSDictionary *videoObj in videoList) {
+            NAVideo *video = [[NAVideo alloc]initWithDictionary:videoObj];
+            if (video) {
+                [videos addObject:video];
+            }
+        }
+        self.videoList = videos;
     }
     return self;
 }
@@ -43,6 +54,21 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"{name:%@, nsDescription:%@, imageUrl:%@, vedioUrl:%@, commentCount:%d}", self.name, self.nsDescription, self.imageUrl, self.videoUrl, self.commentCount];
+}
+
+@end
+
+@implementation NAVideo
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    if (self = [super init]) {
+        self.vDescription = [dictionary[@"description"] objectIsKindOfClass:[NSString class]];
+        self.videoUrl = [dictionary[@"videoUrl"] objectIsKindOfClass:[NSString class]];
+        self.name = [dictionary[@"name"] objectIsKindOfClass:[NSString class]];
+        self.number = [(NSNumber *)[dictionary[@"number"] objectIsKindOfClass:[NSNumber class]] intValue];
+    }
+    return self;
 }
 
 @end

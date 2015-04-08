@@ -10,6 +10,8 @@
 	<string>News</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>36c29bff-4f9d-4f63-be1b-868ec5aa51fd++124</key>
+		<string>http://www.svnchina.com/svn/toy_1024/iOS/Demos/LvDemos</string>
 		<key>43F4902F05BB0561569F30322232CB9640B2C7B0</key>
 		<string>https://github.com/lixiaohu1990/News.git</string>
 	</dict>
@@ -17,8 +19,15 @@
 	<string>News.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>36c29bff-4f9d-4f63-be1b-868ec5aa51fd++124</key>
+		<string>../../../svn/workcopies/1024Love/DEMO/LvDemos</string>
 		<key>43F4902F05BB0561569F30322232CB9640B2C7B0</key>
 		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>36c29bff-4f9d-4f63-be1b-868ec5aa51fd++124</key>
+		<string>http://www.svnchina.com/svn/toy_1024</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/lixiaohu1990/News.git</string>
@@ -28,6 +37,14 @@
 	<string>43F4902F05BB0561569F30322232CB9640B2C7B0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>36c29bff-4f9d-4f63-be1b-868ec5aa51fd++124</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LvDemos</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

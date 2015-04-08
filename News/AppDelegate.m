@@ -17,6 +17,34 @@
 #import "NewFeatureViewController.h"
 #import "MainVC.h"
 
+/**
+ *  主导航
+ */
+@interface MainNavigationController : UINavigationController
+
+@end
+
+@implementation MainNavigationController
+
+#pragma mark - 屏幕方向控制
+
+#ifdef __IPHONE_6_0
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+#endif
+
+#ifndef __IPHONE_6_0
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+}
+#endif
+
+@end
+
+
 @interface AppDelegate ()
 
 @end
