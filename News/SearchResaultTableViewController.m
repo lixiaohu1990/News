@@ -9,6 +9,7 @@
 #import "SearchResaultTableViewController.h"
 #import "NAAPISearhResaultList.h"
 #import "NANewsResp.h"
+#import "SearchResaultCell.h"
 @interface SearchResaultTableViewController ()<NABaseApiResultHandlerDelegate>
 @property(nonatomic, strong)NSString *searchStr;
 @property(nonatomic, strong)NAAPISearhResaultList *req;
@@ -27,6 +28,7 @@
     [super viewDidLoad];
     self.title = _searchStr;
     [self getTagList];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -61,13 +63,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NANewsResp *item = self.tagListArray[indexPath.row];
-    static NSString *cellID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-    }
-    cell.textLabel.text = item.name;
-    cell.detailTextLabel.text = item.nsDescription;
+//    static NSString *cellID = @"cell";
+    SearchResaultCell *cell = [SearchResaultCell cellWithTableView:tableView];
+    cell.titleLabel.text = item.name;
+    cell.row = indexPath.row;
+//    cell.textLabel.text = item.name;
+//    cell.detailTextLabel.text = item.nsDescription;
     return cell;
 }
 

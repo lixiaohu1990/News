@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"设置";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -46,6 +46,9 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, CGRectGetHeight(cell.frame)-0.5, CGRectGetWidth(cell.frame)-10, 0.5)];
+        lineView.backgroundColor = [UIColor grayColor];
+        [cell addSubview:lineView];
     }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"意见反馈";

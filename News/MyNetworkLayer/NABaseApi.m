@@ -70,7 +70,7 @@
     }
     
     // 成功
-    if ([NAApiRequestSuccess isEqualToString:respStatus.status]) {
+    if ([NAApiRequestSuccess isEqualToString:respStatus.status] || [NAApiBusinessErr isEqualToString:respStatus.status]) {
         
         // 解析结果，并调用正确结果处理
         id parsedResult;
