@@ -15,5 +15,11 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *commentNumLabel;
 @property (nonatomic, weak) IBOutlet UIButton *publishCommentButn;
+@property (nonatomic, weak) IBOutlet UITextField *commentField;
+
+// 评论框是否收缩
+@property (nonatomic) BOOL willingCommentFieldShrink;
+
++ (CGFloat)cellHeightWithCommentFieldShrink:(BOOL)commentFieldShrink;
 
 @end

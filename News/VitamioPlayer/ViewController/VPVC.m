@@ -194,18 +194,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
-    CGFloat progressSliderWidth = CGRectGetWidth(self.playControlV.progressSlider.frame);
-    [self setVideoPlayProgressSliderHidden:(progressSliderWidth < ShowVideoProgressSliderMinWidth)];
 }
-
-- (void)setVideoPlayProgressSliderHidden:(BOOL)hidden
-{
-    self.playControlV.progressSlider.hidden = hidden;
-    self.playControlV.playProgressLabel.hidden = hidden;
-    self.playControlV.remainTimeLabel.hidden = hidden;
-}
-
 
 #pragma mark = Notfications
 
@@ -432,7 +421,7 @@ static const CGFloat ShowVideoProgressSliderMinWidth = 150.f;
         // 设置play control
         _playControlV = [[VPPlayControlView alloc]initFromNib];
         _playControlV.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
-        CGFloat playCtrlHeight = 44;
+        CGFloat playCtrlHeight = 80.f;
         _playControlV.frame = CGRectMake(0,
                                          CGRectGetHeight(self.view.frame) - playCtrlHeight,
                                          CGRectGetWidth(self.view.frame),

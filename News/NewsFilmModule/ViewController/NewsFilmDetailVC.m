@@ -8,6 +8,7 @@
 
 #import "NewsFilmDetailVC.h"
 #import "NAApiGetCommentList.h"
+#import "NAApiSaveComment.h"
 #import "NewsFilmDetailCell.h"
 #import "NewsCommentCell.h"
 #import "NewsCommentToolBarCell.h"
@@ -42,6 +43,11 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
 @property (nonatomic) BOOL isOnFullScreen;
 
 @property (nonatomic) VitamioPlayerView *playerView;
+
+// 是否想展开评论框
+@property (nonatomic) BOOL willingExpandCommentField;
+
+@property (nonatomic) NAApiSaveComment *publishCommentReq;
 
 @end
 
@@ -216,6 +222,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         self.playingVideoIndex = -1;
     }
     
+#ifdef __IPHONE_7_0
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+#endif
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"NewsFilmDetailCell"
                                                bundle:nil]
          forCellReuseIdentifier:NewsFilmDetailCellIdentifier];
@@ -306,7 +316,9 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         nextIndex = (currentPlayIndex + 1)%videourlList.count;
     }
     
-    [self playVideoAtIndex:nextIndex];
+    if ([self playVideoAtIndex:nextIndex]) {
+        [self newsFilmDetailCell].playingVideoIndex = nextIndex;
+    }
 }
 
 /**
@@ -325,7 +337,9 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         preIndex = (currentPlayIndex - 1 + videourlList.count)%videourlList.count;
     }
     
-    [self playVideoAtIndex:preIndex];
+    if ([self playVideoAtIndex:preIndex]) {
+        [self newsFilmDetailCell].playingVideoIndex = preIndex;
+    }
 }
 
 /**
@@ -411,7 +425,7 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         return newsDetailCellHeight;
     }
     if (indexPath.row == 1) {
-        return 30.f;
+        return [NewsCommentToolBarCell cellHeightWithCommentFieldShrink:!self.willingExpandCommentField];
     }
     
     NACommentResp *comment = self.comments[indexPath.row - 2];
@@ -420,8 +434,6 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
                                                   cellWidth:CGRectGetWidth(tableView.frame)];
     return height;
 }
-
-#define DegreesToRadians(degrees) (degrees * M_PI / 180)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -457,7 +469,22 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         commentToolBarCell.backgroundColor = [UIColor clearColor];
         commentToolBarCell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        commentToolBarCell.commentNumLabel.text = [NSString stringWithFormat:@"评论  共%d条", (int)self.comments.count];
+        commentToolBarCell.commentNumLabel.text = [NSString stringWithFormat:@"共%d条", (int)self.comments.count];
+        
+        commentToolBarCell.willingCommentFieldShrink = !self.willingExpandCommentField;
+        if (self.willingExpandCommentField) {
+            [commentToolBarCell.publishCommentButn setTitle:@"收起评论框" forState:UIControlStateNormal];
+        } else {
+            [commentToolBarCell.publishCommentButn setTitle:@"发表评论" forState:UIControlStateNormal];
+        }
+        
+        [commentToolBarCell.publishCommentButn addTarget:self
+                                                  action:@selector(toggleShowCommentField:)
+                                        forControlEvents:UIControlEventTouchUpInside];
+        [commentToolBarCell.commentField addTarget:self
+                                            action:@selector(publishComment:)
+                                  forControlEvents:UIControlEventEditingDidEndOnExit];
+        commentToolBarCell.commentField.returnKeyType = UIReturnKeySend;
         
         return commentToolBarCell;
     }
@@ -478,6 +505,42 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     return commentCell;
 }
 
+- (void)toggleShowCommentField:(UIButton *)butn
+{
+    self.willingExpandCommentField = !self.willingExpandCommentField;
+    
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
+- (void)publishComment:(UITextField *)commentField
+{
+    [commentField resignFirstResponder];
+    
+    // 发表评论
+    [self requestPublishComment:commentField.text];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.willingExpandCommentField = NO;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1
+                                                                    inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    });
+}
+
+- (NewsCommentToolBarCell *)newsCommentToolBarCell
+{
+    NSInteger cellNum = [self.tableView numberOfRowsInSection:0];
+    if (cellNum > 1) {
+        NewsCommentToolBarCell *newsCommentToolBarCell = (NewsCommentToolBarCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1
+                                                                                                                                inSection:0]];
+        if ([newsCommentToolBarCell isKindOfClass:[NewsCommentToolBarCell class]]) {
+            return newsCommentToolBarCell;
+        }
+    }
+    return nil;
+}
 
 #pragma mark - Requests
 
@@ -514,6 +577,21 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
     });
 }
 
+- (void)requestPublishComment:(NSString *)comment
+{
+    if (comment.length == 0)
+        return;
+    if (_publishCommentReq.isOnRequest)
+        return;
+    [SVProgressHUD showWithStatus:@"发表评论..." maskType:SVProgressHUDMaskTypeClear];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        _publishCommentReq = [[NAApiSaveComment alloc]initWithText:comment
+                                                              nsId:self.news.itemId];
+        _publishCommentReq.APIRequestResultHandlerDelegate = self;
+        [_publishCommentReq asyncRequest];
+    });
+}
+
 #pragma mark - api delegate
 
 - (void)failCauseBissnessError:(id)apiRequest
@@ -525,6 +603,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         }
         if ([apiRequest isEqual:_loadMoreCommentsReq]) {
             [self.tableView footerEndRefreshing];
+            return;
+        }
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showErrorWithStatus:@"业务错误"];
             return;
         }
     });
@@ -541,6 +623,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
             [self.tableView footerEndRefreshing];
             return;
         }
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showErrorWithStatus:@"网络无链接"];
+            return;
+        }
     });
 }
 
@@ -553,6 +639,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         }
         if ([apiRequest isEqual:_loadMoreCommentsReq]) {
             [self.tableView footerEndRefreshing];
+            return;
+        }
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showErrorWithStatus:@"参数错误"];
             return;
         }
     });
@@ -569,6 +659,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
             [self.tableView footerEndRefreshing];
             return;
         }
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showErrorWithStatus:@"请求超时"];
+            return;
+        }
     });
 }
 
@@ -583,6 +677,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
             [self.tableView footerEndRefreshing];
             return;
         }
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showErrorWithStatus:@"服务端出错"];
+            return;
+        }
     });
 }
 
@@ -595,6 +693,10 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         }
         if ([apiRequest isEqual:_loadMoreCommentsReq]) {
             [self.tableView footerEndRefreshing];
+            return;
+        }
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showErrorWithStatus:@"系统出错"];
             return;
         }
     });
@@ -623,6 +725,28 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
                 [_comments addObjectsFromArray:results];
                 [self.tableView reloadData];
             }
+            return;
+        }
+        
+        if ([apiRequest isEqual:_publishCommentReq]) {
+            [SVProgressHUD showSuccessWithStatus:@"发布成功"];
+            [self newsCommentToolBarCell].commentField.text = @"";
+            
+            // 添加到列表头部
+            NACommentResp *newComment = [[NACommentResp alloc]init];
+            newComment.userName = @"自己";
+            static NSDateFormatter *yyyyMMddhhmmssdateFormatter = nil;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                yyyyMMddhhmmssdateFormatter = [[NSDateFormatter alloc]init];
+                [yyyyMMddhhmmssdateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+            });
+            newComment.createdDate = [yyyyMMddhhmmssdateFormatter stringFromDate:[NSDate date]];
+            newComment.text = _publishCommentReq.text;
+            
+            [self.comments insertObject:newComment atIndex:0];
+            [self.tableView reloadData];
+            
             return;
         }
     });

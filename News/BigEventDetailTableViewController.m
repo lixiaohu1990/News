@@ -15,7 +15,6 @@
 #import "DetailCommentTableViewCell.h"
 #import "LoginViewController.h"
 #import "VideoSubtitles.h"
-#import "VideoPlayVC.h"
 
 @interface BigEventDetailTableViewController ()<DetailDiscussTableViewCellDelegate, NABaseApiResultHandlerDelegate, SendCommentViewDelegate>
 {

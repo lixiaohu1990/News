@@ -21,7 +21,19 @@
 
 - (void)setupNewsCommentToolBarCell
 {
-    
+    self.clipsToBounds = YES;
+}
+
+- (void)setWillingCommentFieldShrink:(BOOL)willingCommentFieldShrink
+{
+    _willingCommentFieldShrink = willingCommentFieldShrink;
+    self.commentField.hidden = willingCommentFieldShrink;
+}
+
++ (CGFloat)cellHeightWithCommentFieldShrink:(BOOL)commentFieldShrink
+{
+    CGFloat height = 40 + (commentFieldShrink?0:(30 + 8));
+    return height;
 }
 
 @end

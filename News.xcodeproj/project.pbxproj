@@ -268,7 +268,6 @@
 		867E58441ACC27B900D29BDB /* VPNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E582B1ACC27B900D29BDB /* VPNavigationBar.m */; };
 		867E58451ACC27B900D29BDB /* VPNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E582C1ACC27B900D29BDB /* VPNavigationBar.xib */; };
 		867E58461ACC27B900D29BDB /* VPPlayControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E582E1ACC27B900D29BDB /* VPPlayControlView.m */; };
-		867E58471ACC27B900D29BDB /* VPPlayControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E582F1ACC27B900D29BDB /* VPPlayControlView.xib */; };
 		867E584D1ACC28D900D29BDB /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E584C1ACC28D900D29BDB /* libiconv.dylib */; };
 		867E584F1ACC28EB00D29BDB /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E584E1ACC28EB00D29BDB /* libstdc++.dylib */; };
 		867E58511ACC28F300D29BDB /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58501ACC28F300D29BDB /* libbz2.dylib */; };
@@ -288,6 +287,7 @@
 		867E587C1ACD86DF00D29BDB /* NewsCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E587B1ACD86DF00D29BDB /* NewsCommentCell.m */; };
 		867E58831AD2F3E300D29BDB /* VitamioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */; };
 		867E58861AD41D9200D29BDB /* VPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58851AD41D9200D29BDB /* VPVC.m */; };
+		867E588A1AD5605700D29BDB /* VPPlayControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58891AD5605700D29BDB /* VPPlayControlView.xib */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -743,7 +743,6 @@
 		867E582C1ACC27B900D29BDB /* VPNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPNavigationBar.xib; sourceTree = "<group>"; };
 		867E582D1ACC27B900D29BDB /* VPPlayControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPPlayControlView.h; sourceTree = "<group>"; };
 		867E582E1ACC27B900D29BDB /* VPPlayControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPPlayControlView.m; sourceTree = "<group>"; };
-		867E582F1ACC27B900D29BDB /* VPPlayControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPPlayControlView.xib; sourceTree = "<group>"; };
 		867E584C1ACC28D900D29BDB /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		867E584E1ACC28EB00D29BDB /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		867E58501ACC28F300D29BDB /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
@@ -773,6 +772,7 @@
 		867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VitamioPlayerView.m; sourceTree = "<group>"; };
 		867E58841AD41D9200D29BDB /* VPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPVC.h; sourceTree = "<group>"; };
 		867E58851AD41D9200D29BDB /* VPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPVC.m; sourceTree = "<group>"; };
+		867E58891AD5605700D29BDB /* VPPlayControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPPlayControlView.xib; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1871,7 +1871,7 @@
 				867E582C1ACC27B900D29BDB /* VPNavigationBar.xib */,
 				867E582D1ACC27B900D29BDB /* VPPlayControlView.h */,
 				867E582E1ACC27B900D29BDB /* VPPlayControlView.m */,
-				867E582F1ACC27B900D29BDB /* VPPlayControlView.xib */,
+				867E58891AD5605700D29BDB /* VPPlayControlView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2092,6 +2092,7 @@
 				2FEC0A6A1AABCF5100CFE389 /* SendCommentView.xib in Resources */,
 				2F963CF81AA946B400E7D754 /* icon_Other@2x.png in Resources */,
 				869842811AB4A078005EB63C /* UIView+LoadData.strings in Resources */,
+				867E588A1AD5605700D29BDB /* VPPlayControlView.xib in Resources */,
 				2FCE08C31AAA932C007795C4 /* SVProgressHUD.bundle in Resources */,
 				59780CFA1AB28FD100FE3A43 /* Prism.xcassets in Resources */,
 				2F963D201AA94ABB00E7D754 /* bg_title2@2x.png in Resources */,
@@ -2145,7 +2146,6 @@
 				2FE791A71AAC74CE0001804D /* 37@2x.png in Resources */,
 				2F963D071AA9480700E7D754 /* 2@2x.png in Resources */,
 				2FCE08C61AAA9885007795C4 /* back_icon01@2x.png in Resources */,
-				867E58471ACC27B900D29BDB /* VPPlayControlView.xib in Resources */,
 				2F963CD51AA944C200E7D754 /* icon_Other@3x .png in Resources */,
 				867E58691ACC5D1400D29BDB /* NewsFilmDetailCell.xib in Resources */,
 				2F47D3D81AAFD36700A6E34B /* AboutUSViewController.xib in Resources */,
