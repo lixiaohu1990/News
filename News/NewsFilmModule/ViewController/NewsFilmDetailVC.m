@@ -15,6 +15,7 @@
 #import "VPVC.h"
 #import "VitamioPlayerView.h"
 #import "SVProgressHUD.h"
+#import "LoginViewController.h"
 
 static const NSUInteger RequestCommentsPageSize = 30;
 
@@ -22,7 +23,7 @@ static NSString *const NewsFilmDetailCellIdentifier = @"NewsFilmDetailCell";
 static NSString *const NewsCommentCellIdentifier = @"NewsCommentCell";
 static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCell";
 
-@interface NewsFilmDetailVC () <NABaseApiResultHandlerDelegate>
+@interface NewsFilmDetailVC () <NABaseApiResultHandlerDelegate, UIAlertViewDelegate>
 {
     BOOL originalStatusBarHidden;
 }
@@ -583,6 +584,14 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         return;
     if (_publishCommentReq.isOnRequest)
         return;
+    
+    if (![DDUser sharedUser].login) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您尚未登入，请登入后再进行评论" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登入", nil];
+        alert.delegate = self;
+        [alert show];
+        return;
+    }
+    
     [SVProgressHUD showWithStatus:@"发表评论..." maskType:SVProgressHUDMaskTypeClear];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         _publishCommentReq = [[NAApiSaveComment alloc]initWithText:comment
@@ -590,6 +599,15 @@ static NSString *const NewsCommentToolBarCellIdentifier = @"NewsCommentToolBarCe
         _publishCommentReq.APIRequestResultHandlerDelegate = self;
         [_publishCommentReq asyncRequest];
     });
+}
+
+#pragma mark - alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        LoginViewController *control = [[LoginViewController alloc] init];
+        [self presentViewController:control animated:YES completion:nil];
+    }
 }
 
 #pragma mark - api delegate

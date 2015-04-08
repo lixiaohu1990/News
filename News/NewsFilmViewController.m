@@ -12,7 +12,6 @@
 #import "NewsList.h"
 #import "NANewsResp.h"
 #import "BigEventDetailTableViewController.h"
-#import "VideoPlayVC.h"
 #import "NewsFilmDetailVC.h"
 
 //#import "XCTAssert.h"
