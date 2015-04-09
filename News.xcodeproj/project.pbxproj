@@ -282,7 +282,6 @@
 		867E58551ACC292600D29BDB /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58541ACC292600D29BDB /* CoreVideo.framework */; };
 		867E58571ACC292E00D29BDB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58561ACC292E00D29BDB /* CoreMedia.framework */; };
 		867E58591ACC296600D29BDB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867E58581ACC296600D29BDB /* AVFoundation.framework */; };
-		867E585E1ACC2B6900D29BDB /* LvNormalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E585C1ACC2B6900D29BDB /* LvNormalSlider.m */; };
 		867E58611ACC4DFF00D29BDB /* BigEventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58601ACC4DFF00D29BDB /* BigEventDetailTableViewController.m */; };
 		867E58691ACC5D1400D29BDB /* NewsFilmDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */; };
 		867E586C1ACC5D3300D29BDB /* NewsFilmDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E586B1ACC5D3300D29BDB /* NewsFilmDetailCell.m */; };
@@ -295,6 +294,7 @@
 		867E58831AD2F3E300D29BDB /* VitamioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58821AD2F3E300D29BDB /* VitamioPlayerView.m */; };
 		867E58861AD41D9200D29BDB /* VPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E58851AD41D9200D29BDB /* VPVC.m */; };
 		867E588A1AD5605700D29BDB /* VPPlayControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867E58891AD5605700D29BDB /* VPPlayControlView.xib */; };
+		867E588F1AD6027900D29BDB /* LvNormalSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 867E588D1AD6027900D29BDB /* LvNormalSlider.m */; };
 		869842741AB49FC8005EB63C /* AllAroundPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698426D1AB49FC8005EB63C /* AllAroundPullView.m */; };
 		869842751AB49FC8005EB63C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426E1AB49FC8005EB63C /* arrow.png */; };
 		869842761AB49FC8005EB63C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8698426F1AB49FC8005EB63C /* arrow@2x.png */; };
@@ -767,9 +767,6 @@
 		867E58541ACC292600D29BDB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		867E58561ACC292E00D29BDB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		867E58581ACC296600D29BDB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		867E585B1ACC2B6900D29BDB /* LvNormalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvNormalSlider.h; sourceTree = "<group>"; };
-		867E585C1ACC2B6900D29BDB /* LvNormalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LvNormalSlider.m; sourceTree = "<group>"; };
-		867E585D1ACC2B6900D29BDB /* LvNormalSliderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvNormalSliderConfigurations.h; sourceTree = "<group>"; };
 		867E585F1ACC4DFF00D29BDB /* BigEventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigEventDetailTableViewController.h; sourceTree = "<group>"; };
 		867E58601ACC4DFF00D29BDB /* BigEventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigEventDetailTableViewController.m; sourceTree = "<group>"; };
 		867E58681ACC5D1400D29BDB /* NewsFilmDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFilmDetailCell.xib; sourceTree = "<group>"; };
@@ -790,6 +787,9 @@
 		867E58841AD41D9200D29BDB /* VPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPVC.h; sourceTree = "<group>"; };
 		867E58851AD41D9200D29BDB /* VPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPVC.m; sourceTree = "<group>"; };
 		867E58891AD5605700D29BDB /* VPPlayControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPPlayControlView.xib; sourceTree = "<group>"; };
+		867E588C1AD6027900D29BDB /* LvNormalSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvNormalSlider.h; sourceTree = "<group>"; };
+		867E588D1AD6027900D29BDB /* LvNormalSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LvNormalSlider.m; sourceTree = "<group>"; };
+		867E588E1AD6027900D29BDB /* LvNormalSliderConfigurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LvNormalSliderConfigurations.h; sourceTree = "<group>"; };
 		8698426C1AB49FC8005EB63C /* AllAroundPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAroundPullView.h; sourceTree = "<group>"; };
 		8698426D1AB49FC8005EB63C /* AllAroundPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAroundPullView.m; sourceTree = "<group>"; };
 		8698426E1AB49FC8005EB63C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -1835,7 +1835,7 @@
 		867E580B1ACC27B900D29BDB /* 3part */ = {
 			isa = PBXGroup;
 			children = (
-				867E585A1ACC2B6900D29BDB /* LvNormalSlider */,
+				867E588B1AD6027900D29BDB /* LvNormalSlider */,
 				867E580C1ACC27B900D29BDB /* Vitamio */,
 			);
 			path = 3part;
@@ -1914,17 +1914,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		867E585A1ACC2B6900D29BDB /* LvNormalSlider */ = {
-			isa = PBXGroup;
-			children = (
-				867E585B1ACC2B6900D29BDB /* LvNormalSlider.h */,
-				867E585C1ACC2B6900D29BDB /* LvNormalSlider.m */,
-				867E585D1ACC2B6900D29BDB /* LvNormalSliderConfigurations.h */,
-			);
-			name = LvNormalSlider;
-			path = ../../../../../svn/workcopies/1024Love/DEMO/LvDemos/Public/3part/LvNormalSlider;
-			sourceTree = "<group>";
-		};
 		867E58651ACC5C6300D29BDB /* NewsFilmModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -1957,6 +1946,16 @@
 				867E58711ACD7CBE00D29BDB /* NewsFilmDetailVC.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		867E588B1AD6027900D29BDB /* LvNormalSlider */ = {
+			isa = PBXGroup;
+			children = (
+				867E588C1AD6027900D29BDB /* LvNormalSlider.h */,
+				867E588D1AD6027900D29BDB /* LvNormalSlider.m */,
+				867E588E1AD6027900D29BDB /* LvNormalSliderConfigurations.h */,
+			);
+			path = LvNormalSlider;
 			sourceTree = "<group>";
 		};
 		8698426A1AB49FC8005EB63C /* 3part */ = {
@@ -2243,7 +2242,6 @@
 				2FCE0A841AAB006A007795C4 /* DDUser.m in Sources */,
 				2F46E0AE1AAE9E190010C70A /* UIView+MJExtension.m in Sources */,
 				2F39B1CA1AA43B2C00575A76 /* MJIvar.m in Sources */,
-				867E585E1ACC2B6900D29BDB /* LvNormalSlider.m in Sources */,
 				2F39B1C61AA43B2C00575A76 /* MBProgressHUD+MJ.m in Sources */,
 				2F3432DD1AA68CB20096949C /* NewsFilmTableViewCell.m in Sources */,
 				2FCE0A781AAAF559007795C4 /* NAApiLogin.m in Sources */,
@@ -2374,6 +2372,7 @@
 				867E57F11ABB0B7800D29BDB /* MainTabsView.m in Sources */,
 				2FCE0A611AAAF539007795C4 /* ReachableSingleton.m in Sources */,
 				2F4671101ACCCC3400B5D267 /* SearchResaultCell.m in Sources */,
+				867E588F1AD6027900D29BDB /* LvNormalSlider.m in Sources */,
 				869842831AB4A078005EB63C /* UIView+LoadData.m in Sources */,
 				2F2FE9BB1AA5E39800AC6E44 /* MoreView.m in Sources */,
 				2F559ECB1AB474CE0060AC56 /* SearchTagTableViewController.m in Sources */,
